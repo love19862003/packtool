@@ -39,7 +39,7 @@ namespace ExcelSpace{
          auto cell = m_sheet.cell(ref);
          res = cell.to_string();
          if (xlnt::cell_type::boolean ==  cell.data_type()){
-           res = cell.value<long double>() == 0.L ? "1" : "0";
+           res = cell.value<double>() == 0.L ? "1" : "0";
          }
          return res;
       }
@@ -88,15 +88,15 @@ namespace ExcelSpace{
           m_sheets.clear();
         }
 
-        virtual  Sheet*  getSheet(int index) final{
-          return m_sheets.getData(index).get();
+        virtual  SheetPtr  getSheet(int index) final{
+          return m_sheets.getData(index);
         }
 
-        virtual Sheet* getSheet(const std::string& sheetName) final{
-          Sheet* res = nullptr;
+        virtual SheetPtr getSheet(const std::string& sheetName) final{
+          SheetPtr res = nullptr;
           m_sheets.forEachValue([&res, &sheetName](const std::shared_ptr<Sheet>& ptr){
             if (ptr && ptr->name() == sheetName){
-              res = ptr.get();
+              res = ptr;
             }
           });
           return res;

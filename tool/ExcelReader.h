@@ -29,12 +29,13 @@ namespace ExcelSpace{
 
   class ExcelBook;
   typedef std::shared_ptr<ExcelBook> BookPtr;
+  typedef std::shared_ptr<Sheet> SheetPtr;
 
   class ExcelBook{
   public:
     static BookPtr openBook(const std::string& file);
-    virtual Sheet* getSheet(int index) = 0;
-    virtual Sheet* getSheet(const std::string& name) = 0;
+    virtual SheetPtr getSheet(int index) = 0;
+    virtual SheetPtr getSheet(const std::string& name) = 0;
     virtual int sheetCount() = 0;
     virtual const std::string& error() = 0;
   protected:

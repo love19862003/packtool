@@ -111,6 +111,25 @@ namespace ToolSpace {
         return optional_value;
       }
 
+      value_type& getData(const std::function<bool (pair_type&)>& fun){
+        for (auto& pair : m_map){
+          if(fun(pair)){
+            return pair.second;
+          }
+        }
+        return optional_value;
+      }
+
+      const value_type& getData(const std::function<bool(const pair_type&)>& fun) const{
+        for (auto& pair : m_map){
+          if (fun(pair)){
+            return pair.second;
+          }
+        }
+        return optional_value;
+      }
+
+
       void eraseData(const key_type& key) {
         m_map.erase(key);
       }
@@ -229,6 +248,24 @@ namespace ToolSpace {
         const_iterator_type it = m_map.find(key);
         if(it != m_map.end()) {
           return it->second;
+        }
+        return optional_value;
+      }
+
+      value_type& getData(const std::function<bool(pair_type&)>& fun){
+        for (auto& pair : m_map){
+          if (fun(pair)){
+            return pair.second;
+          }
+        }
+        return optional_value;
+      }
+
+      const value_type& getData(const std::function<bool(const pair_type&)>& fun) const{
+        for (auto& pair : m_map){
+          if (fun(pair)){
+            return pair.second;
+          }
         }
         return optional_value;
       }
