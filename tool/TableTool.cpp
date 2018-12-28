@@ -24,7 +24,7 @@ namespace ToolSpace{
     m_args.version = version;
     m_args.next_table_id = 2;
     m_error = false;
-
+    m_state = nullptr;
     
   }
 
@@ -32,6 +32,19 @@ namespace ToolSpace{
     m_log.close();
   }
 
+  bool TableTool::init(){
+    m_state = luaL_newstate();
+    LitSpace::openLuaLibs(m_state);
+    LitSpace::dofile(m_state, "./lua/tool.lua");
+    return true;
+  }
+
+  void TableTool::shutDown(){
+    if (m_state){
+      lua_close(m_state);
+      m_state = nullptr;
+    }
+  }
 
   bool TableTool::run(){
     if (!loadSetting(m_args.setting_file)){
@@ -196,16 +209,63 @@ namespace ToolSpace{
 
 
       for (int col = 0; col < sheet->colCount(); ++col){
-        EnumPtr en = std::make_shared<TEnum>();
-        en->full_name = strlimit(sheet->read(ENUM_ROW_NAME, col));
-        if (en->full_name.empty()){ break;}
-//         auto v = split(en->full_name, ".");
-//         en->name = v.back();
-//         if (v.size() >= 2){ en->table = v.front(); }
-
+        std::string enName = strlimit(sheet->read(ENUM_ROW_NAME, col));
+        std::string enType = strlimit(sheet->read(ENUM_ROW_TYPE, col));
+        std::string enComment = strlimit(sheet->read(ENUM_ROW_COMMENT, col));
         
+        if (enName.empty()){ break; }
 
-         
+        auto rv = LitSpace::rcall<LitSpace::lua_returns<int, int>>(m_state, "read_type", enType);
+        if (std::get<0>(rv) != _BASIC_ || !LitSpace::call<bool>(m_state, "isEnumType", std::get<1>(rv))){
+          break;
+        }
+
+        LitSpace::call<void>(m_state, "read_enum_name", enName);
+        for (int row = ENUM_ROW_COMMENT + 1; row < sheet->rowCount(); ++row){
+          std::string enValue = strlimit(sheet->read(row, col));
+          std::string enValueComment  = strlimit(sheet->readComment(row, col));
+          if (enValue.empty()){ break; }
+          LitSpace::call<void>(m_state, "read_enum_value", enName, enValue, enValueComment);
+        }
+
+
+        if (m_args.proto_type == PROTO_VER3){
+          bool hasZero = LitSpace::call<bool>(m_state, "check_enum_value", enName, 0);
+          if (!hasZero){ LitSpace::call<void>(m_state, "read_enum_value", enName, "unknow_zero=0", "unknow value"); }
+        }
+
+        LitSpace::resetStack(m_state);
+        LitSpace::table t = LitSpace::call<LitSpace::table>(m_state, "get_enum", enName);
+        if (!t.isNil()){
+        /*  LitSpace::debug_stack(m_state);*/
+          EnumPtr en = std::make_shared<TEnum>();
+          en->full_name = t.get<std::string>("full_name");
+          en->name = t.get<std::string>("name");
+          en->table = t.get<std::string>("table");
+          LitSpace::table values = t.get<LitSpace::table>("values");
+          /*LitSpace::debug_stack(m_state);*/
+          if (!values.isNil()){
+           /* values.debug();*/
+            int len = values.len();
+            /*LitSpace::debug_stack(m_state);*/
+            for (size_t i = 1; i <= len; ++i){
+              LitSpace::table value_table = values.get<LitSpace::table>(i);
+              if (!value_table.isNil()){
+//                 value_table.debug();
+//                 LitSpace::debug_stack(m_state);
+                TEnumValue tev;
+                tev.name = value_table.get<std::string>(1);
+                tev.value = value_table.get<int>(2);
+                tev.comment = value_table.get<std::string>(3);
+                en->values.addData(tev.name, tev);
+              }
+            }
+          }
+
+          m_enums.addData(en->full_name, en);
+        }
+
+        LitSpace::resetStack(m_state);
       }
 
 

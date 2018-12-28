@@ -45,7 +45,8 @@ namespace ToolSpace{
     std::string::size_type pos = 0;
     std::string::size_type tag_len = tag.size();
     std::string::size_type t_len = t.size();
-    while (pos = str.find(tag, pos) && pos != std::string::npos){
+    while (pos = str.find(tag, pos) ){
+      if (pos == std::string::npos){ break;}
       str.replace(pos, tag_len, t);
       pos += t_len;
     }

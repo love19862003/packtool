@@ -71,7 +71,7 @@ namespace ExcelSpace{
       }
     protected:
     private:
-      const xlnt::worksheet& m_sheet;
+      const xlnt::worksheet m_sheet;
     };
 
 
@@ -79,10 +79,19 @@ namespace ExcelSpace{
     {
     public:
         XlntBook(const std::string& path){
-          m_book.load(path);
+          
+         // try{
+
+            m_book.load(path);
+           
+//           } catch (...){
+// 
+//           }
+
           for (int i = 0; i < m_book.sheet_count(); ++i){
             m_sheets.addData(i, std::make_shared<XlntSheet>(m_book.sheet_by_index(i)));
           }
+          
         }
         virtual ~XlntBook(){
           m_sheets.clear();
@@ -121,7 +130,7 @@ namespace ExcelSpace{
 
     //check file type is xlsx
     BookPtr ExcelBook::openBook(const std::string& file){
-      const char* regex = ".+\\xlsx$";
+      const char* regex = ".+\\.xlsx$";
       std::regex reg(regex);
       std::cmatch match;
       if (std::regex_match(file.data(), match, reg)){

@@ -14,6 +14,7 @@
   Organization:
 *********************************************************************/
 #include <iostream>
+#include "TableTool.h"
 
 int main(int argc, char* argv[]) {
   
@@ -57,6 +58,17 @@ int main(int argc, char* argv[]) {
 //     if(!m.run()) { 
 //       assert(false);
 //     }
+
+  ToolSpace::TableTool m("./setting.xlsx", "1.0.0.1", ToolSpace::PROTO_VER3, "../out.log");
+  if (!m.init()){
+    return 1;
+  }
+
+  if (!m.run()){
+    return 1;
+  }
+
+  m.shutDown();
 #ifdef _DEBUG
     getchar();
 #endif // _DEBUG

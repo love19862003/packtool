@@ -18,8 +18,16 @@
 #include "MapTemplate.h"
 namespace ToolSpace{
 
+
+  enum TMutiType{
+    _BASIC_ = 0,
+    _ARRAY_ = 1,
+    _GROUP_ = 2,
+  };
+
   struct THead{
     int basic_type;
+    TMutiType muti_type;
     int index;
     int column;
     std::string comment;

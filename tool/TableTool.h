@@ -16,6 +16,7 @@
 #include <set>
 #include <fstream>
 
+struct lua_State;
 namespace ToolSpace{
   enum ProtoType{
      PROTO_VER2 = 0,
@@ -81,9 +82,9 @@ namespace ToolSpace{
       ROW_NAME_SPACE = 0,
       ROW_ALL_CONFIG_NAME ,
       ROW_TAIL_CONFIG_NAME ,
+      ROW_OUT_FILE_NAME,
       ROW_OUT_DIR ,
       ROW_EXCEL_DIR ,
-      ROW_OUT_FILE_NAME,
       ROW_COMMON_DEFINE_NAME,
       ROW_COMMON_GROUP_NAME,
       ROW_LAYOUT_FILE_NAME,
@@ -96,8 +97,11 @@ namespace ToolSpace{
      
     };
 
-  private:
+ 
+    bool init();
     bool run();
+    void shutDown();
+  private:
     bool loadSetting(const std::string& file);
     bool loadEnum(const std::string& file);
     bool loadTable(const std::string& file);
@@ -138,6 +142,7 @@ namespace ToolSpace{
     ToolArgs m_args;
     mutable bool m_error;
     mutable std::ofstream m_log;
+    lua_State* m_state;
   };
 
 }
