@@ -16,13 +16,9 @@
 namespace ToolSpace{
 
 
-  Table::Table(const TTableLayout& layout) : m_layout(layout), m_tableName(tolower(m_layout.table)){
+  Table::Table(const LayoutPtr& layout) : m_layout(layout), m_tableName(tolower_copy(layout->table)){
   
   }
-  Table::Table(const std::string& table) : m_tableName(tolower_copy(table)){
-    m_layout.table = m_tableName;
-  }
-
   Table::~Table(){
   
   }
@@ -43,11 +39,11 @@ namespace ToolSpace{
   }
 
 
-  Table::HeadPtr Table::getHead(int index) const{
+  HeadPtr Table::getHead(int index) const{
     return m_heads.getData(index);
   }
 
-  Table::HeadPtr Table::getColumnHead(int column) const{
+  HeadPtr Table::getColumnHead(int column) const{
     return m_heads.getData([column](const HeadMap::pair_type& pair){
       auto ptr = pair.second;
       if (ptr && ptr->column == column){
@@ -58,7 +54,7 @@ namespace ToolSpace{
     });
   }
 
-  Table::HeadPtr Table::getHead(const std::string& headName) const{
+  HeadPtr Table::getHead(const std::string& headName) const{
     return m_heads.getData([&headName](const HeadMap::pair_type& pair){
       auto ptr = pair.second;
       if (ptr && ptr->name == headName){

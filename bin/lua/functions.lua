@@ -312,9 +312,9 @@ end
 function string.split3(str, delimiter1, delimiter2)
     if (delimiter1=='' or delimiter2 == '') then return false end
     local t = string.split(str, delimiter1)
-    local t2 = {array = {}}
+    local t2 = {}
     for _, v in pairs(t) do 
-      table.insert(t2.array, string.split(v, delimiter2))
+      table.insert(t2, string.split(v, delimiter2))
     end
     return t2
 end

@@ -23,6 +23,7 @@ namespace ToolSpace{
      PROTO_VER3 = 1,
   };
   class Table;
+  struct TTableLayout;
   struct TEnum;
   class TableTool
   {
@@ -62,6 +63,7 @@ namespace ToolSpace{
     typedef EnumMap::value_type EnumPtr;
     typedef ObjectMap<std::string, ExcelFile> ExcelSheetMap;
     typedef ObjectMap<std::string, TableLinkArgs> TableLinkMap;
+    typedef ObjPtrMap<std::string, TTableLayout> TableLayoutMap;
 
     explicit TableTool(const std::string& file, const std::string& version, ProtoType type, const std::string& log);
     virtual ~TableTool();
@@ -94,7 +96,16 @@ namespace ToolSpace{
       ENUM_ROW_NAME = 0,
       ENUM_ROW_TYPE,
       ENUM_ROW_COMMENT,
-     
+    };
+
+    enum{
+      HEAD_ROW_NAME = 0,
+      HEAD_ROW_TYPE,
+      HEAD_ROW_COMMENT,
+    };
+
+    enum{
+      TABLE_KEY_INDEX = 1,
     };
 
  
@@ -110,6 +121,7 @@ namespace ToolSpace{
     bool check();
 
     void save();
+    void saveProto();
     void saveToLua();
     void saveToJson();
     void saveToSql();
@@ -139,6 +151,7 @@ namespace ToolSpace{
     ExcelSheetMap m_enumExcels;
     ExcelSheetMap m_checkExcels;
     TableLinkMap m_links;
+    TableLayoutMap m_layouts;
     ToolArgs m_args;
     mutable bool m_error;
     mutable std::ofstream m_log;

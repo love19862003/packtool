@@ -18,21 +18,16 @@
 #include "MapTemplate.h"
 namespace ToolSpace{
 
-
-  enum TMutiType{
-    _BASIC_ = 0,
-    _ARRAY_ = 1,
-    _GROUP_ = 2,
-  };
-
   struct THead{
     int basic_type;
-    TMutiType muti_type;
+    int muti_type;
     int index;
     int column;
     std::string comment;
     std::string table;
     std::string name;
+    std::string type_name;       //int, array<int>, group<int>
+    std::string type_basic_name; //int int int
   };
 
   struct TEnumValue{
@@ -83,19 +78,18 @@ namespace ToolSpace{
     ObjectMap<std::string, THeadLayout> layouts;
   };
 
+  typedef std::shared_ptr<TTableLayout> LayoutPtr;
+  typedef ObjPtrMap<std::string, TRecord> RecordMap;
+  typedef RecordMap::value_type RecordPtr;
+  typedef ObjPtrMap<std::string, TLink> LinkMap;
+  typedef LinkMap::value_type LinkPtr;
+  typedef ObjPtrMap<int, THead> HeadMap;
+  typedef HeadMap::value_type HeadPtr;
 
   class Table
   {
   public:
-    typedef ObjPtrMap<std::string, TRecord> RecordMap;
-    typedef RecordMap::value_type RecordPtr;
-    typedef ObjPtrMap<std::string, TLink> LinkMap;
-    typedef LinkMap::value_type LinkPtr;
-    typedef ObjPtrMap<int, THead> HeadMap;
-    typedef HeadMap::value_type HeadPtr;
-
-    explicit Table(const std::string& table);
-    explicit Table(const TTableLayout& layout);
+    explicit Table(const LayoutPtr& layout);
     virtual ~Table();
 
     inline const std::string& tableName() const{ return m_tableName; }
@@ -111,6 +105,8 @@ namespace ToolSpace{
     HeadPtr getColumnHead(int column) const;
     HeadPtr getHead(const std::string& headName)const;
 
+    const LayoutPtr& getLayout() const{ return m_layout; }
+
   protected:
     Table(const Table&) = delete;
     Table& operator =(const Table&) = delete;
@@ -119,7 +115,7 @@ namespace ToolSpace{
     RecordMap m_records;
     HeadMap m_heads;
     LinkMap m_links;
-    TTableLayout m_layout;
+    const LayoutPtr m_layout;
     std::set<std::string> m_dependTable;
   };
 
