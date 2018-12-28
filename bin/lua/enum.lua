@@ -40,6 +40,7 @@ function read_enum_value(name, str, comment)
   end
 end
 
+--检测枚举值
 function check_enum_value(name, value)
   if not enum_type[name] then
    return false
@@ -57,4 +58,40 @@ function check_enum_value(name, value)
   end
   
   return false
+end
+
+--枚举的名字
+function proto_enum_name(name, group)
+  local en = enum_type[name]
+  local key = en.name
+  if en.table ~= "" then
+    key = en.table..tail_config_name.."."..key
+  end 
+  if group then
+     if en.table ~= "" then
+       return en.table..tail_config_name.."."..common_group_name..en.name
+      else
+       return common_group_name..en.name
+     end
+  else
+     if en.table ~= "" then
+       return en.table..tail_config_name.."."..en.name
+      else
+       return en.name
+     end
+  end
+end
+
+--自定义枚举类型
+function write_message_enum(name, space)
+  local en = enum_type[name]
+  local str = add_space(space)
+  local res = str .. "enum "..en.name .. "{\n"..str
+  for _, v in pairs(en.values) do
+    res = res..str.." "..v[1] .. " = ".. v[2] ..";//"..v[3].."\n" 
+  end
+  res = res.."\n"..str.."};"
+  res = res..str.."message " .. common_group_name..en.name.. "{\n"
+  res = res..str.." repeated " .. en.name.. " array = 1; \n"..str.."}\n" 
+  return res
 end

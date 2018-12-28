@@ -168,6 +168,8 @@ namespace ToolSpace{
     m_args.common_group_name = strlimit(sheet->read(ROW_COMMON_GROUP_NAME, COLUMN_FILE), false);
     m_args.layout_file = strlimit(sheet->read(ROW_LAYOUT_FILE_NAME, COLUMN_FILE), false);
 
+    LitSpace::call<void>(m_state, "set_common_define", m_args.common_define_name, m_args.common_group_name, m_args.common_enum_name);
+
     sheet = book->getSheet(SETTING_CHECK_INDEX);
     if (!sheet){
       error("load check setting failed");
@@ -462,8 +464,38 @@ namespace ToolSpace{
 
   }
 
+  std::string TableTool::nameSpace(){
+    if (m_args.name_space.empty()){
+      return "";
+    }
+    return "package " + m_args.name_space + ";\n";
+  }
+  std::string TableTool::protoType(){
+    if (m_args.proto_type == PROTO_VER2){
+      return "syntax = \"proto2\";\n";
+    }
+
+    if (m_args.proto_type == PROTO_VER3){
+      return "syntax = \"proto3\";\n";
+    }
+
+    return "";
+  }
+
+  static void  writerFile(std::fstream& file,  const std::string& str){
+    if(!str.empty())file.write(str.data(), str.length());
+  }
+
+
   void TableTool::saveProto(){
   
+    std::string protoPath = m_args.out_dir + "\\proto\\";
+    
+    std::fstream commonOutFile(protoPath + m_args.common_define_name + ".proto", std::ios::out | std::ios::binary);
+    writerFile(commonOutFile, protoType());
+    writerFile(commonOutFile, nameSpace());
+    writerFile(commonOutFile, LitSpace::call<std::string>(m_state, "write_common"));
+    commonOutFile.close();
   }
 
   void TableTool::saveToLua(){

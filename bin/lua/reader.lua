@@ -11,12 +11,12 @@ local function replace_array(str)
 end
 
 local function replace_group(str)
-  print("replace_group:"..str)
+  --print("replace_group:"..str)
   str = string.gsub(str, " ", "")
   str = string.gsub(str, "%],%[", "|")
   str = string.gsub(str, "%]", "")
   str = string.gsub(str, "%[", "")
-  print("replace_group:"..str)
+  --print("replace_group:"..str)
   return str
 end
 

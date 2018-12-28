@@ -51,6 +51,7 @@ namespace ToolSpace{
       std::string out_file_name = "AllConfig";
       std::string common_define_name = "ConfigType";
       std::string common_group_name = "ConfigTypeGroup";
+      std::string common_enum_name = "EnumDefine";
       std::string version = "v1.0.0.0";
       int next_table_id = 2;
       int version_table_id = 1;
@@ -119,6 +120,10 @@ namespace ToolSpace{
     bool loadCheck(const std::string& file);
     bool loadLayout(const std::string& file);
     bool check();
+
+    std::string nameSpace();
+    std::string protoType();
+
 
     void save();
     void saveProto();
