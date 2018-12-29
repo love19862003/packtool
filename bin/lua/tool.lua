@@ -1,15 +1,17 @@
 package.path = package.path..";./lua/?.lua"
 require("dump_object")
+require("proto_write")
 require("type")
 require("links")
 require("tables")
 require("tool_args")
-require("proto_write")
+
 
 local read_table_record = {}
 local key_index_id = 1
 local global_table_index = 2
 
+-- 创建新的表格
 function new_table(name)
   local layout = Layout.new()
   layout:init(name)
@@ -19,6 +21,7 @@ function new_table(name)
   g_tables[t:name()] = t
 end
 
+-- 增加表格头
 function table_head(table, column, headname, typename, comment)
   local mt, basic, basic_name = read_type(typename)
   if isNoneType(basic) then 
@@ -76,6 +79,7 @@ function table_head(table, column, headname, typename, comment)
   return t:addHead(head)
 end
 
+--检查表格多链接索引是否合法
 function check_table_link(name)
   local links = gtable_links[name]
   local t = g_tables[name]
@@ -100,10 +104,12 @@ function check_table_link(name)
 end
 
 
+-- 重置数据记录
 function reset_read_table_record()
   read_table_record = {index = "", fields = {}} 
 end
 
+-- 增加数据读取字段
 function add_read_fields(name, column, value)
   local t = g_tables[name]
   if not t then return false end
@@ -122,10 +128,12 @@ function add_read_fields(name, column, value)
   return true
 end
 
+-- 检测数据是否读完
 function read_record_end()
   return read_table_record.index == "" or read_table_record.index == nil
 end
 
+--增加数据到表格
 function add_record(name)
   local t = g_tables[name]
   if not t then return false end
@@ -136,11 +144,12 @@ function add_record(name)
   return true
 end
 
+-- dump
 function dump_tables()
   --Dump.info(g_enum_type)
   for k, v in pairs(g_tables) do 
      --Dump.info(v.heads, k.." heads")
-      --Dump.info(v.records, k.." records")
+     --Dump.info(v.records, k.." records")
      --Dump.info(v.depends, k.." depends")
      --Dump.info(v.links, k.." links")
   end

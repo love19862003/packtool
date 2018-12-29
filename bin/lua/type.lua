@@ -13,25 +13,25 @@ g_basic_type = {
   ["int"] = { 
       type = 1, 
       reader = reader_number, 
-      writer = write_field,
+      writer = write_proto_field,
       key = "int32",
       },
   ["float"] = {
       type = 2, 
       reader = reader_number,
-      writer = write_field,
+      writer = write_proto_field,
       key = "float",
       },
   ["string"] = { 
       type = 3, 
       reader = reader_string, 
-      writer = write_field,
+      writer = write_proto_field,
       key = "string",
       },
   ["bool"] = { 
       type = 4, 
       reader = reader_bool,
-      writer = write_field,
+      writer = write_proto_field,
       key = "bool",
       },
   ["enum"] = { 
@@ -43,7 +43,7 @@ g_basic_type = {
   ["self_enum"] = {
       type = 6, 
       reader = reader_self_enum,
-      writer = write_field_enum,
+      writer = write_proto_field_enum,
       key = "self_enum",
       },
 
@@ -133,7 +133,7 @@ local function get_muti_type(type)
   return g_muti_type[type] or g_muti_type.basic
 end
 
--- 读取类型
+-- 读取类型 int  array<int> group<int> bool 
 function read_type(type_name_str)
  local type_name = type_name_str
  local r1, r2, muti, name = string.find(type_name, "^(%a+)<(.+)>$")
@@ -145,21 +145,24 @@ function read_type(type_name_str)
 end
 
 -- 写入类型
-function write_type(basic, muti, type_name, op)
-  local call = write_function[basic]
+function write_type(head, space)
+  local call = write_function[head.basic_type]
   if call ~= nil then 
-    return call(muti, type_name, op)
+    return call(head, space)
   else
+    --Dump.info(head)
+    assert(false)
     return nil
   end
 end
 
--- 读取数值local field = read_data(value, head.basic_type, head.muti_type, head.type_basic_name)
-function read_data(value,head)
+-- 读取数值
+function read_data(value, head)
   local call = read_function[head.basic_type]
   if call ~= nil then
     return call(value, head)
   else
+    assert(false)
     return nil
   end
 end

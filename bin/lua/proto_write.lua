@@ -42,7 +42,7 @@ local function write_message_basic(basic_info, space)
 end
 
 --普通字段
-local function write_field(head, space)
+function write_proto_field(head, space)
   local optional = proto_optional()
   local muti = head.muti_type
   local basic = head.basic_type
@@ -67,7 +67,7 @@ local function write_field(head, space)
 end
 
 --枚举字段
-local function write_field_enum(head, space)
+function write_proto_field_enum(head, space)
   local optional = proto_optional()
   local str = add_space(space) 
   local muti = head.muti_type
@@ -180,11 +180,12 @@ function write_proto_table(name)
   local heads = tab.heads
   
   for k, head in pairs(heads) do 
-    if isSelfEnumType(head.basic_type) then 
-      tabFile:write(write_field_enum(head, 2))
-    else
-      tabFile:write(write_field(head, 2))
-    end
+    tabFile:write(write_type(head, 2))
+    --if isSelfEnumType(head.basic_type) then 
+    --  tabFile:write(write_proto_field_enum(head, 2))
+    --else
+    --  tabFile:write(write_proto_field(head, 2))
+    --end
   end  
   tabFile:write("}\n")
   tabFile:close()
@@ -293,6 +294,8 @@ local function write_proto_table_lua( t)
    file:write("return "..clsName) 
    file:close()
 end
+
+-- 输出所有表格的lua
 function write_proto_lua()
   for k, t in pairs(g_tables) do
     write_proto_table_lua(t)

@@ -91,7 +91,7 @@ function reader_string(str, head)
  
 end
 
-local function toBool(tal)
+local function toboolean(tal)
    if tonumber(tal) then tal = tonumber(tal) > 0 end 
    if tal == "true" then tal = true end
    if tal == "false" then tal = false end
@@ -102,15 +102,15 @@ end
 function reader_bool(str, head)
   local tal = reader_basic(str, head)
   if type(tal) ~= "table" then 
-    return toBool(tal)
+    return toboolean(tal)
   else
     for _, v in pairs(tal) do
         if type(v) == "table" then
           for _, v2 in pairs(v.array) do 
-            v2 = toBool(v2)
+            v2 = toboolean(v2)
           end
         else
-          v = toBool(v)
+          v = toboolean(v)
         end
     end
   end
