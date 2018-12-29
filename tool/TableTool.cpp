@@ -35,6 +35,20 @@ namespace ToolSpace{
   bool TableTool::init(){
     m_state = luaL_newstate();
     LitSpace::openLuaLibs(m_state);
+    LitSpace::class_reg<ToolArgs>(m_state, "ToolArgs");
+    LitSpace::class_mem<ToolArgs>(m_state, "layout_file", &ToolArgs::layout_file);
+    LitSpace::class_mem<ToolArgs>(m_state, "name_space", &ToolArgs::name_space);
+    LitSpace::class_mem<ToolArgs>(m_state, "all_config_name", &ToolArgs::all_config_name);
+    LitSpace::class_mem<ToolArgs>(m_state, "tail_config_name", &ToolArgs::tail_config_name);
+    LitSpace::class_mem<ToolArgs>(m_state, "out_dir", &ToolArgs::out_dir);
+    LitSpace::class_mem<ToolArgs>(m_state, "excel_dir", &ToolArgs::excel_dir);
+    LitSpace::class_mem<ToolArgs>(m_state, "out_file_name", &ToolArgs::out_file_name);
+    LitSpace::class_mem<ToolArgs>(m_state, "common_define_name", &ToolArgs::common_define_name);
+    LitSpace::class_mem<ToolArgs>(m_state, "common_group_name", &ToolArgs::common_group_name);
+    LitSpace::class_mem<ToolArgs>(m_state, "common_enum_name", &ToolArgs::common_enum_name);
+    LitSpace::class_mem<ToolArgs>(m_state, "version", &ToolArgs::version);
+    LitSpace::class_mem<ToolArgs>(m_state, "version_table_id", &ToolArgs::version_table_id);
+    LitSpace::class_mem<ToolArgs>(m_state, "proto_type", &ToolArgs::proto_type);
     LitSpace::dofile(m_state, "./lua/tool.lua");
     return true;
   }
@@ -168,7 +182,7 @@ namespace ToolSpace{
     m_args.common_group_name = strlimit(sheet->read(ROW_COMMON_GROUP_NAME, COLUMN_FILE), false);
     m_args.layout_file = strlimit(sheet->read(ROW_LAYOUT_FILE_NAME, COLUMN_FILE), false);
 
-    LitSpace::call<void>(m_state, "set_common_define", m_args.common_define_name, m_args.common_group_name, m_args.common_enum_name);
+    LitSpace::call<void>(m_state, "set_tool_args", m_args);
 
     sheet = book->getSheet(SETTING_CHECK_INDEX);
     if (!sheet){
@@ -235,31 +249,31 @@ namespace ToolSpace{
           if (!hasZero){ LitSpace::call<void>(m_state, "read_enum_value", enName, "unknow_zero=0", "unknow value"); }
         }
 
-        LitSpace::resetStack(m_state);
-        LitSpace::table t = LitSpace::call<LitSpace::table>(m_state, "get_enum", enName);
-        if (!t.isNil()){
-          EnumPtr en = std::make_shared<TEnum>();
-          en->full_name = t.get<std::string>("full_name");
-          en->name = t.get<std::string>("name");
-          en->table = t.get<std::string>("table");
-          LitSpace::table values = t.get<LitSpace::table>("values");
-          if (!values.isNil()){
-            int len = values.len();
-            for (size_t i = 1; i <= len; ++i){
-              LitSpace::table value_table = values.get<LitSpace::table>(i);
-              if (!value_table.isNil()){
-                TEnumValue tev;
-                tev.name = value_table.get<std::string>(1);
-                tev.value = value_table.get<int>(2);
-                tev.comment = value_table.get<std::string>(3);
-                en->values.addData(tev.name, tev);
-              }
-            }
-          }
-          m_enums.addData(en->full_name, en);
-        }
-
-        LitSpace::resetStack(m_state);
+//         LitSpace::resetStack(m_state);
+//         LitSpace::table t = LitSpace::call<LitSpace::table>(m_state, "get_enum", enName);
+//         if (!t.isNil()){
+//           EnumPtr en = std::make_shared<TEnum>();
+//           en->full_name = t.get<std::string>("full_name");
+//           en->name = t.get<std::string>("name");
+//           en->table = t.get<std::string>("table");
+//           LitSpace::table values = t.get<LitSpace::table>("values");
+//           if (!values.isNil()){
+//             int len = values.len();
+//             for (size_t i = 1; i <= len; ++i){
+//               LitSpace::table value_table = values.get<LitSpace::table>(i);
+//               if (!value_table.isNil()){
+//                 TEnumValue tev;
+//                 tev.name = value_table.get<std::string>(1);
+//                 tev.value = value_table.get<int>(2);
+//                 tev.comment = value_table.get<std::string>(3);
+//                 en->values.addData(tev.name, tev);
+//               }
+//             }
+//           }
+//           m_enums.addData(en->full_name, en);
+//         }
+// 
+//         LitSpace::resetStack(m_state);
       }
     }
     return true;
@@ -291,158 +305,181 @@ namespace ToolSpace{
 
       if (sheetName.empty()){ continue; }
 
-      auto layout = m_layouts.getData(sheetName);
-      if (!layout){
-        layout = std::make_shared<TTableLayout>();
-        layout->table = sheetName;
-        layout->next_index = 1;
-        layout->key_index = 1;
-        m_layouts.addData(layout->table, layout);
-      }
-      TablePtr table = std::make_shared<Table>(layout);
-      m_tables.addData(table->tableName(), table);
-      layout = table->getLayout();
-      if (!layout){ error(sheetName, " layout get error "); return false; }
+//       auto layout = m_layouts.getData(sheetName);
+//       if (!layout){
+//         layout = std::make_shared<TTableLayout>();
+//         layout->table = sheetName;
+//         layout->next_index = 1;
+//         layout->key_index = 1;
+//         m_layouts.addData(layout->table, layout);
+//       }
+//       TablePtr table = std::make_shared<Table>(layout);
+//       m_tables.addData(table->tableName(), table);
+//       layout = table->getLayout();
+//       if (!layout){ error(sheetName, " layout get error "); return false; }
 
       // read head type
+      LitSpace::call<void>(m_state, "new_table", sheetName);
       for (int column = 0; column < sheet->colCount(); ++column){
         std::string headName = strlimit(sheet->read(HEAD_ROW_NAME, column));
         std::string typeName = strlimit(sheet->read(HEAD_ROW_TYPE, column));
         std::string comment = strlimit(sheet->read(HEAD_ROW_COMMENT, column));
 
         if (headName.empty() || typeName.empty()){ break; }
-        auto rv = LitSpace::rcall<LitSpace::lua_returns<int, int, std::string>>(m_state, "read_type", typeName);
-        auto basicType = std::get<1>(rv);
-        if (LitSpace::call<bool>(m_state, "isNoneType", basicType)){
-          continue;
-        }
-
-        auto mutiType = std::get<0>(rv);
-        HeadPtr head = std::make_shared<THead>();
-        head->basic_type = basicType;
-        head->muti_type = mutiType;
-        head->column = column;
-        head->comment = comment;
-        head->table = table->tableName();
-        head->name = headName;
-        head->type_name = typeName;
-        head->type_basic_name = std::get<2>(rv);
-
-        if (layout->layouts.hasData(head->name)){
-          head->index = layout->layouts.getData(head->name).head_index;
-        }else{
-          head->index = layout->next_index;
-          layout->next_index++;
-        }
-
-        if (head->index == TABLE_KEY_INDEX){
-            if (!LitSpace::call<bool>(m_state, "checkKeyType", mutiType, basicType)){
-              error(head->table, " key must single type");
-              return false;
-            }
-        }
-
-        if(!table->addHead(head)){
-          error(head->table, " add head ", head->name, " error");
+        bool res = LitSpace::call<bool>(m_state, "table_head", sheetName, column, headName, typeName, comment);
+        if (!res){
           return false;
         }
 
-        if (LitSpace::call<bool>( m_state, "isSelfEnumType", head->basic_type)){
-          if(!m_enums.hasData(head->type_basic_name)){
-            error(head->table, " add head ", head->name, " with enum:", head->type_basic_name, " not found");
-            return false;
-          }
+//         auto rv = LitSpace::rcall<LitSpace::lua_returns<int, int, std::string>>(m_state, "read_type", typeName);
+//         auto basicType = std::get<1>(rv);
+//         if (LitSpace::call<bool>(m_state, "isNoneType", basicType)){
+//           continue;
+//         }
 
-          auto en = m_enums.getData(head->type_basic_name);
-          table->depentTable(en->table);
-        }
+//         auto mutiType = std::get<0>(rv);
+//         HeadPtr head = std::make_shared<THead>();
+//         head->basic_type = basicType;
+//         head->muti_type = mutiType;
+//         head->column = column;
+//         head->comment = comment;
+//         head->table = table->tableName();
+//         head->name = headName;
+//         head->type_name = typeName;
+//         head->type_basic_name = std::get<2>(rv);
+// 
+//         if (layout->layouts.hasData(head->name)){
+//           head->index = layout->layouts.getData(head->name).head_index;
+//         }else{
+//           head->index = layout->next_index;
+//           layout->next_index++;
+//         }
+// 
+//         if (head->index == TABLE_KEY_INDEX){
+//             if (!LitSpace::call<bool>(m_state, "checkKeyType", mutiType, basicType)){
+//               error(head->table, " key must single type");
+//               return false;
+//             }
+//         }
+// 
+//         if(!table->addHead(head)){
+//           error(head->table, " add head ", head->name, " error");
+//           return false;
+//         }
+
+//         if (LitSpace::call<bool>( m_state, "isSelfEnumType", head->basic_type)){
+//           if(!m_enums.hasData(head->type_basic_name)){
+//             error(head->table, " add head ", head->name, " with enum:", head->type_basic_name, " not found");
+//             return false;
+//           }
+// 
+//           auto en = m_enums.getData(head->type_basic_name);
+//           table->depentTable(en->table);
+//         }
+      }
+
+
+      if(!LitSpace::call<bool>(m_state, "check_table_link", sheetName)){
+        return false;
       }
 
       //check table link type
-      if (m_links.hasData(table->tableName())){
-        auto& links = m_links.getData(table->tableName());
-        for (auto& str : links.link_args){
-          LinkPtr ptr = std::make_shared<TLink>();
-          ptr->heads = split(str, ",");
-          ptr->link = join(ptr->heads, "_");
-
-          for (auto&name : ptr->heads){
-            auto head = table->getHead(name);
-            if (!head){
-              error(table->tableName(), " not found link head :", name);
-              return false;
-            }
-
-            if (!LitSpace::call<bool>(m_state, "checkKeyType", head->muti_type, head->basic_type)){
-              error(head->table, " not found allow link types:", head->name);
-              return false;
-            }
-          }
-
-          table->addLink(ptr);
-        }
-      }
+//       if (m_links.hasData(table->tableName())){
+//         auto& links = m_links.getData(table->tableName());
+//         for (auto& str : links.link_args){
+//           LinkPtr ptr = std::make_shared<TLink>();
+//           ptr->heads = split(str, ",");
+//           ptr->link = join(ptr->heads, "_");
+// 
+//           for (auto&name : ptr->heads){
+//             auto head = table->getHead(name);
+//             if (!head){
+//               error(table->tableName(), " not found link head :", name);
+//               return false;
+//             }
+// 
+//             if (!LitSpace::call<bool>(m_state, "checkKeyType", head->muti_type, head->basic_type)){
+//               error(head->table, " not found allow link types:", head->name);
+//               return false;
+//             }
+//           }
+// 
+//           table->addLink(ptr);
+//         }
+//       }
 
       // read table record
       for (int row = HEAD_ROW_COMMENT + 1; row < sheet->rowCount(); ++row){
-        RecordPtr record = std::make_shared<TRecord>();
+        LitSpace::call<void>(m_state, "reset_read_table_record");
         for (int column = 0; column < sheet->colCount(); ++column){
-          auto head = table->getColumnHead(column);
-          if (!head){
-            continue;
-          }
-         
           std::string str = strlimit(sheet->read(row, column));
-          if (head->index == TABLE_KEY_INDEX){
-            record->record_index = str;
+          //if (str.empty()){ break;}
+          bool res = LitSpace::call<bool>(m_state, "add_read_fields", sheetName, column, str);
+          if (!res){
+            break;
           }
-          TField field;
-          field.record_index = record->record_index;
-          field.field_value_str = str;
-
-          LitSpace::resetStack(m_state);
-          LitSpace::table t = LitSpace::call<LitSpace::table>(m_state, "read_data", field.field_value_str, head->basic_type, head->muti_type, head->type_name);
-          if (t.isNil()){
-            error(table->tableName(), " read ", field.field_value_str, " error with head ", head->name);
-            return false;
-          }
-
-          int len = t.len();
-          if (LitSpace::call<bool>(m_state, "isSingleType", head->muti_type)){
-            assert(len >= 1);
-            field.field_value = t.get<BasicValueType>(1);
-          }else if (LitSpace::call<bool>(m_state, "isArrayType", head->muti_type)){
-            ArrayValueType array;
-            for (int i = 1; i <= len; ++i){
-              array.push_back(t.get<BasicValueType>(i));
-            }
-            field.field_value = array;
-          }if (LitSpace::call<bool>(m_state, "isGroupType", head->muti_type)){
-            GroupValueType group;
-            for (int i = 1; i <= len; ++i){
-              auto ti = t.get<LitSpace::table>(i);
-              if (!ti.isNil()){
-                ArrayValueType array;
-                int tilen = ti.len();
-                for (int j = 1; j <= tilen; ++j){
-                  array.push_back(ti.get<BasicValueType>(j));
-                }
-                group.push_back(array);
-              }
-            }
-            field.field_value = group;
-          }
-          LitSpace::resetStack(m_state);
-          record->fields.addData(head->index, field);
-        }
-
-        if (record->record_index.empty()){
+//           auto head = table->getColumnHead(column);
+//           if (!head){
+//             continue;
+//           }
+//          
+//           std::string str = strlimit(sheet->read(row, column));
+//           if (head->index == TABLE_KEY_INDEX){
+//             record->record_index = str;
+//           }
+//           TField field;
+//           field.record_index = record->record_index;
+//           field.field_value_str = str;
+// 
+//           LitSpace::resetStack(m_state);
+//           LitSpace::table t = LitSpace::call<LitSpace::table>(m_state, "read_data", field.field_value_str, head->basic_type, head->muti_type, head->type_name);
+//           if (t.isNil()){
+//             error(table->tableName(), " read ", field.field_value_str, " error with head ", head->name);
+//             return false;
+//           }
+// 
+//           int len = t.len();
+//           if (LitSpace::call<bool>(m_state, "isSingleType", head->muti_type)){
+//             assert(len >= 1);
+//             field.field_value = t.get<BasicValueType>(1);
+//           }else if (LitSpace::call<bool>(m_state, "isArrayType", head->muti_type)){
+//             ArrayValueType array;
+//             for (int i = 1; i <= len; ++i){
+//               array.push_back(t.get<BasicValueType>(i));
+//             }
+//             field.field_value = array;
+//           }if (LitSpace::call<bool>(m_state, "isGroupType", head->muti_type)){
+//             GroupValueType group;
+//             for (int i = 1; i <= len; ++i){
+//               auto ti = t.get<LitSpace::table>(i);
+//               if (!ti.isNil()){
+//                 ArrayValueType array;
+//                 int tilen = ti.len();
+//                 for (int j = 1; j <= tilen; ++j){
+//                   array.push_back(ti.get<BasicValueType>(j));
+//                 }
+//                 group.push_back(array);
+//               }
+//             }
+//             field.field_value = group;
+//           }
+//           LitSpace::resetStack(m_state);
+//           record->fields.addData(head->index, field);
+//         }
+// 
+//         if (record->record_index.empty()){
+//           break;
+         }
+        if (LitSpace::call<bool>(m_state, "read_record_end")){
           break;
         }
-        table->addRecord(record);
+        LitSpace::call<void>(m_state, "add_record", sheetName);
+//         table->addRecord(record);
       }
 
     }
+
+    LitSpace::call<void>(m_state, "dump_tables");
     return true;
   }
 
@@ -464,42 +501,14 @@ namespace ToolSpace{
 
   }
 
-  std::string TableTool::nameSpace(){
-    if (m_args.name_space.empty()){
-      return "";
-    }
-    return "package " + m_args.name_space + ";\n";
-  }
-  std::string TableTool::protoType(){
-    if (m_args.proto_type == PROTO_VER2){
-      return "syntax = \"proto2\";\n";
-    }
-
-    if (m_args.proto_type == PROTO_VER3){
-      return "syntax = \"proto3\";\n";
-    }
-
-    return "";
-  }
-
-  static void  writerFile(std::fstream& file,  const std::string& str){
-    if(!str.empty())file.write(str.data(), str.length());
-  }
-
 
   void TableTool::saveProto(){
-  
-    std::string protoPath = m_args.out_dir + "\\proto\\";
-    
-    std::fstream commonOutFile(protoPath + m_args.common_define_name + ".proto", std::ios::out | std::ios::binary);
-    writerFile(commonOutFile, protoType());
-    writerFile(commonOutFile, nameSpace());
-    writerFile(commonOutFile, LitSpace::call<std::string>(m_state, "write_common"));
-    commonOutFile.close();
+   
+    LitSpace::call<void>(m_state, "write_proto");
   }
 
   void TableTool::saveToLua(){
-
+    LitSpace::call<void>(m_state, "write_proto_lua");
   }
   void TableTool::saveToJson(){
   }

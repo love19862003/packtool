@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
 
   m.shutDown();
 #ifdef _DEBUG
-    getchar();
+   // getchar();
 #endif // _DEBUG
     return 0;
 }

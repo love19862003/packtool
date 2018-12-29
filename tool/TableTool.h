@@ -121,9 +121,7 @@ namespace ToolSpace{
     bool loadLayout(const std::string& file);
     bool check();
 
-    std::string nameSpace();
-    std::string protoType();
-
+ 
 
     void save();
     void saveProto();
