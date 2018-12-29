@@ -22,9 +22,6 @@ namespace ToolSpace{
      PROTO_VER2 = 0,
      PROTO_VER3 = 1,
   };
-  class Table;
-  struct TTableLayout;
-  struct TEnum;
   class TableTool
   {
   public:
@@ -58,13 +55,7 @@ namespace ToolSpace{
       ProtoType proto_type = PROTO_VER3;
     };
 
-    typedef ObjPtrMap<std::string, Table> TableMap;
-    typedef TableMap::value_type TablePtr;
-    typedef ObjPtrMap<std::string, TEnum> EnumMap;
-    typedef EnumMap::value_type EnumPtr;
     typedef ObjectMap<std::string, ExcelFile> ExcelSheetMap;
-    typedef ObjectMap<std::string, TableLinkArgs> TableLinkMap;
-    typedef ObjPtrMap<std::string, TTableLayout> TableLayoutMap;
 
     explicit TableTool(const std::string& file, const std::string& version, ProtoType type, const std::string& log);
     virtual ~TableTool();
@@ -148,13 +139,11 @@ namespace ToolSpace{
     TableTool(const TableTool&) = delete;
     TableTool& operator=(const TableTool&) = delete;
   private:
-    TableMap m_tables;
-    EnumMap m_enums;
+  
     ExcelSheetMap m_excels;
     ExcelSheetMap m_enumExcels;
     ExcelSheetMap m_checkExcels;
-    TableLinkMap m_links;
-    TableLayoutMap m_layouts;
+   
     ToolArgs m_args;
     mutable bool m_error;
     mutable std::ofstream m_log;
