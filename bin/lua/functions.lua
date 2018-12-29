@@ -58,6 +58,14 @@ function class(classname, super)
     return cls
 end
 
+function add_space(count)
+  if count >=1 then 
+    return " " .. add_space(count - 1)
+  else 
+    return ""
+  end
+end
+
 function io.exists(path)
     local file = io.open(path, "r")
     if file then
@@ -139,6 +147,16 @@ function table.nums(t)
     return count
 end
 
+function table.is_array(t)
+  if type(t) ~= "table" then return false end
+  local n = #t
+  for k, v in pairs(t) do
+    if type(k) ~= "number"  then return false end
+    if k > n then return false end 
+  end
+  return true
+end
+
 function table.keys(t)
     local keys = {}
     for k, v in pairs(t) do
@@ -178,6 +196,120 @@ function table.clone(object)
     end
     return _copy(object)
 end
+
+
+function text_value(value)
+  if type(value) ==  "boolean" then
+    if value then 
+      return "true"
+    else 
+      return "false"
+    end
+  end
+      
+  if type(value) ==  "string" then  
+    return "\""..value.."\""
+  else 
+    return value
+  end
+end
+
+function text_object(obj)
+  if type(obj) ==  "table" then 
+    return text_table(obj)
+  else
+    return text_value(obj)
+  end
+  
+  
+end
+
+function text_table(tab)
+  if type(tab) ~=  "table" then 
+    return ""
+  end
+  local indent = " "
+  local out = "{"
+  if table.is_array(tab) then
+    for key, value  in pairs(tab)  do
+     if type(value) ==  "table" then 
+        out = out .. text_table(value)
+      else  
+        out = out..text_value(value)
+      end
+      out = out ..","
+    end
+  else
+    for key, value  in pairs(tab)  do
+      if tonumber(key) ~= nil  then 
+        out = out..indent.."[\""..key.."\"] = "
+      else
+        out = out..indent..key.." = "
+      end
+      
+     if type(value) ==  "table" then 
+        out = out .. text_table(value)
+      else  
+        out = out..text_value(value)
+      end
+      out = out ..","
+    end
+  end
+  out = out.."}"
+  return out
+  
+end
+
+local function file_table(tab, cc, file)
+  if type(tab) ~= "table" then return end
+  local indent = add_space(cc)
+  
+  if table.is_array(tab) then 
+    for key, value  in pairs(tab)  do
+     if type(value) ==  "table" then 
+        file:write("{")
+        file_table(value, 1 , file)
+        file:write("}")
+      else  
+        file:write(text_value(value))
+      end
+      file:write(" ,")
+      if cc <= 0 then 
+        file:write("\n")
+      end
+    end
+  else
+    for key, value  in pairs(tab)  do
+      if tonumber(key) ~= nil  then 
+        file:write(indent.."[\""..key.."\"] = ")
+      else
+        file:write(indent..key.." = ")
+      end
+      
+      if type(value) ==  "table" then 
+        file:write("{")
+        file_table(value, 1 , file)
+        file:write("}")
+      else  
+        file:write(text_value(value))
+      end
+      file:write(" ,")
+      if cc <= 0 then 
+        file:write("\n")
+      end
+    end
+  end
+end
+
+function table.save(name, tab, info)
+ local file = io.open(info,"w+")
+ file:write("local ".. name .. " = {\n") 
+ file_table(tab, 0, file)
+ file:write("}\n")
+ file:write("return "..name)
+ file:close() 
+end
+
 
 
 --[[--

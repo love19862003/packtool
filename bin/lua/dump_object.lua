@@ -43,7 +43,11 @@ function Dump.me(meta)
 end
 function Dump.info(obj, info)
   if nil ~= info then  print(info.."_________________")end
-  print_table(obj, 0)
+  if type(obj) == "table" then
+    print_table(obj, 0)
+  else
+    print(obj)
+  end
   if nil ~= info then  print(info.."_________________")end
 end
 function print_table(t, i)
