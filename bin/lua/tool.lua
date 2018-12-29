@@ -110,7 +110,6 @@ function add_read_fields(name, column, value)
   local head = t:getColHead(column)
   if not head then return true end
   
-  --local field = read_data(value, head.basic_type, head.muti_type, head.type_basic_name)
   local field = read_data(value, head)
   if head.index == key_index_id then 
     read_table_record.index = field
