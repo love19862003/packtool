@@ -4,3 +4,6 @@
 [submodule "pbc"]
 	path = pbc
 	url = https://github.com/cloudwu/pbc.git
+[submodule "litlua"]
+	path = litlua
+	url = https://github.com/love19862003/litlua.git
