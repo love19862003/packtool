@@ -360,12 +360,23 @@ end
 local protobuf = require "protobuf"
 local function registerProtobuf(regList)
    local pbsPath = proto_des_path()
+   local tab = {}
+   
    protobuf.register_file(pbsPath .. common_enum_name()..tail_config_name() .. ".pb")
    protobuf.register_file(pbsPath .. common_group_name() .. ".pb")
    for _, v in pairs(regList) do 
     protobuf.register_file(pbsPath .. v..tail_config_name() .. ".pb")
    end
    protobuf.register_file(pbsPath .. all_config_name()..tail_config_name() .. ".pb")
+   
+   -- save to file
+   table.insert(tab, common_enum_name()..tail_config_name())
+   table.insert(tab, common_group_name())
+   for _, v in pairs(regList) do 
+    table.insert(tab, v..tail_config_name())
+   end
+   table.insert(tab, all_config_name()..tail_config_name())
+   table.save("registerList", tab, pbsPath .. "registerList.txt") 
 end
 
 function saveProtoData(regList, data)
@@ -376,7 +387,6 @@ function saveProtoData(regList, data)
   local file = assert(io.open(proto_data_path () .. out_file_name() .. ".bin", "wb"))
   file:write(buffer)
   file:close()
-  
 end
 
 

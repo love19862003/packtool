@@ -302,7 +302,7 @@ local function file_table(tab, cc, file)
 end
 
 function table.save(name, tab, info)
- local file = io.open(info,"w+")
+ local file = assert(io.open(info,"wb"))
  file:write("local ".. name .. " = {\n") 
  file_table(tab, 0, file)
  file:write("}\n")
