@@ -41,54 +41,6 @@ local function write_message_basic(basic_info, space)
   return res
 end
 
---普通字段
-function write_proto_field(head, space)
-  local optional = proto_optional()
-  local muti = head.muti_type
-  local basic = head.basic_type
-  local basic_type = get_basic_type_by_id(basic)
-  local key = basic_type.key
-  local str = add_space(space) 
-  if muti == g_muti_type.basic then
-    str = str..optional .. key.." "
-  end
-  
-  if muti == g_muti_type.array then
-     str = str.."repeated ".. key.." "
-  end
-  
-  if muti == g_muti_type.group then 
-      str = str.."repeated "..common_group_name().. key.." "
-  end
-  
-  str = str .. head.name.." = "..head.index..";//"..head.comment.."\n"
-  
-  return str
-end
-
---枚举字段
-function write_proto_field_enum(head, space)
-  local optional = proto_optional()
-  local str = add_space(space) 
-  local muti = head.muti_type
-  local enumName = head.type_basic_name
-  if muti == g_muti_type.basic then
-    str = str.. optional .. proto_enum_name(enumName, head.table).." "
-  end
-  
-  if muti == g_muti_type.array then
-     str = str.."repeated ".. proto_enum_name(enumName, head.table).." "
-  end
-  
-  if muti == g_muti_type.group then 
-    str = str.."repeated "..proto_enum_name(enumName, head.table, true) .." "
-  end
-  
-  str = str .. head.name.." = "..head.index..";//"..head.comment.."\n"
-  return str
-end
-
-
 -- common
 local function write_proto_common()
   local msg = {}
@@ -100,9 +52,8 @@ local function write_proto_common()
   return table.concat(msg, "\n")
 end
 
-
 --枚举的名字
-function proto_enum_name(name,t, group)
+local function proto_enum_name(name,t, group)
   local en = g_enum_type[name]
   if group then
      if en.table ~= "" and en.table ~= t then
@@ -155,7 +106,7 @@ local function write_table_enum(name, space)
 end
 
 --输出表格proto文件
-function write_proto_table(name)
+local function write_proto_table(name)
   local tab = g_tables[name]
   if not tab then return end
   local protoPath = proto_path()
@@ -181,11 +132,6 @@ function write_proto_table(name)
   
   for k, head in pairs(heads) do 
     tabFile:write(write_type(head, 2))
-    --if isSelfEnumType(head.basic_type) then 
-    --  tabFile:write(write_proto_field_enum(head, 2))
-    --else
-    --  tabFile:write(write_proto_field(head, 2))
-    --end
   end  
   tabFile:write("}\n")
   tabFile:close()
@@ -219,6 +165,82 @@ local function check_reg_depends(name, reg)
     table.insert(reg, name)
   end
   return reg
+end
+
+-- 输出lua的格式文件
+local function write_proto_table_lua( t)
+   local trs = t.records
+   local clsName = t:name()..tail_config_name()
+   local file = assert(io.open(proto_lua_path() .. t:name() .. ".lua", "w+"))
+   file:write("local ".. clsName .. " = {\n")    
+   
+   for _, r in pairs (trs) do 
+      file:write(" {\n")
+      for _, h in pairs(t.heads) do 
+        local out =  text_object(r.fields[h.index])
+        --print(type(out))
+        file:write("  "..h.name .. " =".. out .. ",\n")
+      end
+      file:write(" },\n")
+   end
+  
+   file:write("}\n")
+   file:write("return "..clsName) 
+   file:close()
+end
+
+-- 输出所有表格的lua
+local function write_proto_lua()
+  for k, t in pairs(g_tables) do
+    write_proto_table_lua(t)
+  end
+end
+
+--普通字段
+function write_proto_field(head, space)
+  local optional = proto_optional()
+  local muti = head.muti_type
+  local basic = head.basic_type
+  local basic_type = get_basic_type_by_id(basic)
+  local key = basic_type.key
+  local str = add_space(space) 
+  if muti == g_muti_type.basic then
+    str = str..optional .. key.." "
+  end
+  
+  if muti == g_muti_type.array then
+     str = str.."repeated ".. key.." "
+  end
+  
+  if muti == g_muti_type.group then 
+      str = str.."repeated "..common_group_name().. key.." "
+  end
+  
+  str = str .. head.name.." = "..head.index..";//"..head.comment.."\n"
+  
+  return str
+end
+
+--枚举字段
+function write_proto_field_enum(head, space)
+  local optional = proto_optional()
+  local str = add_space(space) 
+  local muti = head.muti_type
+  local enumName = head.type_basic_name
+  if muti == g_muti_type.basic then
+    str = str.. optional .. proto_enum_name(enumName, head.table).." "
+  end
+  
+  if muti == g_muti_type.array then
+     str = str.."repeated ".. proto_enum_name(enumName, head.table).." "
+  end
+  
+  if muti == g_muti_type.group then 
+    str = str.."repeated "..proto_enum_name(enumName, head.table, true) .." "
+  end
+  
+  str = str .. head.name.." = "..head.index..";//"..head.comment.."\n"
+  return str
 end
 
 --输出所有的proto文件
@@ -271,33 +293,15 @@ function write_proto()
   mgrFile:write("}\n")
   mgrFile:close()
   
-end
-
--- 输出lua的格式文件
-local function write_proto_table_lua( t)
-   local trs = t.records
-   local clsName = t:name()..tail_config_name()
-   local file = assert(io.open(proto_lua_path() .. t:name() .. ".lua", "w+"))
-   file:write("local ".. clsName .. " = {\n")    
-   
-   for _, r in pairs (trs) do 
-      file:write(" {\n")
-      for _, h in pairs(t.heads) do 
-        local out =  text_object(r.fields[h.index])
-        --print(type(out))
-        file:write("  "..h.name .. " =".. out .. ",\n")
-      end
-      file:write(" },\n")
-   end
   
-   file:write("}\n")
-   file:write("return "..clsName) 
-   file:close()
+  write_proto_lua()
+  
+  
+  
+  -- 输出c++管理类
+  write_cpp_header()
+  write_cpp_content()
 end
 
--- 输出所有表格的lua
-function write_proto_lua()
-  for k, t in pairs(g_tables) do
-    write_proto_table_lua(t)
-  end
-end
+
+

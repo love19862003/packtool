@@ -56,6 +56,7 @@ function Table:getHead(index)
       end
     end
   end
+  print("get head from table:" ..self.table .. " by args:" .. index)
   return nil
 end
 

@@ -47,3 +47,7 @@ end
 function proto_type()
   return g_args.proto_type 
 end
+
+function out_file_name()
+  return g_args.out_file_name
+end

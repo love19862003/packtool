@@ -1,5 +1,6 @@
 package.path = package.path..";./lua/?.lua"
 require("dump_object")
+require("cpp_write")
 require("proto_write")
 require("type")
 require("links")
@@ -19,6 +20,13 @@ function new_table(name)
   t:init(layout, global_table_index)
   global_table_index = global_table_index + 1
   g_tables[t:name()] = t
+end
+
+--表索引头
+function table_index_head(name)
+  local t = g_tables[name]
+  if not t then return nil end
+  return t:getHead(key_index_id)
 end
 
 -- 增加表格头
@@ -78,31 +86,6 @@ function table_head(table, column, headname, typename, comment)
   
   return t:addHead(head)
 end
-
---检查表格多链接索引是否合法
-function check_table_link(name)
-  local links = gtable_links[name]
-  local t = g_tables[name]
-  if not t then return true end
-  if nil == links then return true end
-  
-  for _, link in pairs(links) do 
-    for _, h in pairs (link.heads) do 
-      local head = t:getHead(h)
-      if not head then 
-        -- not found head h
-        return false
-      else
-        if not checkKeyType(head.muti_type, head.basic_type) then 
-          -- head type not allow to be a link 
-          return false
-        end
-      end      
-    end
-  end
-  return true
-end
-
 
 -- 重置数据记录
 function reset_read_table_record()

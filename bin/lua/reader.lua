@@ -22,13 +22,18 @@ end
 
 local function read_array(value)
    value = replace_array(value)
+   if value == "" then 
+    return  {}
+   end
    local res = string.split(value, ",")
-   --Dump.info(res, value)
    return res
 end 
 
 local function read_group(value)
   value = replace_group(value)
+  if value == "" then 
+    return  { }
+  end
   local r = string.split3(value, "|" ,",")
   local res = {}
   for _, a in pairs(r) do
