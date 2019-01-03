@@ -1,6 +1,3 @@
-[submodule "litlua"]
-	path = litlua
-	url = https://github.com/love19862003/litlua.git
 [submodule "xlnt"]
 	path = xlnt
 	url = https://github.com/tfussell/xlnt.git
