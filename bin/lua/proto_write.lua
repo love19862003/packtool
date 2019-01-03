@@ -336,7 +336,7 @@ end
 
 
 --local lfs = require("lfs")
-
+--生成导出数据
 local function execute_proto(file)
   local protoPath = proto_path()
   local pbsPath = proto_des_path()
@@ -347,7 +347,8 @@ local function execute_proto(file)
   os.execute(cmd2)
 end
 
-function  genratorProto()
+--生成导出的PB文件和代码
+function genratorProto()
   execute_proto(common_group_name())
   execute_proto(common_enum_name()..tail_config_name())
   for k, t in pairs(g_tables) do
@@ -356,6 +357,7 @@ function  genratorProto()
   execute_proto(all_config_name()..tail_config_name())
 end
 
+--读取打包后的数据
 local protobuf = require "protobuf"
 function readPackageData()
   local pbsPath = proto_des_path()
@@ -377,6 +379,7 @@ function readPackageData()
   return data
 end
 
+--生成PBC需要的文件注册顺序序列
 local function registerProtobuf(regList)
    local pbsPath = proto_des_path()
    local tab = {}
@@ -398,6 +401,7 @@ local function registerProtobuf(regList)
    table.save("registerList", tab, pbsPath .. "registerList.lua") 
 end
 
+--输出打包数据并保存二进制文件
 function saveProtoData(regList, data)
   registerProtobuf(regList)
   local message = name_space() .. "." .. all_config_name() .. tail_config_name()
@@ -407,6 +411,7 @@ function saveProtoData(regList, data)
   file:write(buffer)
   file:close()
   
+  --比较新老版本的数据差异，并写入log
   compare_package()
 end
 
