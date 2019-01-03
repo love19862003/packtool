@@ -3,6 +3,7 @@ package.cpath  = package.cpath ..";./lua/?.dll"
 require("dump_object")
 require("cpp_write")
 require("proto_write")
+require("compare_data")
 require("type")
 require("links")
 require("tables")

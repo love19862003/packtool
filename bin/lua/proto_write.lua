@@ -328,10 +328,9 @@ function write_proto()
   write_cpp_header()
   write_cpp_content()
   
+  --输出打包后的数据和文件
   genratorProto()
-  
   saveProtoData(regList, data)
-  
 end
 
 
@@ -358,6 +357,26 @@ function  genratorProto()
 end
 
 local protobuf = require "protobuf"
+function readPackageData()
+  local pbsPath = proto_des_path()
+  local ppath = package.path 
+  package.path = package.path .. ";"..pbsPath.."?.lua"
+  
+  local regList = require_ex("registerList")
+  for _, v in pairs(regList) do 
+   protobuf.register_file(pbsPath .. v .. ".pb")
+  end
+  
+  local message = name_space() .. "." .. all_config_name() .. tail_config_name()
+  local file = assert(io.open(proto_data_path () .. out_file_name() .. ".bin", "rb"))
+  if nil == file then return nil end
+  local buffer = file:read("*all")
+  local data = assert(protobuf.decode(message, buffer), "decode failed")
+  file:close()
+  package.path = ppath
+  return data
+end
+
 local function registerProtobuf(regList)
    local pbsPath = proto_des_path()
    local tab = {}
@@ -376,7 +395,7 @@ local function registerProtobuf(regList)
     table.insert(tab, v..tail_config_name())
    end
    table.insert(tab, all_config_name()..tail_config_name())
-   table.save("registerList", tab, pbsPath .. "registerList.txt") 
+   table.save("registerList", tab, pbsPath .. "registerList.lua") 
 end
 
 function saveProtoData(regList, data)
@@ -387,7 +406,11 @@ function saveProtoData(regList, data)
   local file = assert(io.open(proto_data_path () .. out_file_name() .. ".bin", "wb"))
   file:write(buffer)
   file:close()
+  
+  compare_package()
 end
+
+
 
 
 

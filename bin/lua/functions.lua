@@ -1,3 +1,11 @@
+function require_ex( _mname )
+  if package.loaded[_mname] then
+    print( string.format("require_ex module[%s] reload", _mname))
+  end
+  package.loaded[_mname] = nil
+  return require( _mname )
+end
+
 function class(classname, super)
     local superType = type(super)
     local cls

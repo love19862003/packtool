@@ -1,11 +1,16 @@
 g_args = {}
 
+--上一次的数据
+
+
 function execute_tool()
   return "protoc"
 end
 --全局参数
 function set_tool_args(args)
   g_args = args
+  
+  compare_read_old_data()
 end
 
 --输出类名
