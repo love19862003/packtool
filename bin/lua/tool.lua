@@ -1,4 +1,5 @@
 package.path = package.path..";./lua/?.lua"
+package.cpath  = package.cpath ..";./lua/?.dll"
 require("dump_object")
 require("cpp_write")
 require("proto_write")
@@ -8,9 +9,9 @@ require("tables")
 require("tool_args")
 
 
-local read_table_record = {}
-local key_index_id = 1
-local global_table_index = 2
+local read_table_record = {} -- 当前读取的记录
+local key_index_id = 1       -- 默认表内部主键的headID
+local global_table_index = 2 -- 表的索引ID开始值 
 
 -- 创建新的表格
 function new_table(name)

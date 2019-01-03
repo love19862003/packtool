@@ -3,13 +3,12 @@ g_enum_type = {
 
 }
 
+--获取枚举
 function get_enum(name)
   --Dump.data(g_enum_type[name])
   return g_enum_type[name]
 end
 
-
--- 自定义枚举类型
 -- 读取枚举名字
 function read_enum_name(str)
   --print("read_enum_name "..str)

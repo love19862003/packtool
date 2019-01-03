@@ -15,6 +15,7 @@
 #include "ExcelReader.h"
 #include "Utility.h"
 #include "litlua.h"
+#include "pbc-lua.h"
 namespace ToolSpace{
 
   TableTool::TableTool(const std::string& file, const std::string& version, ProtoType type, const std::string& log):m_log(log, std::ios::out | std::ios::binary){
@@ -34,6 +35,7 @@ namespace ToolSpace{
   bool TableTool::init(){
     m_state = luaL_newstate();
     LitSpace::openLuaLibs(m_state);
+    LitSpace::openLuaLib(m_state, "protobuf.c", luaopen_protobuf_c);
     LitSpace::class_reg<ToolArgs>(m_state, "ToolArgs");
     LitSpace::class_mem<ToolArgs>(m_state, "layout_file", &ToolArgs::layout_file);
     LitSpace::class_mem<ToolArgs>(m_state, "name_space", &ToolArgs::name_space);

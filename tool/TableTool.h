@@ -52,7 +52,7 @@ namespace ToolSpace{
       std::string version = "v1.0.0.0";
       int next_table_id = 2;
       int version_table_id = 1;
-      ProtoType proto_type = PROTO_VER3;
+      int proto_type = PROTO_VER3;
     };
 
     typedef ObjectMap<std::string, ExcelFile> ExcelSheetMap;

@@ -4,3 +4,6 @@
 [submodule "xlnt"]
 	path = xlnt
 	url = https://github.com/tfussell/xlnt.git
+[submodule "pbc"]
+	path = pbc
+	url = https://github.com/cloudwu/pbc.git

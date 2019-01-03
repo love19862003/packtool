@@ -71,28 +71,32 @@ g_muti_type = {
   group = 2,  --多维数组形式
 }
 
-
+--是否是要定制枚举类型
 function isEnumType(type)
   return type == g_basic_type["enum"].type
 end
 
+--是否是无效类型
 function isNoneType(type)
   return type == g_basic_type["none"].type
 end
 
+--是否是自定义枚举类型
 function isSelfEnumType(type)
   return type == g_basic_type["self_enum"].type
 end
 
--- g_muti_type
+-- 是否是单个基础类型
 function isSingleType(type)
   return type == g_muti_type.basic
 end
 
+--是否是数组
 function isArrayType(type)
   return type == g_muti_type.array
 end
 
+--是否是二维数据
 function isGroupType(type)
   return type == g_muti_type.group
 end
@@ -119,7 +123,6 @@ function get_basic_type_by_id(type)
   end
   return nil
 end
-
 
 -- 读取类型的基础类型
 local function get_basic_type(name)

@@ -1,6 +1,6 @@
 local writeFile = nil
 local indent_space = 0
-
+--cpp目录
 local function proto_cpp_path()
   return out_dir() .. "\\cpps\\"
 end
@@ -19,13 +19,14 @@ end
 local function indent()
   indent_space =  indent_space + 1
 end
+
 --减少空格
 local function outdent()
   indent_space = indent_space - 1
   assert(indent_space >= 0)
 end 
 
---
+--写入文件
 local function write(str)
   if writeFile == nil then 
     assert(false)
@@ -86,8 +87,6 @@ local function write_cpp_tables_members(tab)
   end
 end
 
-
-
 --成员函数的实现
 local function write_cpp_tables_interface(tab)
   local tabName = tab:name()
@@ -106,7 +105,6 @@ local function write_cpp_tables_interface(tab)
   write("}")
   
   -- has
-  
   write(string.format("bool %shas_%s(const %s& index) const{", mgrClsName, tabName, indexType))
   indent()
   write("try{")
@@ -182,7 +180,8 @@ local function write_cpp_tables_interface_impl(tab)
   write(string.format("return m_impl->%s(call);", tabName))   
   outdent()
   write("}")
-   
+  
+  --links  
   local links = get_table_link(tabName)
   if links  then 
     write("// table "..tabName .. " links")
@@ -205,8 +204,7 @@ local function write_cpp_tables_interface_impl(tab)
   write("")
 end
 
--- 输出proto c++管理类
---输出所有的proto文件
+-- c++管理类.h
 function write_cpp_header()
   local protoCppPath = proto_cpp_path()
   local mgrclsName = out_file_name()
@@ -278,7 +276,7 @@ function write_cpp_header()
   writeFile:close()
 end
 
--- out_file_name().cpp 
+-- c++管理类.cpp 
 function write_cpp_content()
   local mgrclsName = out_file_name()  
   local protoCppPath = proto_cpp_path()

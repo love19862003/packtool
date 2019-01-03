@@ -9,7 +9,7 @@ function add_table_link(name, linkstr)
   table.insert(gtable_links[name], link)
 end
 
---
+--获取表的多键索引
 function get_table_link(name)
   return gtable_links[name]
 end
@@ -38,7 +38,7 @@ function check_table_link(name)
   return true
 end
 
--- 
+--获取有在多键索引中的自定义枚举所在表格列表 
 function get_link_enum_tables()
   local res = {}
   

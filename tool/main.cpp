@@ -17,7 +17,7 @@
 #include "TableTool.h"
 
 int main(int argc, char* argv[]) {
-  ToolSpace::TableTool m("./setting.xlsx", "1.0.0.1", ToolSpace::PROTO_VER3, "../out.log");
+  ToolSpace::TableTool m("./setting.xlsx", "1.0.0.1", ToolSpace::PROTO_VER2, "../out.log");
   if (!m.init()){
     return 1;
   }

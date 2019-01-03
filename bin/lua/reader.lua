@@ -1,8 +1,10 @@
+--去掉空格
 local function replace_basic(str)
   str = string.gsub(str, " ", "")
   return str
 end
 
+--去掉数组相关的标识
 local function replace_array(str)
   str = string.gsub(str, " ", "")
   str = string.gsub(str, "%]", "")
@@ -10,6 +12,7 @@ local function replace_array(str)
   return str
 end
 
+--去掉数组相关的标识
 local function replace_group(str)
   --print("replace_group:"..str)
   str = string.gsub(str, " ", "")
@@ -20,6 +23,7 @@ local function replace_group(str)
   return str
 end
 
+--读取数组
 local function read_array(value)
    value = replace_array(value)
    if value == "" then 
@@ -29,6 +33,7 @@ local function read_array(value)
    return res
 end 
 
+--读取二维数组
 local function read_group(value)
   value = replace_group(value)
   if value == "" then 
@@ -47,10 +52,12 @@ local function read_group(value)
   return res
 end
 
+--无效类型读取
 function reader_none(str, muti)
   return nil
 end
 
+--读取基础类型
 local function reader_basic(str, head)
   --print(str)
   local muti = head.muti_type
@@ -67,6 +74,7 @@ local function reader_basic(str, head)
   end
 end
 
+--读取数字
 function reader_number(str, head)
   local tal = reader_basic(str, head)
   if type(tal) ~= "table" then 
@@ -86,8 +94,7 @@ function reader_number(str, head)
   
 end
 
-
-
+--读取字符串
 function reader_string(str, head)
   str = string.gsub(str, "\"", "\\\"")
   str = string.gsub(str, "\n", "\\\n")
@@ -96,6 +103,7 @@ function reader_string(str, head)
  
 end
 
+--检测是否能转成bool
 local function toboolean(tal)
    if tonumber(tal) then tal = tonumber(tal) > 0 end 
    if tal == "true" then tal = true end
@@ -104,6 +112,7 @@ local function toboolean(tal)
    return tal
 end
 
+--读取boolean
 function reader_bool(str, head)
   local tal = reader_basic(str, head)
   if type(tal) ~= "table" then 
@@ -123,6 +132,7 @@ function reader_bool(str, head)
   
 end
 
+--读取自定义枚举
 function reader_self_enum(str, head)
   if g_enum_type[head.type_basic_name] == nil then 
     return nil
@@ -158,6 +168,7 @@ function reader_self_enum(str, head)
   return tal
 end
 
+--
 function reader_coordinate(str, muti)
   str = string.gsub(str, "\"", "\\\"")
   str = string.gsub(str, "\n", "\\\n")

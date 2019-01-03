@@ -1,22 +1,37 @@
+--proto文件目录
 local function proto_path() 
-  return out_dir() .. "\\proto\\"
+  return out_dir() .. "/proto/"
 end
 
+local function proto_des_path() 
+  return out_dir() .. "/pbs/"
+end
+
+--proto导出lua文件目录
 local function proto_lua_path() 
-  return out_dir() .. "\\lua\\"
+  return out_dir() .. "/lua/"
 end
 
+local function proto_data_path()
+  return out_dir() .. "/data/"
+end
+
+--proto版本标识
 local function proto_type_syntax()
-  if proto_type() == 0 then
+  local type = proto_type()
+  if type == 0 then
     return "syntax = \"proto2\";\n";
   end
   
-  if proto_type() == 1 then 
+  if type == 1 then 
     return "syntax = \"proto3\";\n";
   end
+  print(type)
+  assert(false,type)
   return ""
 end
 
+--proto关键字 optional
 local function proto_optional()
    if proto_type() == 0 then
     return "optional ";
@@ -25,6 +40,7 @@ local function proto_optional()
   return ""
 end
 
+--proto命名空间
 local function proto_name_space()
   if string.len(name_space()) > 0 then 
     return "package "..name_space()..";\n"
@@ -41,7 +57,7 @@ local function write_message_basic(basic_info, space)
   return res
 end
 
--- common
+-- common proto文件定义
 local function write_proto_common()
   local msg = {}
   for k, v in pairs(g_basic_type) do 
@@ -83,6 +99,7 @@ local function write_message_enum(name, space)
   res = res..str.." repeated " .. en.name.. " array = 1; \n"..str.."}\n" 
   return res
 end
+
 --全局枚举定义
 local function write_global_enum()
   local msg = {} 
@@ -136,6 +153,7 @@ local function write_proto_table(name)
   tabFile:write("}\n")
   tabFile:close()
 end
+
 --计算表格的依赖顺序
 local function check_reg_depends(name, reg)
   for _, v in pairs(reg) do
@@ -171,29 +189,39 @@ end
 local function write_proto_table_lua( t)
    local trs = t.records
    local clsName = t:name()..tail_config_name()
+   local res = {}
    local file = assert(io.open(proto_lua_path() .. t:name() .. ".lua", "w+"))
    file:write("local ".. clsName .. " = {\n")    
    
+   
    for _, r in pairs (trs) do 
       file:write(" {\n")
+      local record = {}
       for _, h in pairs(t.heads) do 
         local out =  text_object(r.fields[h.index])
         --print(type(out))
         file:write("  "..h.name .. " =".. out .. ",\n")
+        record[h.name] = r.fields[h.index]
       end
       file:write(" },\n")
+      
+      table.insert(res, record)
    end
   
    file:write("}\n")
    file:write("return "..clsName) 
    file:close()
+   return res
 end
 
 -- 输出所有表格的lua
 local function write_proto_lua()
+  local data = {}
+  data.version = version()
   for k, t in pairs(g_tables) do
-    write_proto_table_lua(t)
+    data[k] = write_proto_table_lua(t)
   end
+  return data
 end
 
 --普通字段
@@ -293,14 +321,62 @@ function write_proto()
   mgrFile:write("}\n")
   mgrFile:close()
   
-  
-  write_proto_lua()
-  
-  
+  -- lua tables
+  local data = write_proto_lua()
   
   -- 输出c++管理类
   write_cpp_header()
   write_cpp_content()
+  
+  genratorProto()
+  
+  saveProtoData(regList, data)
+  
+end
+
+
+
+--local lfs = require("lfs")
+
+local function execute_proto(file)
+  local protoPath = proto_path()
+  local pbsPath = proto_des_path()
+  
+  local cmd1 = execute_tool() .." " .. "--proto_path="..protoPath.." --cpp_out="..protoPath.." "..protoPath..file..".proto"
+  local cmd2 = execute_tool() .." " .. "--proto_path="..protoPath.." --descriptor_set_out="..pbsPath..file..".pb" .." "..protoPath..file..".proto"
+  os.execute(cmd1)
+  os.execute(cmd2)
+end
+
+function  genratorProto()
+  execute_proto(common_group_name())
+  execute_proto(common_enum_name()..tail_config_name())
+  for k, t in pairs(g_tables) do
+    execute_proto(k..tail_config_name())
+  end
+  execute_proto(all_config_name()..tail_config_name())
+end
+
+local protobuf = require "protobuf"
+local function registerProtobuf(regList)
+   local pbsPath = proto_des_path()
+   protobuf.register_file(pbsPath .. common_enum_name()..tail_config_name() .. ".pb")
+   protobuf.register_file(pbsPath .. common_group_name() .. ".pb")
+   for _, v in pairs(regList) do 
+    protobuf.register_file(pbsPath .. v..tail_config_name() .. ".pb")
+   end
+   protobuf.register_file(pbsPath .. all_config_name()..tail_config_name() .. ".pb")
+end
+
+function saveProtoData(regList, data)
+  registerProtobuf(regList)
+  local message = name_space() .. "." .. all_config_name() .. tail_config_name()
+  local buffer = protobuf.encode(message, data)
+  assert(buffer)
+  local file = assert(io.open(proto_data_path () .. out_file_name() .. ".bin", "wb"))
+  file:write(buffer)
+  file:close()
+  
 end
 
 
