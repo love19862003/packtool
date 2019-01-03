@@ -103,18 +103,13 @@ namespace ToolSpace{
   bool TableTool::loadSetting(const std::string& file){
     
     auto loadSheet = [](ExcelSheetMap& map, ExcelSpace::SheetPtr sheet){
-      if (!sheet){
-        return;
-      }
+      if (!sheet){ return;  }
 
       for (int r = 0; r < sheet->rowCount(); ++r){
         std::string columnFile = ToolSpace::strlimit(sheet->read(r, COLUMN_FILE));
         std::string columnName = ToolSpace::strlimit(sheet->read(r, COLUMN_SHEET));
-        if (columnFile.empty() || columnName.empty()){
-          break;
-        }
+        if (columnFile.empty() || columnName.empty()){break; }
 
-     
         if (!map.hasData(columnFile)){
           ExcelFile obj (columnFile);
           obj.sheet_set.insert(columnName);
@@ -127,9 +122,7 @@ namespace ToolSpace{
     };
     
     auto book = ExcelSpace::ExcelBook::openBook(file);
-    if (!book){
-      return false;
-    }
+    if (!book){   return false; }
 
     auto sheet = book->getSheet(SETTING_ENUM_INDEX);
     if (!sheet){
@@ -152,12 +145,8 @@ namespace ToolSpace{
       if ( columnName.empty()){ break; }
       for (int column = COLUMN_SHEET + 1; column < sheet->colCount(); ++column){
         std::string link = ToolSpace::strlimit(sheet->read(r, column));
-        if (link.empty()){
-          break;
-        }
-
+        if (link.empty()){ break; }
         LitSpace::call<void>(m_state, "add_table_link", columnName, link);
-
       }
     }
 
@@ -214,9 +203,7 @@ namespace ToolSpace{
       if (!sheet){ break; }
 
       auto sheetName = tolower(sheet->name());
-      if (excelFile.sheet_set.find(sheetName) == excelFile.sheet_set.end()){
-        continue;
-      }
+      if (excelFile.sheet_set.find(sheetName) == excelFile.sheet_set.end()){ continue; }
 
 
       for (int col = 0; col < sheet->colCount(); ++col){
@@ -319,7 +306,6 @@ namespace ToolSpace{
 
   void TableTool::save(){
     saveProto();
-    saveToLua();
     saveToJson();
     saveToSql();
     saveToLuaFile();
@@ -333,9 +319,6 @@ namespace ToolSpace{
     LitSpace::call<void>(m_state, "write_proto");
   }
 
-  void TableTool::saveToLua(){
-    LitSpace::call<void>(m_state, "write_proto_lua");
-  }
   void TableTool::saveToJson(){
   }
   void TableTool::saveToSql(){

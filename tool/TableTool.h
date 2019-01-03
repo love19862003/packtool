@@ -116,7 +116,6 @@ namespace ToolSpace{
 
     void save();
     void saveProto();
-    void saveToLua();
     void saveToJson();
     void saveToSql();
     void saveToLuaFile();
