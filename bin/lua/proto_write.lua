@@ -361,10 +361,12 @@ end
 local protobuf = require "protobuf"
 function readPackageData()
   local pbsPath = proto_des_path()
-  local ppath = package.path 
-  package.path = package.path .. ";"..pbsPath.."?.lua"
+  local registerListFile = io.open(pbsPath.."registerList.lua")
+  if not registerListFile then return nil end
   
-  local regList = require_ex("registerList")
+  registerListFile:close()
+  local regList = dofile(pbsPath.."registerList.lua")
+  
   for _, v in pairs(regList) do 
    protobuf.register_file(pbsPath .. v .. ".pb")
   end
@@ -375,7 +377,7 @@ function readPackageData()
   local buffer = file:read("*all")
   local data = assert(protobuf.decode(message, buffer), "decode failed")
   file:close()
-  package.path = ppath
+ 
   return data
 end
 
@@ -391,14 +393,21 @@ local function registerProtobuf(regList)
    end
    protobuf.register_file(pbsPath .. all_config_name()..tail_config_name() .. ".pb")
    
-   -- save to file
+   -- save to lua
    table.insert(tab, common_enum_name()..tail_config_name())
    table.insert(tab, common_group_name())
    for _, v in pairs(regList) do 
     table.insert(tab, v..tail_config_name())
    end
    table.insert(tab, all_config_name()..tail_config_name())
-   table.save("registerList", tab, pbsPath .. "registerList.lua") 
+   table.save("registerList", tab, pbsPath .. "registerList.lua")
+
+   -- save to txt
+   local ifile = assert(io.open(pbsPath .. "registerList.txt", "wb"))
+   for _, v in pairs(tab) do 
+    ifile:write(v.."\n")
+   end
+   ifile:close()
 end
 
 --输出打包数据并保存二进制文件
