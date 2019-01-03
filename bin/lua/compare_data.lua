@@ -26,12 +26,12 @@ local function table_string(tab)
   return str
 end
 
-local function value_print(value) then
+local function value_print(value) 
   if type(value) == "table" then 
     return table_string(value)
   else
     if nil == value  then return "" end
-    return .."" value
+    return "".. value
   end
 end
 
