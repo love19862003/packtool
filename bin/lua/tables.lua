@@ -108,6 +108,7 @@ function Table:getTableIndex()
   return self.layout.table_index
 end
 
+--获取一个新的表头的结构信息
 function Table:getHeadLayout(headname)
   if not self.layout.layouts[headname]  then
       self.layout.layouts[headname] = { head_index = self.layout.next_index, name = headname }

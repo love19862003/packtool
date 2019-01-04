@@ -50,11 +50,24 @@ local function proto_name_space()
 end
 
 --基础类型的多维数组定义
-local function write_message_basic(basic_info, space)
+function write_proto_message_basic(basic_info, space)
   local str = add_space(space) 
   local res = str.."message " .. common_group_name()..basic_info.key
   res =  res .."{\n" ..str.." repeated " .. basic_info.key.. " array = 1; \n"..str.."}\n"  
   return res
+end
+
+-- 新增类型
+function write_proto_common_coordinate(basic_info, space)
+  local str = add_space(space)
+  local op = " "..proto_optional()
+  local res = str .. "message "..basic_info.key .. "{"
+  res = res .. "\n" .. str .. op .." float x = 1;" 
+  res = res .. "\n" .. str .. op .." float y = 2;"
+  res = res .. "\n" .. str .. op .." float z = 3;"
+  res = res .. "\n" .. str .. op .." float o = 4;"
+  res = res .. "\n}\n"
+  return res  .. write_proto_message_basic(basic_info, space)
 end
 
 -- common proto文件定义
@@ -62,7 +75,8 @@ local function write_proto_common()
   local msg = {}
   for k, v in pairs(g_basic_type) do 
     if k ~= "none" and k ~= "enum" and k ~= "self_enum" then
-     table.insert(msg, write_message_basic(v, 0)) 
+      print(k)
+     table.insert(msg, v.writer_proto_common(v, 0) )
     end
   end
   return table.concat(msg, "\n")
@@ -197,7 +211,7 @@ local function write_proto_table_lua( t)
       end
       table.insert(res, record)
    end
-   table.save(clsName, res, t:name(), -3)
+   table.save(clsName, res, proto_lua_path()..t:name()..".lua", -1)
    return res
 end
 
@@ -206,6 +220,7 @@ local function write_proto_lua()
   local data = {}
   data.version = version()
   for k, t in pairs(g_tables) do
+    print(k)
     data[k] = write_proto_table_lua(t)
   end
   return data

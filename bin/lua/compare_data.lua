@@ -1,4 +1,4 @@
-g_oldData = nil
+g_oldData = nil  -- 上个版本的数据信息
 
 --结构文件目录
 local function layout_path()
@@ -39,7 +39,7 @@ local function value_print(value)
   end
 end
 
-
+--比较2条记录
 local function compare_record(r, r1)
   local str = ""
   local record = {}
@@ -109,7 +109,7 @@ local function write(str)
 end
 
 
-
+--比较2个表格
 local function compare_table(t, ot, name)
   local tRecord = {}
   
@@ -153,6 +153,7 @@ local function compare_table(t, ot, name)
 end
 
 
+--重新初始化表格数据
 local function resort_table_data(data, layout)
   if not data or not layout then return nil end
   local index_name = layout.index_name;
@@ -167,6 +168,7 @@ local function resort_table_data(data, layout)
   return res
 end
 
+--读取上个版本的表格数据
 function compare_read_old_data()
   g_oldData = readPackageData() or {}
   for tab_name , layout  in pairs (g_layout_history) do 
@@ -176,6 +178,7 @@ function compare_read_old_data()
   end
 end
 
+--比较上个版本和最新版本的数据
 function compare_package()
   local data = readPackageData()
   for tab_name , layout  in pairs (g_layout_current) do 

@@ -215,7 +215,9 @@ local function encode_message(CObj, message_type, t)
 	local type = encode_type_cache[message_type]
 	for k,v in pairs(t) do
 		local func = type[k]
-		func(CObj, k , v)
+    --print(message_type) 
+		func(CObj, k , v) 
+   
 	end
 end
 

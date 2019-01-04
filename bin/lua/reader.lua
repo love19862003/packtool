@@ -23,6 +23,18 @@ local function replace_group(str)
   return str
 end
 
+local function replace_super_group(str)
+  str = string.gsub(str, " ", "")
+  str = string.gsub(str, "%],%[", "|")
+  str = string.gsub(str, "%},%{", "#")
+  str = string.gsub(str, "%]", "")
+  str = string.gsub(str, "%[", "")  -- {[],[]},{}
+  str = string.gsub(str, "%}", "")
+  str = string.gsub(str, "%{", "") 
+  return str
+end
+
+
 --读取数组
 local function read_array(value)
    value = replace_array(value)
@@ -49,6 +61,25 @@ local function read_group(value)
       table.insert(res, {array = arr})
   end
   --Dump.info(res, value)
+  return res
+end
+
+local function read_super_group(value)
+  value = replace_super_group(value)
+  if value == "" then 
+    return  { }
+  end
+  local r = string.split3(value, "#" ,"|")
+  local res = {}
+  for _, a in pairs(r) do
+      local arr = {}
+      for k, v in pairs(a) do
+        local t = string.split(v, ",")
+        if v == "" then t = {} end
+        table.insert(arr, t)
+      end      
+      table.insert(res, {array = arr})
+  end
   return res
 end
 
@@ -169,14 +200,52 @@ function reader_self_enum(str, head)
 end
 
 --
-function reader_coordinate(str, muti)
+local function reader_coordinate_table(t)
+  local tal = {}
+  tal.x = tonumber(t[1]) or 0
+  tal.y = tonumber(t[2]) or 0
+  tal.z = tonumber(t[3]) or 0
+  tal.o = tonumber(t[4]) or 0
+  return tal  
+end
+function reader_coordinate(str, head)
   str = string.gsub(str, "\"", "\\\"")
   str = string.gsub(str, "\n", "\\\n")
   str = string.gsub(str, "\t", "\\\t")
+  local muti = head.muti_type
   local tal = {}
   if muti == g_muti_type.basic then
-    str = replace_basic(str)
-    tal = {str}
+    local t = read_array(str)
+    tal = reader_coordinate_table(t)
   end
+  
+  if muti == g_muti_type.array then
+    local t = read_group(str)
+    for _, v in pairs(t) do 
+      if v.array ~= nil then 
+        table.insert(tal,  reader_coordinate_table(v.array))
+      end
+    end
+  end
+  
+  if muti == g_muti_type.group then 
+    local group =  read_super_group(str)
+    for _ , g in pairs(group) do 
+      if g.array then 
+        local record = { array = {}}
+        for _, v in pairs(g.array) do 
+          table.insert(record.array, reader_coordinate_table(v))
+        end
+        table.insert(tal, record)
+      end
+    end
+    
+   
+  end
+  
+  --assert(false)
+ -- Dump.info(tal, value)
+  return tal
+  
 end
 

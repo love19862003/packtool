@@ -10,6 +10,7 @@ g_basic_type = {
       writer = write_none,
       key = "",
       cpp_type = nil,
+      writer_proto_common = write_none,
       },
   ["int"] = { 
       type = 1, 
@@ -17,6 +18,7 @@ g_basic_type = {
       writer = write_proto_field,
       key = "int32",
       cpp_type = "int",
+      writer_proto_common = write_proto_message_basic,
       },
   ["float"] = {
       type = 2, 
@@ -24,6 +26,7 @@ g_basic_type = {
       writer = write_proto_field,
       key = "float",
       cpp_type = "float",
+      writer_proto_common = write_proto_message_basic,
       },
   ["string"] = { 
       type = 3, 
@@ -31,6 +34,7 @@ g_basic_type = {
       writer = write_proto_field,
       key = "string",
       cpp_type = "std::string",
+      writer_proto_common = write_proto_message_basic,
       },
   ["bool"] = { 
       type = 4, 
@@ -38,6 +42,7 @@ g_basic_type = {
       writer = write_proto_field,
       key = "bool",
       cpp_type = "bool",
+      writer_proto_common = write_proto_message_basic,
       },
   ["enum"] = { 
       type = 5, 
@@ -45,6 +50,7 @@ g_basic_type = {
       writer = write_none,
       key = "enum",
       cpp_type = nil,
+      writer_proto_common = write_none,
       },
   ["self_enum"] = {
       type = 6, 
@@ -52,7 +58,16 @@ g_basic_type = {
       writer = write_proto_field_enum,
       key = "self_enum",
       cpp_type = nil,
+      writer_proto_common = write_none,
       },
+  ["coordinate"] = {
+      type = 7,
+      reader = reader_coordinate,
+      writer = write_proto_field,
+      key = "ProCoordinate",
+      cpp_type = "ProCoordinate",
+      writer_proto_common = write_proto_common_coordinate,
+  },
 
 }
 
