@@ -15,9 +15,31 @@
 *********************************************************************/
 #include <iostream>
 #include "TableTool.h"
+#include <string>
 
 int main(int argc, char* argv[]) {
-  ToolSpace::TableTool m("./setting.xlsx", "1.0.0.1", ToolSpace::PROTO_VER2, "../out.log");
+
+  std::string file = "./setting.xlsx";
+  std::string version = "1.0.0.1";
+  ToolSpace::ProtoType type = ToolSpace::PROTO_VER2;
+  std::string log = "./out.log";
+  if (argc > 1) {
+    file = argv[1];
+  }
+
+  if (argc > 2){
+    version = argv[2];
+  }
+
+  if (argc > 3){
+    type = static_cast<ToolSpace::ProtoType>(std::stoi(argv[3]));
+  }
+
+  if (argc > 4){
+    log = argv[4];
+  }
+
+  ToolSpace::TableTool m(file, version, type, log);
   if (!m.init()){
     return 1;
   }

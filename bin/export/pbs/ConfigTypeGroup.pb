@@ -1,8 +1,8 @@
 
 ç
 ConfigTypeGroup.protoPro",
-ConfigTypeGroupfloat
-array (Rarray"G
+ConfigTypeGroupint32
+array (Rarray"G
 ProCoordinate
 x (Rx
 y (Ry
@@ -11,8 +11,8 @@
 ConfigTypeGroupProCoordinate(
 array (2.Pro.ProCoordinateRarray"-
 ConfigTypeGroupstring
-array (	Rarray"+
+array (	Rarray",
+ConfigTypeGroupfloat
+array (Rarray"+
 ConfigTypeGroupbool
-array (Rarray",
-ConfigTypeGroupint32
-array (Rarray
+array (Rarray

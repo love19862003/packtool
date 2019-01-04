@@ -1,7 +1,7 @@
 syntax = "proto2";
 package Pro;
-message ConfigTypeGroupfloat{
- repeated float array = 1; 
+message ConfigTypeGroupint32{
+ repeated int32 array = 1; 
 }
 
 message ProCoordinate{
@@ -18,10 +18,10 @@ message ConfigTypeGroupstring{
  repeated string array = 1; 
 }
 
-message ConfigTypeGroupbool{
- repeated bool array = 1; 
+message ConfigTypeGroupfloat{
+ repeated float array = 1; 
 }
 
-message ConfigTypeGroupint32{
- repeated int32 array = 1; 
+message ConfigTypeGroupbool{
+ repeated bool array = 1; 
 }

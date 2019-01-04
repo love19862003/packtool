@@ -109,7 +109,6 @@ namespace ToolSpace{
     bool loadEnum(const std::string& file);
     bool loadTable(const std::string& file);
     bool loadCheck(const std::string& file);
-    bool loadLayout(const std::string& file);
     bool check();
     void save();
 
