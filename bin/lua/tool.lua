@@ -24,7 +24,7 @@ end
 
 -- 增加表格头
 function table_head(table, column, headname, typename, comment)
-  local mt, basic, basic_name = read_type(typename)
+  local mt, basic, basic_name = read_input_type(typename)
   if isNoneType(basic) then 
     return true
   end
@@ -81,7 +81,9 @@ function add_read_fields(name, column, value)
   local head = t:getColHead(column)
   if not head then return true end
   
-  local field = read_data(value, head)
+  
+  local g = get_basic_type_by_id(head.basic_type)
+  local field = g.reader(value, head) 
   local indexHead = t:getIndexHead()
   if head.index == indexHead.index then 
     read_table_record.index = field

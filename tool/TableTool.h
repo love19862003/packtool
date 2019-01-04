@@ -111,15 +111,7 @@ namespace ToolSpace{
     bool loadCheck(const std::string& file);
     bool loadLayout(const std::string& file);
     bool check();
-
- 
-
     void save();
-    void saveProto();
-    void saveToJson();
-    void saveToSql();
-    void saveToLuaFile();
-    void saveLayout();
 
     template<typename T, typename ...ARGS>
     void debug(T t, ARGS ... args){

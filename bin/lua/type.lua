@@ -70,15 +70,7 @@ g_basic_type = {
   },
 
 }
-
-local read_function = {}
-local write_function = {}
-
-for _, v in pairs(g_basic_type) do 
-  read_function[v.type] = v.reader
-  write_function[v.type] = v.writer
-end
-   
+ 
 
 g_muti_type = {
   basic = 0,  --基础类型
@@ -159,8 +151,8 @@ local function get_muti_type(type)
 end
 
 -- 读取类型 int  array<int> group<int> bool 
-function read_type(type_name_str)
- local type_name = type_name_str
+function read_input_type(str)
+ local type_name = str
  local r1, r2, muti, name = string.find(type_name, "^(%a+)<(.+)>$")
  if r1 ~= nil then 
   return get_muti_type(muti), get_basic_type(name), name
@@ -168,30 +160,6 @@ function read_type(type_name_str)
   return g_muti_type.basic, get_basic_type(type_name), type_name
  end
 end
-
--- 写入类型
-function write_type(head, space)
-  local call = write_function[head.basic_type]
-  if call ~= nil then 
-    return call(head, space)
-  else
-    --Dump.info(head)
-    assert(false)
-    return nil
-  end
-end
-
--- 读取数值
-function read_data(value, head)
-  local call = read_function[head.basic_type]
-  if call ~= nil then
-    return call(value, head)
-  else
-    assert(false)
-    return nil
-  end
-end
-
 
 
 

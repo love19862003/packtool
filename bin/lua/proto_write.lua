@@ -136,6 +136,19 @@ local function write_table_enum(name, space)
   return table.concat(msg, "\n")
 end
 
+-- 写入类型
+local function write_proto_type(head, space)
+  local g = get_basic_type_by_id(head.basic_type)
+  local call = g.writer
+  if call ~= nil then 
+    return call(head, space)
+  else
+    --Dump.info(head)
+    assert(false)
+    return nil
+  end
+end
+
 --输出表格proto文件
 local function write_proto_table(name)
   local tab = g_tables[name]
@@ -162,7 +175,7 @@ local function write_proto_table(name)
   local heads = tab.heads
   
   for k, head in pairs(heads) do 
-    tabFile:write(write_type(head, 2))
+    tabFile:write(write_proto_type(head, 2))
   end  
   tabFile:write("}\n")
   tabFile:close()

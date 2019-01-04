@@ -67,12 +67,6 @@ namespace ToolSpace{
       return false;
     }
 
-    if (!loadLayout(m_args.layout_file)){
-      error("load layout file :", m_args.layout_file, " failed!");
-      return false;
-    }
-
-
     m_enumExcels.forEachValue([this](const ExcelFile& file){
       if (!loadEnum(file.file_name)){
         error("load enum file :", file.file_name, " failed!");
@@ -179,13 +173,6 @@ namespace ToolSpace{
     return true;
   }
 
-
-
-  bool TableTool::loadLayout(const std::string& file){
-    std::string path = m_args.out_dir + m_args.layout_file;
-    return true;
-  }
-
   bool TableTool::loadEnum(const std::string& file){
     std::string path = m_args.excel_dir + file;
     ExcelSpace::BookPtr book = ExcelSpace::ExcelBook::openBook(path);
@@ -215,7 +202,7 @@ namespace ToolSpace{
         
         if (enName.empty()){ break; }
 
-        auto rv = LitSpace::rcall<LitSpace::lua_returns<int, int>>(m_state, "read_type", enType);
+        auto rv = LitSpace::rcall<LitSpace::lua_returns<int, int>>(m_state, "read_input_type", enType);
         if (!LitSpace::call<bool>(m_state, "isSingleType", std::get<0>(rv)) || !LitSpace::call<bool>(m_state, "isEnumType", std::get<1>(rv))){
           break;
         }
@@ -307,27 +294,7 @@ namespace ToolSpace{
   }
 
   void TableTool::save(){
-    saveProto();
-    saveToJson();
-    saveToSql();
-    saveToLuaFile();
-    saveLayout();
-
-  }
-
-
-  void TableTool::saveProto(){
-   
     LitSpace::call<void>(m_state, "write_proto");
-  }
-
-  void TableTool::saveToJson(){
-  }
-  void TableTool::saveToSql(){
-  }
-  void TableTool::saveToLuaFile(){
-  }
-  void TableTool::saveLayout(){
   }
 
 }
