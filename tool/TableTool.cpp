@@ -259,7 +259,9 @@ namespace ToolSpace{
 
         if (headName.empty() || typeName.empty()){ break; }
         bool res = LitSpace::call<bool>(m_state, "table_head", sheetName, column, headName, typeName, comment);
-        if (!res){ return false;}
+        if (!res){ 
+          return false;
+        }
       }
 
 

@@ -111,13 +111,13 @@ function reader_number(str, head)
   if type(tal) ~= "table" then 
     tal = tonumber(tal) or 0
   else
-    for _, v in pairs(tal) do
+    for k, v in pairs(tal) do
         if type(v) == "table" then
-          for _, v2 in pairs(v.array) do 
-            v2 = tonumber(v2) or 0
+          for k1, v2 in pairs(v.array) do 
+            v.array[k1] = tonumber(v2) or 0
           end
         else
-          v = tonumber(v) or 0
+          tal[k] = tonumber(v) or 0
         end
     end
   end
@@ -149,13 +149,13 @@ function reader_bool(str, head)
   if type(tal) ~= "table" then 
     return toboolean(tal)
   else
-    for _, v in pairs(tal) do
+    for k, v in pairs(tal) do
         if type(v) == "table" then
-          for _, v2 in pairs(v.array) do 
-            v2 = toboolean(v2)
+          for k1, v2 in pairs(v.array) do 
+            v.array[k1] = toboolean(v2)
           end
         else
-          v = toboolean(v)
+          tal[k] = toboolean(v)
         end
     end
   end

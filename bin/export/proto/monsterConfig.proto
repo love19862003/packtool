@@ -21,4 +21,9 @@ message monsterConfig{
   optional ProCoordinate c1 = 7;//
   repeated ProCoordinate c2 = 8;//
   repeated ConfigTypeGroupProCoordinate c3 = 9;//
+  repeated int32 c4 = 10;//
+  repeated ConfigTypeGroupint32 c5 = 11;//
+  repeated bool c8 = 12;//
+  optional bool c6 = 13;//
+  repeated ConfigTypeGroupbool c7 = 14;//
 }

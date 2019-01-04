@@ -40,7 +40,7 @@ void protobuf_AssignDesc_monsterConfig_2eproto() {
       "monsterConfig.proto");
   GOOGLE_CHECK(file != NULL);
   monsterConfig_descriptor_ = file->message_type(0);
-  static const int monsterConfig_offsets_[9] = {
+  static const int monsterConfig_offsets_[14] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, group_float_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, group_string_),
@@ -50,6 +50,11 @@ void protobuf_AssignDesc_monsterConfig_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, c1_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, c2_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, c3_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, c4_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, c5_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, c8_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, c6_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(monsterConfig, c7_),
   };
   monsterConfig_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -127,7 +132,7 @@ void protobuf_AddDesc_monsterConfig_2eproto_impl() {
   protobuf_InitDefaults_monsterConfig_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\023monsterConfig.proto\022\003Pro\032\020roleConfig.p"
-    "roto\032\025ConfigTypeGroup.proto\"\301\003\n\rmonsterC"
+    "roto\032\025ConfigTypeGroup.proto\"\262\004\n\rmonsterC"
     "onfig\022\n\n\002id\030\001 \001(\t\022.\n\013group_float\030\002 \003(\0132\031"
     ".Pro.ConfigTypeGroupfloat\0220\n\014group_strin"
     "g\030\003 \003(\0132\032.Pro.ConfigTypeGroupstring\022$\n\003j"
@@ -135,10 +140,13 @@ void protobuf_AddDesc_monsterConfig_2eproto_impl() {
     "el\030\005 \001(\005\022\013\n\003sub\030\006 \001(\005\022\036\n\002c1\030\007 \001(\0132\022.Pro."
     "ProCoordinate\022\036\n\002c2\030\010 \003(\0132\022.Pro.ProCoord"
     "inate\022-\n\002c3\030\t \003(\0132!.Pro.ConfigTypeGroupP"
-    "roCoordinate\032K\n\032ConfigTypeGroupmonsterty"
-    "pe\022-\n\005array\030\001 \003(\0162\036.Pro.monsterConfig.mo"
-    "nstertype\"D\n\013monstertype\022\020\n\014mini_monster"
-    "\020\001\022\023\n\017middile_monster\020\002\022\016\n\nbig_monter\020\003", 519);
+    "roCoordinate\022\n\n\002c4\030\n \003(\005\022%\n\002c5\030\013 \003(\0132\031.P"
+    "ro.ConfigTypeGroupint32\022\n\n\002c8\030\014 \003(\010\022\n\n\002c"
+    "6\030\r \001(\010\022$\n\002c7\030\016 \003(\0132\030.Pro.ConfigTypeGrou"
+    "pbool\032K\n\032ConfigTypeGroupmonstertype\022-\n\005a"
+    "rray\030\001 \003(\0162\036.Pro.monsterConfig.monsterty"
+    "pe\"D\n\013monstertype\022\020\n\014mini_monster\020\001\022\023\n\017m"
+    "iddile_monster\020\002\022\016\n\nbig_monter\020\003", 632);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "monsterConfig.proto", &protobuf_RegisterTypes);
   ::Pro::protobuf_AddDesc_roleConfig_2eproto();
@@ -465,6 +473,11 @@ const int monsterConfig::kSubFieldNumber;
 const int monsterConfig::kC1FieldNumber;
 const int monsterConfig::kC2FieldNumber;
 const int monsterConfig::kC3FieldNumber;
+const int monsterConfig::kC4FieldNumber;
+const int monsterConfig::kC5FieldNumber;
+const int monsterConfig::kC8FieldNumber;
+const int monsterConfig::kC6FieldNumber;
+const int monsterConfig::kC7FieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 monsterConfig::monsterConfig()
@@ -491,8 +504,8 @@ void monsterConfig::SharedCtor() {
   _cached_size_ = 0;
   id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   c1_ = NULL;
-  ::memset(&job_, 0, reinterpret_cast<char*>(&sub_) -
-    reinterpret_cast<char*>(&job_) + sizeof(sub_));
+  ::memset(&job_, 0, reinterpret_cast<char*>(&c6_) -
+    reinterpret_cast<char*>(&job_) + sizeof(c6_));
 }
 
 monsterConfig::~monsterConfig() {
@@ -559,6 +572,7 @@ void monsterConfig::Clear() {
       if (c1_ != NULL) c1_->::Pro::ProCoordinate::Clear();
     }
   }
+  c6_ = false;
 
 #undef ZR_HELPER_
 #undef ZR_
@@ -567,6 +581,10 @@ void monsterConfig::Clear() {
   group_string_.Clear();
   c2_.Clear();
   c3_.Clear();
+  c4_.Clear();
+  c5_.Clear();
+  c8_.Clear();
+  c7_.Clear();
   _has_bits_.Clear();
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -724,6 +742,93 @@ bool monsterConfig::MergePartialFromCodedStream(
         }
         if (input->ExpectTag(74)) goto parse_loop_c3;
         input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectTag(80)) goto parse_c4;
+        break;
+      }
+
+      // repeated int32 c4 = 10;
+      case 10: {
+        if (tag == 80) {
+         parse_c4:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 1, 80, input, this->mutable_c4())));
+        } else if (tag == 82) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, this->mutable_c4())));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(80)) goto parse_c4;
+        if (input->ExpectTag(90)) goto parse_c5;
+        break;
+      }
+
+      // repeated .Pro.ConfigTypeGroupint32 c5 = 11;
+      case 11: {
+        if (tag == 90) {
+         parse_c5:
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_c5:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
+                input, add_c5()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(90)) goto parse_loop_c5;
+        input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectTag(96)) goto parse_c8;
+        break;
+      }
+
+      // repeated bool c8 = 12;
+      case 12: {
+        if (tag == 96) {
+         parse_c8:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 1, 96, input, this->mutable_c8())));
+        } else if (tag == 98) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, this->mutable_c8())));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(96)) goto parse_c8;
+        if (input->ExpectTag(104)) goto parse_c6;
+        break;
+      }
+
+      // optional bool c6 = 13;
+      case 13: {
+        if (tag == 104) {
+         parse_c6:
+          set_has_c6();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &c6_)));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(114)) goto parse_c7;
+        break;
+      }
+
+      // repeated .Pro.ConfigTypeGroupbool c7 = 14;
+      case 14: {
+        if (tag == 114) {
+         parse_c7:
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_c7:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
+                input, add_c7()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(114)) goto parse_loop_c7;
+        input->UnsafeDecrementRecursionDepth();
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -809,6 +914,35 @@ void monsterConfig::SerializeWithCachedSizes(
       9, this->c3(i), output);
   }
 
+  // repeated int32 c4 = 10;
+  for (int i = 0; i < this->c4_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(
+      10, this->c4(i), output);
+  }
+
+  // repeated .Pro.ConfigTypeGroupint32 c5 = 11;
+  for (unsigned int i = 0, n = this->c5_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      11, this->c5(i), output);
+  }
+
+  // repeated bool c8 = 12;
+  for (int i = 0; i < this->c8_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(
+      12, this->c8(i), output);
+  }
+
+  // optional bool c6 = 13;
+  if (has_c6()) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(13, this->c6(), output);
+  }
+
+  // repeated .Pro.ConfigTypeGroupbool c7 = 14;
+  for (unsigned int i = 0, n = this->c7_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      14, this->c7(i), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -882,6 +1016,37 @@ void monsterConfig::SerializeWithCachedSizes(
         9, this->c3(i), false, target);
   }
 
+  // repeated int32 c4 = 10;
+  for (int i = 0; i < this->c4_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteInt32ToArray(10, this->c4(i), target);
+  }
+
+  // repeated .Pro.ConfigTypeGroupint32 c5 = 11;
+  for (unsigned int i = 0, n = this->c5_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        11, this->c5(i), false, target);
+  }
+
+  // repeated bool c8 = 12;
+  for (int i = 0; i < this->c8_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteBoolToArray(12, this->c8(i), target);
+  }
+
+  // optional bool c6 = 13;
+  if (has_c6()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(13, this->c6(), target);
+  }
+
+  // repeated .Pro.ConfigTypeGroupbool c7 = 14;
+  for (unsigned int i = 0, n = this->c7_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        14, this->c7(i), false, target);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -930,6 +1095,11 @@ size_t monsterConfig::ByteSizeLong() const {
     }
 
   }
+  // optional bool c6 = 13;
+  if (has_c6()) {
+    total_size += 1 + 1;
+  }
+
   // repeated .Pro.ConfigTypeGroupfloat group_float = 2;
   {
     unsigned int count = this->group_float_size();
@@ -971,6 +1141,51 @@ size_t monsterConfig::ByteSizeLong() const {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->c3(i));
+    }
+  }
+
+  // repeated int32 c4 = 10;
+  {
+    size_t data_size = 0;
+    unsigned int count = this->c4_size();
+    for (unsigned int i = 0; i < count; i++) {
+      data_size += ::google::protobuf::internal::WireFormatLite::
+        Int32Size(this->c4(i));
+    }
+    total_size += 1 *
+                  ::google::protobuf::internal::FromIntSize(this->c4_size());
+    total_size += data_size;
+  }
+
+  // repeated .Pro.ConfigTypeGroupint32 c5 = 11;
+  {
+    unsigned int count = this->c5_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->c5(i));
+    }
+  }
+
+  // repeated bool c8 = 12;
+  {
+    size_t data_size = 0;
+    unsigned int count = this->c8_size();
+    data_size = 1UL * count;
+    total_size += 1 *
+                  ::google::protobuf::internal::FromIntSize(this->c8_size());
+    total_size += data_size;
+  }
+
+  // repeated .Pro.ConfigTypeGroupbool c7 = 14;
+  {
+    unsigned int count = this->c7_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->c7(i));
     }
   }
 
@@ -1016,6 +1231,10 @@ void monsterConfig::UnsafeMergeFrom(const monsterConfig& from) {
   group_string_.MergeFrom(from.group_string_);
   c2_.MergeFrom(from.c2_);
   c3_.MergeFrom(from.c3_);
+  c4_.UnsafeMergeFrom(from.c4_);
+  c5_.MergeFrom(from.c5_);
+  c8_.UnsafeMergeFrom(from.c8_);
+  c7_.MergeFrom(from.c7_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_id()) {
       set_has_id();
@@ -1032,6 +1251,11 @@ void monsterConfig::UnsafeMergeFrom(const monsterConfig& from) {
     }
     if (from.has_c1()) {
       mutable_c1()->::Pro::ProCoordinate::MergeFrom(from.c1());
+    }
+  }
+  if (from._has_bits_[12 / 32] & (0xffu << (12 % 32))) {
+    if (from.has_c6()) {
+      set_c6(from.c6());
     }
   }
   if (from._internal_metadata_.have_unknown_fields()) {
@@ -1073,6 +1297,11 @@ void monsterConfig::InternalSwap(monsterConfig* other) {
   std::swap(c1_, other->c1_);
   c2_.UnsafeArenaSwap(&other->c2_);
   c3_.UnsafeArenaSwap(&other->c3_);
+  c4_.UnsafeArenaSwap(&other->c4_);
+  c5_.UnsafeArenaSwap(&other->c5_);
+  c8_.UnsafeArenaSwap(&other->c8_);
+  std::swap(c6_, other->c6_);
+  c7_.UnsafeArenaSwap(&other->c7_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -1418,6 +1647,150 @@ const ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupProCoordinate 
 monsterConfig::c3() const {
   // @@protoc_insertion_point(field_list:Pro.monsterConfig.c3)
   return c3_;
+}
+
+// repeated int32 c4 = 10;
+int monsterConfig::c4_size() const {
+  return c4_.size();
+}
+void monsterConfig::clear_c4() {
+  c4_.Clear();
+}
+::google::protobuf::int32 monsterConfig::c4(int index) const {
+  // @@protoc_insertion_point(field_get:Pro.monsterConfig.c4)
+  return c4_.Get(index);
+}
+void monsterConfig::set_c4(int index, ::google::protobuf::int32 value) {
+  c4_.Set(index, value);
+  // @@protoc_insertion_point(field_set:Pro.monsterConfig.c4)
+}
+void monsterConfig::add_c4(::google::protobuf::int32 value) {
+  c4_.Add(value);
+  // @@protoc_insertion_point(field_add:Pro.monsterConfig.c4)
+}
+const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+monsterConfig::c4() const {
+  // @@protoc_insertion_point(field_list:Pro.monsterConfig.c4)
+  return c4_;
+}
+::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+monsterConfig::mutable_c4() {
+  // @@protoc_insertion_point(field_mutable_list:Pro.monsterConfig.c4)
+  return &c4_;
+}
+
+// repeated .Pro.ConfigTypeGroupint32 c5 = 11;
+int monsterConfig::c5_size() const {
+  return c5_.size();
+}
+void monsterConfig::clear_c5() {
+  c5_.Clear();
+}
+const ::Pro::ConfigTypeGroupint32& monsterConfig::c5(int index) const {
+  // @@protoc_insertion_point(field_get:Pro.monsterConfig.c5)
+  return c5_.Get(index);
+}
+::Pro::ConfigTypeGroupint32* monsterConfig::mutable_c5(int index) {
+  // @@protoc_insertion_point(field_mutable:Pro.monsterConfig.c5)
+  return c5_.Mutable(index);
+}
+::Pro::ConfigTypeGroupint32* monsterConfig::add_c5() {
+  // @@protoc_insertion_point(field_add:Pro.monsterConfig.c5)
+  return c5_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupint32 >*
+monsterConfig::mutable_c5() {
+  // @@protoc_insertion_point(field_mutable_list:Pro.monsterConfig.c5)
+  return &c5_;
+}
+const ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupint32 >&
+monsterConfig::c5() const {
+  // @@protoc_insertion_point(field_list:Pro.monsterConfig.c5)
+  return c5_;
+}
+
+// repeated bool c8 = 12;
+int monsterConfig::c8_size() const {
+  return c8_.size();
+}
+void monsterConfig::clear_c8() {
+  c8_.Clear();
+}
+bool monsterConfig::c8(int index) const {
+  // @@protoc_insertion_point(field_get:Pro.monsterConfig.c8)
+  return c8_.Get(index);
+}
+void monsterConfig::set_c8(int index, bool value) {
+  c8_.Set(index, value);
+  // @@protoc_insertion_point(field_set:Pro.monsterConfig.c8)
+}
+void monsterConfig::add_c8(bool value) {
+  c8_.Add(value);
+  // @@protoc_insertion_point(field_add:Pro.monsterConfig.c8)
+}
+const ::google::protobuf::RepeatedField< bool >&
+monsterConfig::c8() const {
+  // @@protoc_insertion_point(field_list:Pro.monsterConfig.c8)
+  return c8_;
+}
+::google::protobuf::RepeatedField< bool >*
+monsterConfig::mutable_c8() {
+  // @@protoc_insertion_point(field_mutable_list:Pro.monsterConfig.c8)
+  return &c8_;
+}
+
+// optional bool c6 = 13;
+bool monsterConfig::has_c6() const {
+  return (_has_bits_[0] & 0x00001000u) != 0;
+}
+void monsterConfig::set_has_c6() {
+  _has_bits_[0] |= 0x00001000u;
+}
+void monsterConfig::clear_has_c6() {
+  _has_bits_[0] &= ~0x00001000u;
+}
+void monsterConfig::clear_c6() {
+  c6_ = false;
+  clear_has_c6();
+}
+bool monsterConfig::c6() const {
+  // @@protoc_insertion_point(field_get:Pro.monsterConfig.c6)
+  return c6_;
+}
+void monsterConfig::set_c6(bool value) {
+  set_has_c6();
+  c6_ = value;
+  // @@protoc_insertion_point(field_set:Pro.monsterConfig.c6)
+}
+
+// repeated .Pro.ConfigTypeGroupbool c7 = 14;
+int monsterConfig::c7_size() const {
+  return c7_.size();
+}
+void monsterConfig::clear_c7() {
+  c7_.Clear();
+}
+const ::Pro::ConfigTypeGroupbool& monsterConfig::c7(int index) const {
+  // @@protoc_insertion_point(field_get:Pro.monsterConfig.c7)
+  return c7_.Get(index);
+}
+::Pro::ConfigTypeGroupbool* monsterConfig::mutable_c7(int index) {
+  // @@protoc_insertion_point(field_mutable:Pro.monsterConfig.c7)
+  return c7_.Mutable(index);
+}
+::Pro::ConfigTypeGroupbool* monsterConfig::add_c7() {
+  // @@protoc_insertion_point(field_add:Pro.monsterConfig.c7)
+  return c7_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupbool >*
+monsterConfig::mutable_c7() {
+  // @@protoc_insertion_point(field_mutable_list:Pro.monsterConfig.c7)
+  return &c7_;
+}
+const ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupbool >&
+monsterConfig::c7() const {
+  // @@protoc_insertion_point(field_list:Pro.monsterConfig.c7)
+  return c7_;
 }
 
 inline const monsterConfig* monsterConfig::internal_default_instance() {

@@ -1,6 +1,6 @@
 
-È
-monsterConfig.protoProroleConfig.protoConfigTypeGroup.proto"‚
+Í
+monsterConfig.protoProroleConfig.protoConfigTypeGroup.proto"‡
 monsterConfig
 id (	Rid:
 group_float (2.Pro.ConfigTypeGroupfloatR
@@ -11,7 +11,13 @@ groupFloat=
 sub (Rsub"
 c1 (2.Pro.ProCoordinateRc1"
 c2 (2.Pro.ProCoordinateRc21
-c3	 (2!.Pro.ConfigTypeGroupProCoordinateRc3R
+c3	 (2!.Pro.ConfigTypeGroupProCoordinateRc3
+c4
+ (Rc4)
+c5 (2.Pro.ConfigTypeGroupint32Rc5
+c8 (Rc8
+c6 (Rc6(
+c7 (2.Pro.ConfigTypeGroupboolRc7R
 ConfigTypeGroupmonstertype4
 array (2.Pro.monsterConfig.monstertypeRarray"D
 monstertype
