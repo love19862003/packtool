@@ -49,16 +49,6 @@ function version()
   return g_args.version
 end
 
---下个表的ID
-function next_table_id()
-  return g_args.next_table_id
-end
-
---版本号的索引ID
-function version_table_id()
-  return g_args.version_table_id
-end
-
 --包名
 function name_space()
    return g_args.name_space

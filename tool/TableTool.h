@@ -50,8 +50,6 @@ namespace ToolSpace{
       std::string common_group_name = "ConfigTypeGroup";
       std::string common_enum_name = "EnumDefine";
       std::string version = "v1.0.0.0";
-      int next_table_id = 2;
-      int version_table_id = 1;
       int proto_type = PROTO_VER3;
     };
 

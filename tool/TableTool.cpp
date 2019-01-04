@@ -22,7 +22,6 @@ namespace ToolSpace{
     m_args.proto_type = type;
     m_args.setting_file = file;
     m_args.version = version;
-    m_args.next_table_id = 2;
     m_error = false;
     m_state = nullptr;
     
@@ -48,7 +47,6 @@ namespace ToolSpace{
     LitSpace::class_mem<ToolArgs>(m_state, "common_group_name", &ToolArgs::common_group_name);
     LitSpace::class_mem<ToolArgs>(m_state, "common_enum_name", &ToolArgs::common_enum_name);
     LitSpace::class_mem<ToolArgs>(m_state, "version", &ToolArgs::version);
-    LitSpace::class_mem<ToolArgs>(m_state, "version_table_id", &ToolArgs::version_table_id);
     LitSpace::class_mem<ToolArgs>(m_state, "proto_type", &ToolArgs::proto_type);
     LitSpace::dofile(m_state, "./lua/tool.lua");
     return true;
