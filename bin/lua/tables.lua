@@ -1,25 +1,16 @@
 --表的结构
 require("functions")
 g_tables = {}
-Layout = class("Layout")
---缓存的结构数据
-function Layout:init(name)
-  self.table = name
-  self.key_index = 1
-  self.next_index = 1
-  self.type_name = ""
-  self.layouts = {}
-end
-
 Table = class("Table")
+local table_index_head_id = 1
 --初始化
-function Table:init(layout, index)
+function Table:init(layout)
   self.layout = layout
   self.heads = {}
   self.records = {}
   self.depends = {}
   self.links = {}
-  self.table_index = index
+  self.table_index = layout.table_index
   self.depend_common = false
 end
 
@@ -67,6 +58,10 @@ function Table:getHead(index)
   print("get head from table:" ..self.table .. " by args:" .. index)
   return nil
 end
+--获取索引表头
+function Table:getIndexHead()
+  return self.heads[table_index_head_id]
+end
 
 --根据列获取表头
 function Table:getColHead(col)
@@ -110,6 +105,18 @@ end
 
 --获取表的索引ID
 function Table:getTableIndex()
-  return self.table_index
+  return self.layout.table_index
 end
 
+function Table:getHeadLayout(headname)
+  if not self.layout.layouts[headname]  then
+      self.layout.layouts[headname] = { head_index = self.layout.next_index, name = headname }
+      self.layout.next_index = self.layout.next_index + 1
+      if self.layout.layouts[headname].head_index == table_index_head_id then 
+        self.layout.index_name = headname
+      end
+  end
+  
+  local isIndexHead = self.layout.layouts[headname].head_index == table_index_head_id
+  return self.layout.layouts[headname].head_index , isIndexHead
+end

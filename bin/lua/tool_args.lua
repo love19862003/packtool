@@ -10,6 +10,7 @@ end
 function set_tool_args(args)
   g_args = args
   
+  load_layout_history()
   compare_read_old_data()
 end
 

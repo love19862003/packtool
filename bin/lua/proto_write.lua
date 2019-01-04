@@ -190,27 +190,14 @@ local function write_proto_table_lua( t)
    local trs = t.records
    local clsName = t:name()..tail_config_name()
    local res = {}
-   local file = assert(io.open(proto_lua_path() .. t:name() .. ".lua", "w+"))
-   file:write("local ".. clsName .. " = {\n")    
-   
-   
    for _, r in pairs (trs) do 
-      file:write(" {\n")
       local record = {}
       for _, h in pairs(t.heads) do 
-        local out =  text_object(r.fields[h.index])
-        --print(type(out))
-        file:write("  "..h.name .. " =".. out .. ",\n")
         record[h.name] = r.fields[h.index]
       end
-      file:write(" },\n")
-      
       table.insert(res, record)
    end
-  
-   file:write("}\n")
-   file:write("return "..clsName) 
-   file:close()
+   table.save(clsName, res, t:name(), -3)
    return res
 end
 
@@ -331,6 +318,7 @@ function write_proto()
   --输出打包后的数据和文件
   genratorProto()
   saveProtoData(regList, data)
+  save_layout()
 end
 
 

@@ -6,6 +6,16 @@ function require_ex( _mname )
   return require( _mname )
 end
 
+function ReadOnlyTable(table)
+   return setmetatable({}, {
+     __index = table,
+     __len = function(t) return #table end,
+     __ipairs = function(t) return ipairs(table) end,
+     __pairs = function(t) return pairs(table) end,
+     __newindex = function(t, key, value) error("Attempt to modify read-only table") end,
+  });
+end
+
 function class(classname, super)
     local superType = type(super)
     local cls
@@ -67,6 +77,7 @@ function class(classname, super)
 end
 
 function add_space(count)
+  if nil == count then count = 0 end
   if count >=1 then 
     return " " .. add_space(count - 1)
   else 
@@ -268,52 +279,68 @@ function text_table(tab)
   
 end
 
-local function file_table(tab, cc, file)
+local function file_table(tab, cc, space, file)
   if type(tab) ~= "table" then return end
-  local indent = add_space(cc)
+  local lay = cc + 1
+ 
+  local getIndent = function()
+    if cc > 0 then 
+      return ""
+    end
+    return "\n"..add_space(space + 1)
+  end
   
+  local getIndentHead = function()
+    if cc > 0 then 
+      return ""
+    end
+    return "\n"..add_space(space)
+  end
+  
+  
+  local getIndentLine = function()
+    if cc > 0 then 
+      return ""
+    end
+    return "\n"
+  end
+  
+  file:write(getIndentHead() .. "{")
   if table.is_array(tab) then 
     for key, value  in pairs(tab)  do
      if type(value) ==  "table" then 
-        file:write("{")
-        file_table(value, 1 , file)
-        file:write("}")
+        file_table(value, lay , space + 1, file)
       else  
-        file:write(text_value(value))
+        file:write(getIndent()..text_value(value))
       end
       file:write(" ,")
-      if cc <= 0 then 
-        file:write("\n")
-      end
     end
   else
     for key, value  in pairs(tab)  do
       if tonumber(key) ~= nil  then 
-        file:write(indent.."[\""..key.."\"] = ")
+        file:write(getIndent().."[\""..key.."\"] = ")
       else
-        file:write(indent..key.." = ")
+        file:write(getIndent()..key.." = ")
       end
       
       if type(value) ==  "table" then 
-        file:write("{")
-        file_table(value, 1 , file)
-        file:write("}")
+        file_table(value, lay ,space + 1, file)
       else  
         file:write(text_value(value))
       end
       file:write(" ,")
-      if cc <= 0 then 
-        file:write("\n")
-      end
     end
   end
+  
+  file:write(getIndentHead() .. "}")
 end
 
-function table.save(name, tab, info)
+function table.save(name, tab, info, line)
  local file = assert(io.open(info,"wb"))
- file:write("local ".. name .. " = {\n") 
- file_table(tab, 0, file)
- file:write("}\n")
+ file:write("local ".. name .. " = ") 
+ line = line or -2
+ file_table(tab, line, 1,  file)
+ file:write("\n")
  file:write("return "..name)
  file:close() 
 end

@@ -42,7 +42,7 @@ end
 local function write_cpp_tables_interface_def(tab)
     local tabName = tab:name()
     local typeName = tabName..tail_config_name()
-    local indexType = cpp_types(table_index_head(tabName))
+    local indexType = cpp_types(tab:getIndexHead())
     write("// table "..tabName .. " interfaces")
     write(string.format("const %s& %s(const %s& index) const;", typeName, tabName, indexType))
     write(string.format("bool has_%s(const %s& index) const;", tabName, indexType))
@@ -69,7 +69,7 @@ end
 local function write_cpp_tables_members(tab)
   local tabName = tab:name()
   local typeName = tabName..tail_config_name()
-  local indexType = cpp_types(table_index_head(tabName))
+  local indexType = cpp_types(tab:getIndexHead())
   write(string.format("std::map<%s, %s> m_%s;", indexType, typeName, tabName))
   local links = get_table_link(tabName)
   if links  then 
@@ -91,7 +91,7 @@ end
 local function write_cpp_tables_interface(tab)
   local tabName = tab:name()
   local typeName = tabName..tail_config_name()
-  local indexType = cpp_types(table_index_head(tabName))
+  local indexType = cpp_types(tab:getIndexHead())
   local mgrClsName = out_file_name().."::Impl::"
   write("// table "..tabName .. " interfaces")
   write(string.format("const %s& %s%s(const %s& index) const{", typeName, mgrClsName, tabName, indexType))
@@ -157,7 +157,7 @@ end
 local function write_cpp_tables_interface_impl(tab)
   local tabName = tab:name()
   local typeName = tabName..tail_config_name()
-  local indexType = cpp_types(table_index_head(tabName))
+  local indexType = cpp_types(tab:getIndexHead())
   local mgrClsName = out_file_name().."::"
   write("// table "..tabName .. " interfaces")
   write(string.format("const %s& %s%s(const %s& index) const{", typeName, mgrClsName, tabName, indexType))
@@ -342,7 +342,7 @@ function write_cpp_content()
   for k, tab in pairs(g_tables) do 
     local tabName = tab:name()
     local typeName = tabName..tail_config_name()
-    local indexType = cpp_types(table_index_head(tabName))
+    local indexType = cpp_types(tab:getIndexHead())
     write(string.format("m_%s.clear();", tabName))
     
     local links = get_table_link(tabName)
@@ -369,7 +369,7 @@ function write_cpp_content()
   for k, tab in pairs(g_tables) do 
     local tabName = tab:name()
     local typeName = tabName..tail_config_name()
-    local indexHead = table_index_head(tabName)
+    local indexHead = tab:getIndexHead()
     local indexType = cpp_types(indexHead)
     write(string.format("for(auto& v : ptr->%s()){", tabName))
     indent()

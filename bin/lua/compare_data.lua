@@ -1,5 +1,9 @@
 g_oldData = nil
 
+--结构文件目录
+local function layout_path()
+  return  out_dir() .. "/info/" 
+end
 
 local function table_string(tab)
   local str = "{"
@@ -94,7 +98,7 @@ end
 local writeFile = nil
 --写入文件
 local function write(str)
-  if writeFile == nil then 
+  if writeFile == nil or str == nil then 
     assert(false)
     return 
   end
@@ -149,14 +153,66 @@ local function compare_table(t, ot, name)
 end
 
 
+local function resort_table_data(data, layout)
+  if not data or not layout then return nil end
+  local index_name = layout.index_name;
+ 
+  local res = {}
+  for _, v in pairs(data) do 
+    local k = v[index_name]
+    if nil ~= k then 
+      res[k] = v
+    end
+  end
+  return res
+end
+
 function compare_read_old_data()
   g_oldData = readPackageData() or {}
-  -- remove old files and datas 
-  -- load last layout
-  --
+  for tab_name , layout  in pairs (g_layout_history) do 
+    if type(layout) == "table" then 
+      g_oldData[tab_name] = resort_table_data(g_oldData[tab_name], layout)
+    end
+  end
 end
 
 function compare_package()
   local data = readPackageData()
+  for tab_name , layout  in pairs (g_layout_current) do 
+    if type(layout) == "table" then 
+      data[tab_name] = resort_table_data(data[tab_name], layout)
+    end
+  end
   
+  writeFile = assert(io.open(layout_path().. "/last.log", "w+"))
+  write("----------------------------------------------")
+  write("configs update time:" .. os.date())
+  write("from version:" .. (g_oldData.version or " none ") .. " to version:".. data.version)
+  local tags = {}
+  tags.version = true
+  for k, v in pairs(data) do 
+    if not tags[k]  then 
+      compare_table(v, g_oldData[k], k)
+      tags[k] = true
+    end
+  end
+  
+  for k , v in pairs(g_oldData) do 
+    if not tags[k]  then 
+      write("...........................")
+      write("remove table : " .. k)
+      tags[k] = true
+    end
+  end
+  write("----------------------------------------------")
+  writeFile:close()
+  writeFile = nil
+  
+  local buffer1 = io.readfile(layout_path().. "/last.log")
+  local buffer2 = io.readfile(layout_path().. "/history.log")
+  writeFile = assert(io.open(layout_path().. "/history.log", "w+"))
+  write(buffer1 or "")
+  write(buffer2 or "")
+  writeFile:close()
+  writeFile = nil
 end

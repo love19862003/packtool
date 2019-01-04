@@ -1,6 +1,7 @@
 package.path = package.path..";./lua/?.lua"
 package.cpath  = package.cpath ..";./lua/?.dll"
 require("dump_object")
+require("layout")
 require("cpp_write")
 require("proto_write")
 require("compare_data")
@@ -11,25 +12,15 @@ require("tool_args")
 
 
 local read_table_record = {} -- 当前读取的记录
-local key_index_id = 1       -- 默认表内部主键的headID
-local global_table_index = 2 -- 表的索引ID开始值 
 
 -- 创建新的表格
 function new_table(name)
-  local layout = Layout.new()
-  layout:init(name)
+  local layout = get_table_layout(name)
   local t = Table.new()
-  t:init(layout, global_table_index)
-  global_table_index = global_table_index + 1
+  t:init(layout)
   g_tables[t:name()] = t
 end
 
---表索引头
-function table_index_head(name)
-  local t = g_tables[name]
-  if not t then return nil end
-  return t:getHead(key_index_id)
-end
 
 -- 增加表格头
 function table_head(table, column, headname, typename, comment)
@@ -43,18 +34,7 @@ function table_head(table, column, headname, typename, comment)
     return false
   end
   
-  local layout = t:getLayout()
-  if not layout then 
-    return false
-  end
-  local index = nil
-  if layout.layouts[headname] then 
-    index = layout.layouts[headname].head_index
-  else
-    index = layout.next_index
-    layout.layouts[headname] = index
-    layout.next_index = layout.next_index + 1
-  end
+  local index, isIndexHead = t:getHeadLayout(headname)
   
   local head = {
                   basic_type = basic,
@@ -68,7 +48,7 @@ function table_head(table, column, headname, typename, comment)
                   index = index
                 }
    
-  if head.index == key_index_id and not checkKeyType(mt, basic) then 
+  if isIndexHead and not checkKeyType(mt, basic) then 
     -- error with index
     return false;
   end
@@ -102,7 +82,8 @@ function add_read_fields(name, column, value)
   if not head then return true end
   
   local field = read_data(value, head)
-  if head.index == key_index_id then 
+  local indexHead = t:getIndexHead()
+  if head.index == indexHead.index then 
     read_table_record.index = field
     if value == "" then return false end
     --Dump.info(field, value)
