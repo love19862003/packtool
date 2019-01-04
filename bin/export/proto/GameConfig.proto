@@ -1,0 +1,11 @@
+syntax = "proto2";
+package Pro;
+import "EnumDefineConfig.proto";
+import "ConfigTypeGroup.proto";
+import "roleConfig.proto";
+import "monsterConfig.proto";
+message GameConfig{
+  optional string version = 1;
+  repeated monsterConfig monster = 2;
+  repeated roleConfig role = 3;
+}

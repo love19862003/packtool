@@ -1,0 +1,10 @@
+syntax = "proto2";
+package Pro;
+enum camptype{
+ camp_light = 1;//光明
+ camp_dark = 2;//黑暗
+
+};
+message ConfigTypeGroupcamptype{
+ repeated camptype array = 1; 
+}
