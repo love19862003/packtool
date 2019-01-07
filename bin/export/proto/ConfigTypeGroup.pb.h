@@ -38,22 +38,24 @@ void protobuf_AssignDesc_ConfigTypeGroup_2eproto();
 void protobuf_ShutdownFile_ConfigTypeGroup_2eproto();
 
 class ConfigTypeGroupProCoordinate;
+class ConfigTypeGroupProInt5;
 class ConfigTypeGroupbool;
 class ConfigTypeGroupfloat;
 class ConfigTypeGroupint32;
 class ConfigTypeGroupstring;
 class ProCoordinate;
+class ProInt5;
 
 // ===================================================================
 
-class ConfigTypeGroupint32 : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Pro.ConfigTypeGroupint32) */ {
+class ProInt5 : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Pro.ProInt5) */ {
  public:
-  ConfigTypeGroupint32();
-  virtual ~ConfigTypeGroupint32();
+  ProInt5();
+  virtual ~ProInt5();
 
-  ConfigTypeGroupint32(const ConfigTypeGroupint32& from);
+  ProInt5(const ProInt5& from);
 
-  inline ConfigTypeGroupint32& operator=(const ConfigTypeGroupint32& from) {
+  inline ProInt5& operator=(const ProInt5& from) {
     CopyFrom(from);
     return *this;
   }
@@ -67,21 +69,21 @@ class ConfigTypeGroupint32 : public ::google::protobuf::Message /* @@protoc_inse
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const ConfigTypeGroupint32& default_instance();
+  static const ProInt5& default_instance();
 
-  static const ConfigTypeGroupint32* internal_default_instance();
+  static const ProInt5* internal_default_instance();
 
-  void Swap(ConfigTypeGroupint32* other);
+  void Swap(ProInt5* other);
 
   // implements Message ----------------------------------------------
 
-  inline ConfigTypeGroupint32* New() const { return New(NULL); }
+  inline ProInt5* New() const { return New(NULL); }
 
-  ConfigTypeGroupint32* New(::google::protobuf::Arena* arena) const;
+  ProInt5* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const ConfigTypeGroupint32& from);
-  void MergeFrom(const ConfigTypeGroupint32& from);
+  void CopyFrom(const ProInt5& from);
+  void MergeFrom(const ProInt5& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -100,8 +102,8 @@ class ConfigTypeGroupint32 : public ::google::protobuf::Message /* @@protoc_inse
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(ConfigTypeGroupint32* other);
-  void UnsafeMergeFrom(const ConfigTypeGroupint32& from);
+  void InternalSwap(ProInt5* other);
+  void UnsafeMergeFrom(const ProInt5& from);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -117,25 +119,62 @@ class ConfigTypeGroupint32 : public ::google::protobuf::Message /* @@protoc_inse
 
   // accessors -------------------------------------------------------
 
-  // repeated int32 array = 1;
-  int array_size() const;
-  void clear_array();
-  static const int kArrayFieldNumber = 1;
-  ::google::protobuf::int32 array(int index) const;
-  void set_array(int index, ::google::protobuf::int32 value);
-  void add_array(::google::protobuf::int32 value);
-  const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      array() const;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_array();
+  // optional int32 value1 = 1;
+  bool has_value1() const;
+  void clear_value1();
+  static const int kValue1FieldNumber = 1;
+  ::google::protobuf::int32 value1() const;
+  void set_value1(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:Pro.ConfigTypeGroupint32)
+  // optional int32 value2 = 2;
+  bool has_value2() const;
+  void clear_value2();
+  static const int kValue2FieldNumber = 2;
+  ::google::protobuf::int32 value2() const;
+  void set_value2(::google::protobuf::int32 value);
+
+  // optional int32 value3 = 3;
+  bool has_value3() const;
+  void clear_value3();
+  static const int kValue3FieldNumber = 3;
+  ::google::protobuf::int32 value3() const;
+  void set_value3(::google::protobuf::int32 value);
+
+  // optional int32 value4 = 4;
+  bool has_value4() const;
+  void clear_value4();
+  static const int kValue4FieldNumber = 4;
+  ::google::protobuf::int32 value4() const;
+  void set_value4(::google::protobuf::int32 value);
+
+  // optional int32 value5 = 5;
+  bool has_value5() const;
+  void clear_value5();
+  static const int kValue5FieldNumber = 5;
+  ::google::protobuf::int32 value5() const;
+  void set_value5(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:Pro.ProInt5)
  private:
+  inline void set_has_value1();
+  inline void clear_has_value1();
+  inline void set_has_value2();
+  inline void clear_has_value2();
+  inline void set_has_value3();
+  inline void clear_has_value3();
+  inline void set_has_value4();
+  inline void clear_has_value4();
+  inline void set_has_value5();
+  inline void clear_has_value5();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > array_;
+  ::google::protobuf::int32 value1_;
+  ::google::protobuf::int32 value2_;
+  ::google::protobuf::int32 value3_;
+  ::google::protobuf::int32 value4_;
+  ::google::protobuf::int32 value5_;
   friend void  protobuf_InitDefaults_ConfigTypeGroup_2eproto_impl();
   friend void  protobuf_AddDesc_ConfigTypeGroup_2eproto_impl();
   friend void protobuf_AssignDesc_ConfigTypeGroup_2eproto();
@@ -143,7 +182,213 @@ class ConfigTypeGroupint32 : public ::google::protobuf::Message /* @@protoc_inse
 
   void InitAsDefaultInstance();
 };
-extern ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupint32> ConfigTypeGroupint32_default_instance_;
+extern ::google::protobuf::internal::ExplicitlyConstructed<ProInt5> ProInt5_default_instance_;
+
+// -------------------------------------------------------------------
+
+class ConfigTypeGroupProInt5 : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Pro.ConfigTypeGroupProInt5) */ {
+ public:
+  ConfigTypeGroupProInt5();
+  virtual ~ConfigTypeGroupProInt5();
+
+  ConfigTypeGroupProInt5(const ConfigTypeGroupProInt5& from);
+
+  inline ConfigTypeGroupProInt5& operator=(const ConfigTypeGroupProInt5& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ConfigTypeGroupProInt5& default_instance();
+
+  static const ConfigTypeGroupProInt5* internal_default_instance();
+
+  void Swap(ConfigTypeGroupProInt5* other);
+
+  // implements Message ----------------------------------------------
+
+  inline ConfigTypeGroupProInt5* New() const { return New(NULL); }
+
+  ConfigTypeGroupProInt5* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ConfigTypeGroupProInt5& from);
+  void MergeFrom(const ConfigTypeGroupProInt5& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(ConfigTypeGroupProInt5* other);
+  void UnsafeMergeFrom(const ConfigTypeGroupProInt5& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .Pro.ProInt5 array = 1;
+  int array_size() const;
+  void clear_array();
+  static const int kArrayFieldNumber = 1;
+  const ::Pro::ProInt5& array(int index) const;
+  ::Pro::ProInt5* mutable_array(int index);
+  ::Pro::ProInt5* add_array();
+  ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 >*
+      mutable_array();
+  const ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 >&
+      array() const;
+
+  // @@protoc_insertion_point(class_scope:Pro.ConfigTypeGroupProInt5)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 > array_;
+  friend void  protobuf_InitDefaults_ConfigTypeGroup_2eproto_impl();
+  friend void  protobuf_AddDesc_ConfigTypeGroup_2eproto_impl();
+  friend void protobuf_AssignDesc_ConfigTypeGroup_2eproto();
+  friend void protobuf_ShutdownFile_ConfigTypeGroup_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupProInt5> ConfigTypeGroupProInt5_default_instance_;
+
+// -------------------------------------------------------------------
+
+class ConfigTypeGroupstring : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Pro.ConfigTypeGroupstring) */ {
+ public:
+  ConfigTypeGroupstring();
+  virtual ~ConfigTypeGroupstring();
+
+  ConfigTypeGroupstring(const ConfigTypeGroupstring& from);
+
+  inline ConfigTypeGroupstring& operator=(const ConfigTypeGroupstring& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ConfigTypeGroupstring& default_instance();
+
+  static const ConfigTypeGroupstring* internal_default_instance();
+
+  void Swap(ConfigTypeGroupstring* other);
+
+  // implements Message ----------------------------------------------
+
+  inline ConfigTypeGroupstring* New() const { return New(NULL); }
+
+  ConfigTypeGroupstring* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ConfigTypeGroupstring& from);
+  void MergeFrom(const ConfigTypeGroupstring& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(ConfigTypeGroupstring* other);
+  void UnsafeMergeFrom(const ConfigTypeGroupstring& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated string array = 1;
+  int array_size() const;
+  void clear_array();
+  static const int kArrayFieldNumber = 1;
+  const ::std::string& array(int index) const;
+  ::std::string* mutable_array(int index);
+  void set_array(int index, const ::std::string& value);
+  void set_array(int index, const char* value);
+  void set_array(int index, const char* value, size_t size);
+  ::std::string* add_array();
+  void add_array(const ::std::string& value);
+  void add_array(const char* value);
+  void add_array(const char* value, size_t size);
+  const ::google::protobuf::RepeatedPtrField< ::std::string>& array() const;
+  ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_array();
+
+  // @@protoc_insertion_point(class_scope:Pro.ConfigTypeGroupstring)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> array_;
+  friend void  protobuf_InitDefaults_ConfigTypeGroup_2eproto_impl();
+  friend void  protobuf_AddDesc_ConfigTypeGroup_2eproto_impl();
+  friend void protobuf_AssignDesc_ConfigTypeGroup_2eproto();
+  friend void protobuf_ShutdownFile_ConfigTypeGroup_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupstring> ConfigTypeGroupstring_default_instance_;
 
 // -------------------------------------------------------------------
 
@@ -578,14 +823,14 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupProCoo
 
 // -------------------------------------------------------------------
 
-class ConfigTypeGroupstring : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Pro.ConfigTypeGroupstring) */ {
+class ConfigTypeGroupint32 : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Pro.ConfigTypeGroupint32) */ {
  public:
-  ConfigTypeGroupstring();
-  virtual ~ConfigTypeGroupstring();
+  ConfigTypeGroupint32();
+  virtual ~ConfigTypeGroupint32();
 
-  ConfigTypeGroupstring(const ConfigTypeGroupstring& from);
+  ConfigTypeGroupint32(const ConfigTypeGroupint32& from);
 
-  inline ConfigTypeGroupstring& operator=(const ConfigTypeGroupstring& from) {
+  inline ConfigTypeGroupint32& operator=(const ConfigTypeGroupint32& from) {
     CopyFrom(from);
     return *this;
   }
@@ -599,21 +844,21 @@ class ConfigTypeGroupstring : public ::google::protobuf::Message /* @@protoc_ins
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const ConfigTypeGroupstring& default_instance();
+  static const ConfigTypeGroupint32& default_instance();
 
-  static const ConfigTypeGroupstring* internal_default_instance();
+  static const ConfigTypeGroupint32* internal_default_instance();
 
-  void Swap(ConfigTypeGroupstring* other);
+  void Swap(ConfigTypeGroupint32* other);
 
   // implements Message ----------------------------------------------
 
-  inline ConfigTypeGroupstring* New() const { return New(NULL); }
+  inline ConfigTypeGroupint32* New() const { return New(NULL); }
 
-  ConfigTypeGroupstring* New(::google::protobuf::Arena* arena) const;
+  ConfigTypeGroupint32* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const ConfigTypeGroupstring& from);
-  void MergeFrom(const ConfigTypeGroupstring& from);
+  void CopyFrom(const ConfigTypeGroupint32& from);
+  void MergeFrom(const ConfigTypeGroupint32& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -632,8 +877,8 @@ class ConfigTypeGroupstring : public ::google::protobuf::Message /* @@protoc_ins
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(ConfigTypeGroupstring* other);
-  void UnsafeMergeFrom(const ConfigTypeGroupstring& from);
+  void InternalSwap(ConfigTypeGroupint32* other);
+  void UnsafeMergeFrom(const ConfigTypeGroupint32& from);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -649,29 +894,25 @@ class ConfigTypeGroupstring : public ::google::protobuf::Message /* @@protoc_ins
 
   // accessors -------------------------------------------------------
 
-  // repeated string array = 1;
+  // repeated int32 array = 1;
   int array_size() const;
   void clear_array();
   static const int kArrayFieldNumber = 1;
-  const ::std::string& array(int index) const;
-  ::std::string* mutable_array(int index);
-  void set_array(int index, const ::std::string& value);
-  void set_array(int index, const char* value);
-  void set_array(int index, const char* value, size_t size);
-  ::std::string* add_array();
-  void add_array(const ::std::string& value);
-  void add_array(const char* value);
-  void add_array(const char* value, size_t size);
-  const ::google::protobuf::RepeatedPtrField< ::std::string>& array() const;
-  ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_array();
+  ::google::protobuf::int32 array(int index) const;
+  void set_array(int index, ::google::protobuf::int32 value);
+  void add_array(::google::protobuf::int32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+      array() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+      mutable_array();
 
-  // @@protoc_insertion_point(class_scope:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(class_scope:Pro.ConfigTypeGroupint32)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::std::string> array_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > array_;
   friend void  protobuf_InitDefaults_ConfigTypeGroup_2eproto_impl();
   friend void  protobuf_AddDesc_ConfigTypeGroup_2eproto_impl();
   friend void protobuf_AssignDesc_ConfigTypeGroup_2eproto();
@@ -679,7 +920,7 @@ class ConfigTypeGroupstring : public ::google::protobuf::Message /* @@protoc_ins
 
   void InitAsDefaultInstance();
 };
-extern ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupstring> ConfigTypeGroupstring_default_instance_;
+extern ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupint32> ConfigTypeGroupint32_default_instance_;
 
 // ===================================================================
 
@@ -687,40 +928,229 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupstring
 // ===================================================================
 
 #if !PROTOBUF_INLINE_NOT_IN_HEADERS
-// ConfigTypeGroupint32
+// ProInt5
 
-// repeated int32 array = 1;
-inline int ConfigTypeGroupint32::array_size() const {
+// optional int32 value1 = 1;
+inline bool ProInt5::has_value1() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void ProInt5::set_has_value1() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void ProInt5::clear_has_value1() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void ProInt5::clear_value1() {
+  value1_ = 0;
+  clear_has_value1();
+}
+inline ::google::protobuf::int32 ProInt5::value1() const {
+  // @@protoc_insertion_point(field_get:Pro.ProInt5.value1)
+  return value1_;
+}
+inline void ProInt5::set_value1(::google::protobuf::int32 value) {
+  set_has_value1();
+  value1_ = value;
+  // @@protoc_insertion_point(field_set:Pro.ProInt5.value1)
+}
+
+// optional int32 value2 = 2;
+inline bool ProInt5::has_value2() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void ProInt5::set_has_value2() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void ProInt5::clear_has_value2() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void ProInt5::clear_value2() {
+  value2_ = 0;
+  clear_has_value2();
+}
+inline ::google::protobuf::int32 ProInt5::value2() const {
+  // @@protoc_insertion_point(field_get:Pro.ProInt5.value2)
+  return value2_;
+}
+inline void ProInt5::set_value2(::google::protobuf::int32 value) {
+  set_has_value2();
+  value2_ = value;
+  // @@protoc_insertion_point(field_set:Pro.ProInt5.value2)
+}
+
+// optional int32 value3 = 3;
+inline bool ProInt5::has_value3() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void ProInt5::set_has_value3() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void ProInt5::clear_has_value3() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void ProInt5::clear_value3() {
+  value3_ = 0;
+  clear_has_value3();
+}
+inline ::google::protobuf::int32 ProInt5::value3() const {
+  // @@protoc_insertion_point(field_get:Pro.ProInt5.value3)
+  return value3_;
+}
+inline void ProInt5::set_value3(::google::protobuf::int32 value) {
+  set_has_value3();
+  value3_ = value;
+  // @@protoc_insertion_point(field_set:Pro.ProInt5.value3)
+}
+
+// optional int32 value4 = 4;
+inline bool ProInt5::has_value4() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void ProInt5::set_has_value4() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void ProInt5::clear_has_value4() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void ProInt5::clear_value4() {
+  value4_ = 0;
+  clear_has_value4();
+}
+inline ::google::protobuf::int32 ProInt5::value4() const {
+  // @@protoc_insertion_point(field_get:Pro.ProInt5.value4)
+  return value4_;
+}
+inline void ProInt5::set_value4(::google::protobuf::int32 value) {
+  set_has_value4();
+  value4_ = value;
+  // @@protoc_insertion_point(field_set:Pro.ProInt5.value4)
+}
+
+// optional int32 value5 = 5;
+inline bool ProInt5::has_value5() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void ProInt5::set_has_value5() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void ProInt5::clear_has_value5() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void ProInt5::clear_value5() {
+  value5_ = 0;
+  clear_has_value5();
+}
+inline ::google::protobuf::int32 ProInt5::value5() const {
+  // @@protoc_insertion_point(field_get:Pro.ProInt5.value5)
+  return value5_;
+}
+inline void ProInt5::set_value5(::google::protobuf::int32 value) {
+  set_has_value5();
+  value5_ = value;
+  // @@protoc_insertion_point(field_set:Pro.ProInt5.value5)
+}
+
+inline const ProInt5* ProInt5::internal_default_instance() {
+  return &ProInt5_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// ConfigTypeGroupProInt5
+
+// repeated .Pro.ProInt5 array = 1;
+inline int ConfigTypeGroupProInt5::array_size() const {
   return array_.size();
 }
-inline void ConfigTypeGroupint32::clear_array() {
+inline void ConfigTypeGroupProInt5::clear_array() {
   array_.Clear();
 }
-inline ::google::protobuf::int32 ConfigTypeGroupint32::array(int index) const {
-  // @@protoc_insertion_point(field_get:Pro.ConfigTypeGroupint32.array)
+inline const ::Pro::ProInt5& ConfigTypeGroupProInt5::array(int index) const {
+  // @@protoc_insertion_point(field_get:Pro.ConfigTypeGroupProInt5.array)
   return array_.Get(index);
 }
-inline void ConfigTypeGroupint32::set_array(int index, ::google::protobuf::int32 value) {
-  array_.Set(index, value);
-  // @@protoc_insertion_point(field_set:Pro.ConfigTypeGroupint32.array)
+inline ::Pro::ProInt5* ConfigTypeGroupProInt5::mutable_array(int index) {
+  // @@protoc_insertion_point(field_mutable:Pro.ConfigTypeGroupProInt5.array)
+  return array_.Mutable(index);
 }
-inline void ConfigTypeGroupint32::add_array(::google::protobuf::int32 value) {
-  array_.Add(value);
-  // @@protoc_insertion_point(field_add:Pro.ConfigTypeGroupint32.array)
+inline ::Pro::ProInt5* ConfigTypeGroupProInt5::add_array() {
+  // @@protoc_insertion_point(field_add:Pro.ConfigTypeGroupProInt5.array)
+  return array_.Add();
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-ConfigTypeGroupint32::array() const {
-  // @@protoc_insertion_point(field_list:Pro.ConfigTypeGroupint32.array)
+inline ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 >*
+ConfigTypeGroupProInt5::mutable_array() {
+  // @@protoc_insertion_point(field_mutable_list:Pro.ConfigTypeGroupProInt5.array)
+  return &array_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 >&
+ConfigTypeGroupProInt5::array() const {
+  // @@protoc_insertion_point(field_list:Pro.ConfigTypeGroupProInt5.array)
   return array_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-ConfigTypeGroupint32::mutable_array() {
-  // @@protoc_insertion_point(field_mutable_list:Pro.ConfigTypeGroupint32.array)
+
+inline const ConfigTypeGroupProInt5* ConfigTypeGroupProInt5::internal_default_instance() {
+  return &ConfigTypeGroupProInt5_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// ConfigTypeGroupstring
+
+// repeated string array = 1;
+inline int ConfigTypeGroupstring::array_size() const {
+  return array_.size();
+}
+inline void ConfigTypeGroupstring::clear_array() {
+  array_.Clear();
+}
+inline const ::std::string& ConfigTypeGroupstring::array(int index) const {
+  // @@protoc_insertion_point(field_get:Pro.ConfigTypeGroupstring.array)
+  return array_.Get(index);
+}
+inline ::std::string* ConfigTypeGroupstring::mutable_array(int index) {
+  // @@protoc_insertion_point(field_mutable:Pro.ConfigTypeGroupstring.array)
+  return array_.Mutable(index);
+}
+inline void ConfigTypeGroupstring::set_array(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:Pro.ConfigTypeGroupstring.array)
+  array_.Mutable(index)->assign(value);
+}
+inline void ConfigTypeGroupstring::set_array(int index, const char* value) {
+  array_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:Pro.ConfigTypeGroupstring.array)
+}
+inline void ConfigTypeGroupstring::set_array(int index, const char* value, size_t size) {
+  array_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:Pro.ConfigTypeGroupstring.array)
+}
+inline ::std::string* ConfigTypeGroupstring::add_array() {
+  // @@protoc_insertion_point(field_add_mutable:Pro.ConfigTypeGroupstring.array)
+  return array_.Add();
+}
+inline void ConfigTypeGroupstring::add_array(const ::std::string& value) {
+  array_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:Pro.ConfigTypeGroupstring.array)
+}
+inline void ConfigTypeGroupstring::add_array(const char* value) {
+  array_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:Pro.ConfigTypeGroupstring.array)
+}
+inline void ConfigTypeGroupstring::add_array(const char* value, size_t size) {
+  array_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:Pro.ConfigTypeGroupstring.array)
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+ConfigTypeGroupstring::array() const {
+  // @@protoc_insertion_point(field_list:Pro.ConfigTypeGroupstring.array)
+  return array_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+ConfigTypeGroupstring::mutable_array() {
+  // @@protoc_insertion_point(field_mutable_list:Pro.ConfigTypeGroupstring.array)
   return &array_;
 }
 
-inline const ConfigTypeGroupint32* ConfigTypeGroupint32::internal_default_instance() {
-  return &ConfigTypeGroupint32_default_instance_.get();
+inline const ConfigTypeGroupstring* ConfigTypeGroupstring::internal_default_instance() {
+  return &ConfigTypeGroupstring_default_instance_.get();
 }
 // -------------------------------------------------------------------
 
@@ -938,67 +1368,46 @@ inline const ConfigTypeGroupProCoordinate* ConfigTypeGroupProCoordinate::interna
 }
 // -------------------------------------------------------------------
 
-// ConfigTypeGroupstring
+// ConfigTypeGroupint32
 
-// repeated string array = 1;
-inline int ConfigTypeGroupstring::array_size() const {
+// repeated int32 array = 1;
+inline int ConfigTypeGroupint32::array_size() const {
   return array_.size();
 }
-inline void ConfigTypeGroupstring::clear_array() {
+inline void ConfigTypeGroupint32::clear_array() {
   array_.Clear();
 }
-inline const ::std::string& ConfigTypeGroupstring::array(int index) const {
-  // @@protoc_insertion_point(field_get:Pro.ConfigTypeGroupstring.array)
+inline ::google::protobuf::int32 ConfigTypeGroupint32::array(int index) const {
+  // @@protoc_insertion_point(field_get:Pro.ConfigTypeGroupint32.array)
   return array_.Get(index);
 }
-inline ::std::string* ConfigTypeGroupstring::mutable_array(int index) {
-  // @@protoc_insertion_point(field_mutable:Pro.ConfigTypeGroupstring.array)
-  return array_.Mutable(index);
+inline void ConfigTypeGroupint32::set_array(int index, ::google::protobuf::int32 value) {
+  array_.Set(index, value);
+  // @@protoc_insertion_point(field_set:Pro.ConfigTypeGroupint32.array)
 }
-inline void ConfigTypeGroupstring::set_array(int index, const ::std::string& value) {
-  // @@protoc_insertion_point(field_set:Pro.ConfigTypeGroupstring.array)
-  array_.Mutable(index)->assign(value);
+inline void ConfigTypeGroupint32::add_array(::google::protobuf::int32 value) {
+  array_.Add(value);
+  // @@protoc_insertion_point(field_add:Pro.ConfigTypeGroupint32.array)
 }
-inline void ConfigTypeGroupstring::set_array(int index, const char* value) {
-  array_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:Pro.ConfigTypeGroupstring.array)
-}
-inline void ConfigTypeGroupstring::set_array(int index, const char* value, size_t size) {
-  array_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Pro.ConfigTypeGroupstring.array)
-}
-inline ::std::string* ConfigTypeGroupstring::add_array() {
-  // @@protoc_insertion_point(field_add_mutable:Pro.ConfigTypeGroupstring.array)
-  return array_.Add();
-}
-inline void ConfigTypeGroupstring::add_array(const ::std::string& value) {
-  array_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:Pro.ConfigTypeGroupstring.array)
-}
-inline void ConfigTypeGroupstring::add_array(const char* value) {
-  array_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:Pro.ConfigTypeGroupstring.array)
-}
-inline void ConfigTypeGroupstring::add_array(const char* value, size_t size) {
-  array_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:Pro.ConfigTypeGroupstring.array)
-}
-inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
-ConfigTypeGroupstring::array() const {
-  // @@protoc_insertion_point(field_list:Pro.ConfigTypeGroupstring.array)
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+ConfigTypeGroupint32::array() const {
+  // @@protoc_insertion_point(field_list:Pro.ConfigTypeGroupint32.array)
   return array_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::std::string>*
-ConfigTypeGroupstring::mutable_array() {
-  // @@protoc_insertion_point(field_mutable_list:Pro.ConfigTypeGroupstring.array)
+inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+ConfigTypeGroupint32::mutable_array() {
+  // @@protoc_insertion_point(field_mutable_list:Pro.ConfigTypeGroupint32.array)
   return &array_;
 }
 
-inline const ConfigTypeGroupstring* ConfigTypeGroupstring::internal_default_instance() {
-  return &ConfigTypeGroupstring_default_instance_.get();
+inline const ConfigTypeGroupint32* ConfigTypeGroupint32::internal_default_instance() {
+  return &ConfigTypeGroupint32_default_instance_.get();
 }
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

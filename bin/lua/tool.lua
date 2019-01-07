@@ -1,7 +1,9 @@
+--API
 package.path = package.path..";./lua/?.lua"
 package.cpath  = package.cpath ..";./lua/?.dll"
 require("dump_object")
 require("layout")
+require("check_data")
 require("cpp_write")
 require("proto_write")
 require("compare_data")

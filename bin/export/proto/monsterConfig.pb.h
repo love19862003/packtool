@@ -410,6 +410,39 @@ class monsterConfig : public ::google::protobuf::Message /* @@protoc_insertion_p
   const ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupbool >&
       c7() const;
 
+  // optional .Pro.ProInt5 c9 = 15;
+  bool has_c9() const;
+  void clear_c9();
+  static const int kC9FieldNumber = 15;
+  const ::Pro::ProInt5& c9() const;
+  ::Pro::ProInt5* mutable_c9();
+  ::Pro::ProInt5* release_c9();
+  void set_allocated_c9(::Pro::ProInt5* c9);
+
+  // repeated .Pro.ProInt5 c10 = 16;
+  int c10_size() const;
+  void clear_c10();
+  static const int kC10FieldNumber = 16;
+  const ::Pro::ProInt5& c10(int index) const;
+  ::Pro::ProInt5* mutable_c10(int index);
+  ::Pro::ProInt5* add_c10();
+  ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 >*
+      mutable_c10();
+  const ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 >&
+      c10() const;
+
+  // repeated .Pro.ConfigTypeGroupProInt5 c11 = 17;
+  int c11_size() const;
+  void clear_c11();
+  static const int kC11FieldNumber = 17;
+  const ::Pro::ConfigTypeGroupProInt5& c11(int index) const;
+  ::Pro::ConfigTypeGroupProInt5* mutable_c11(int index);
+  ::Pro::ConfigTypeGroupProInt5* add_c11();
+  ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupProInt5 >*
+      mutable_c11();
+  const ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupProInt5 >&
+      c11() const;
+
   // @@protoc_insertion_point(class_scope:Pro.monsterConfig)
  private:
   inline void set_has_id();
@@ -424,6 +457,8 @@ class monsterConfig : public ::google::protobuf::Message /* @@protoc_insertion_p
   inline void clear_has_c1();
   inline void set_has_c6();
   inline void clear_has_c6();
+  inline void set_has_c9();
+  inline void clear_has_c9();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -436,8 +471,11 @@ class monsterConfig : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupint32 > c5_;
   ::google::protobuf::RepeatedField< bool > c8_;
   ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupbool > c7_;
+  ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 > c10_;
+  ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupProInt5 > c11_;
   ::google::protobuf::internal::ArenaStringPtr id_;
   ::Pro::ProCoordinate* c1_;
+  ::Pro::ProInt5* c9_;
   int job_;
   ::google::protobuf::int32 level_;
   ::google::protobuf::int32 sub_;
@@ -932,6 +970,111 @@ inline const ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupbool >&
 monsterConfig::c7() const {
   // @@protoc_insertion_point(field_list:Pro.monsterConfig.c7)
   return c7_;
+}
+
+// optional .Pro.ProInt5 c9 = 15;
+inline bool monsterConfig::has_c9() const {
+  return (_has_bits_[0] & 0x00004000u) != 0;
+}
+inline void monsterConfig::set_has_c9() {
+  _has_bits_[0] |= 0x00004000u;
+}
+inline void monsterConfig::clear_has_c9() {
+  _has_bits_[0] &= ~0x00004000u;
+}
+inline void monsterConfig::clear_c9() {
+  if (c9_ != NULL) c9_->::Pro::ProInt5::Clear();
+  clear_has_c9();
+}
+inline const ::Pro::ProInt5& monsterConfig::c9() const {
+  // @@protoc_insertion_point(field_get:Pro.monsterConfig.c9)
+  return c9_ != NULL ? *c9_
+                         : *::Pro::ProInt5::internal_default_instance();
+}
+inline ::Pro::ProInt5* monsterConfig::mutable_c9() {
+  set_has_c9();
+  if (c9_ == NULL) {
+    c9_ = new ::Pro::ProInt5;
+  }
+  // @@protoc_insertion_point(field_mutable:Pro.monsterConfig.c9)
+  return c9_;
+}
+inline ::Pro::ProInt5* monsterConfig::release_c9() {
+  // @@protoc_insertion_point(field_release:Pro.monsterConfig.c9)
+  clear_has_c9();
+  ::Pro::ProInt5* temp = c9_;
+  c9_ = NULL;
+  return temp;
+}
+inline void monsterConfig::set_allocated_c9(::Pro::ProInt5* c9) {
+  delete c9_;
+  c9_ = c9;
+  if (c9) {
+    set_has_c9();
+  } else {
+    clear_has_c9();
+  }
+  // @@protoc_insertion_point(field_set_allocated:Pro.monsterConfig.c9)
+}
+
+// repeated .Pro.ProInt5 c10 = 16;
+inline int monsterConfig::c10_size() const {
+  return c10_.size();
+}
+inline void monsterConfig::clear_c10() {
+  c10_.Clear();
+}
+inline const ::Pro::ProInt5& monsterConfig::c10(int index) const {
+  // @@protoc_insertion_point(field_get:Pro.monsterConfig.c10)
+  return c10_.Get(index);
+}
+inline ::Pro::ProInt5* monsterConfig::mutable_c10(int index) {
+  // @@protoc_insertion_point(field_mutable:Pro.monsterConfig.c10)
+  return c10_.Mutable(index);
+}
+inline ::Pro::ProInt5* monsterConfig::add_c10() {
+  // @@protoc_insertion_point(field_add:Pro.monsterConfig.c10)
+  return c10_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 >*
+monsterConfig::mutable_c10() {
+  // @@protoc_insertion_point(field_mutable_list:Pro.monsterConfig.c10)
+  return &c10_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Pro::ProInt5 >&
+monsterConfig::c10() const {
+  // @@protoc_insertion_point(field_list:Pro.monsterConfig.c10)
+  return c10_;
+}
+
+// repeated .Pro.ConfigTypeGroupProInt5 c11 = 17;
+inline int monsterConfig::c11_size() const {
+  return c11_.size();
+}
+inline void monsterConfig::clear_c11() {
+  c11_.Clear();
+}
+inline const ::Pro::ConfigTypeGroupProInt5& monsterConfig::c11(int index) const {
+  // @@protoc_insertion_point(field_get:Pro.monsterConfig.c11)
+  return c11_.Get(index);
+}
+inline ::Pro::ConfigTypeGroupProInt5* monsterConfig::mutable_c11(int index) {
+  // @@protoc_insertion_point(field_mutable:Pro.monsterConfig.c11)
+  return c11_.Mutable(index);
+}
+inline ::Pro::ConfigTypeGroupProInt5* monsterConfig::add_c11() {
+  // @@protoc_insertion_point(field_add:Pro.monsterConfig.c11)
+  return c11_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupProInt5 >*
+monsterConfig::mutable_c11() {
+  // @@protoc_insertion_point(field_mutable_list:Pro.monsterConfig.c11)
+  return &c11_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupProInt5 >&
+monsterConfig::c11() const {
+  // @@protoc_insertion_point(field_list:Pro.monsterConfig.c11)
+  return c11_;
 }
 
 inline const monsterConfig* monsterConfig::internal_default_instance() {

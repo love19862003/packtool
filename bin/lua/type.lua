@@ -1,3 +1,4 @@
+--类型定义
 require("functions")
 require("reader")
 require("writer")
@@ -8,6 +9,7 @@ g_basic_type = {
       type = 0,
       reader = reader_none, 
       writer = write_none,
+      checker = check_none,
       key = "",
       cpp_type = nil,
       writer_proto_common = write_none,
@@ -16,6 +18,7 @@ g_basic_type = {
       type = 1, 
       reader = reader_number, 
       writer = write_proto_field,
+      checker = check_number,
       key = "int32",
       cpp_type = "int",
       writer_proto_common = write_proto_message_basic,
@@ -24,6 +27,7 @@ g_basic_type = {
       type = 2, 
       reader = reader_number,
       writer = write_proto_field,
+      checker = check_number,
       key = "float",
       cpp_type = "float",
       writer_proto_common = write_proto_message_basic,
@@ -32,6 +36,7 @@ g_basic_type = {
       type = 3, 
       reader = reader_string, 
       writer = write_proto_field,
+      checker = check_none,
       key = "string",
       cpp_type = "std::string",
       writer_proto_common = write_proto_message_basic,
@@ -40,6 +45,7 @@ g_basic_type = {
       type = 4, 
       reader = reader_bool,
       writer = write_proto_field,
+      checker = check_number,
       key = "bool",
       cpp_type = "bool",
       writer_proto_common = write_proto_message_basic,
@@ -48,6 +54,7 @@ g_basic_type = {
       type = 5, 
       reader = read_enum_value,
       writer = write_none,
+      checker = check_none,
       key = "enum",
       cpp_type = nil,
       writer_proto_common = write_none,
@@ -56,6 +63,7 @@ g_basic_type = {
       type = 6, 
       reader = reader_self_enum,
       writer = write_proto_field_enum,
+      checker = check_number,
       key = "self_enum",
       cpp_type = nil,
       writer_proto_common = write_none,
@@ -64,9 +72,20 @@ g_basic_type = {
       type = 7,
       reader = reader_coordinate,
       writer = write_proto_field,
+      checker = check_coordinate,
       key = "ProCoordinate",
       cpp_type = "ProCoordinate",
       writer_proto_common = write_proto_common_coordinate,
+  },
+  
+  ["int5"] = {
+      type = 8,
+      reader = reader_int5,
+      writer = write_proto_field,
+      checker = check_int5,
+      key = "ProInt5",
+      cpp_type = "ProInt5",
+      writer_proto_common = write_proto_common_int5,
   },
 
 }

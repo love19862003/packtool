@@ -1,3 +1,4 @@
+--表结构数据和记录等等
 --表的结构
 require("functions")
 g_tables = {}
@@ -55,7 +56,7 @@ function Table:getHead(index)
       end
     end
   end
-  print("get head from table:" ..self.table .. " by args:" .. index)
+  --print("get head from table:" ..self.table .. " by args:" .. index)
   return nil
 end
 --获取索引表头

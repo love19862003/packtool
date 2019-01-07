@@ -1,6 +1,6 @@
 /************************************************
 * file AllConfigs.cpp
-* date Fri Jan  4 20:09:26 2019
+* date Mon Jan  7 19:27:45 2019
 *
 * author wufan
 * Contact: love19862003@163.com
@@ -69,8 +69,8 @@ namespace Pro{
   const monsterConfig& monster_by_job_level_sub(const role::jobtype& job, const int& level, const int& sub) const;
   
   // table role interfaces
-  const roleConfig& role(const std::string& index) const;
-  bool has_role(const std::string& index) const;
+  const roleConfig& role(const int& index) const;
+  bool has_role(const int& index) const;
   bool role(const std::function<bool(const roleConfig&)>& call) const;
   
  private:
@@ -80,7 +80,7 @@ namespace Pro{
   // table monster links
   typedef std::tuple<role::jobtype, int, int> job_level_sub_type;
   std::map<job_level_sub_type, std::string> m_monster_link_job_level_sub;
-  std::map<std::string, roleConfig> m_role;
+  std::map<int, roleConfig> m_role;
  };//AllConfigs::Impl
  // table monster interfaces
  const monsterConfig& AllConfigs::Impl::monster(const std::string& index) const{
@@ -108,12 +108,12 @@ namespace Pro{
  }
  
  // table role interfaces
- const roleConfig& AllConfigs::Impl::role(const std::string& index) const{
+ const roleConfig& AllConfigs::Impl::role(const int& index) const{
   try{
    return m_role.at(index);
   }catch(...){ return roleConfig::default_instance();}
  }
- bool AllConfigs::Impl::has_role(const std::string& index) const{
+ bool AllConfigs::Impl::has_role(const int& index) const{
   try{
    return m_role.count(index) > 0;
   }catch(...){ return false;}
@@ -154,10 +154,10 @@ namespace Pro{
  }
  
  // table role interfaces
- const roleConfig& AllConfigs::role(const std::string& index) const{
+ const roleConfig& AllConfigs::role(const int& index) const{
   return m_impl->AllConfigs::(index);
  }
- bool AllConfigs::has_role(const std::string& index) const{
+ bool AllConfigs::has_role(const int& index) const{
   return m_impl->has_role(index);
  }
  bool AllConfigs::role(const std::function<bool(const roleConfig&)>& call) const{

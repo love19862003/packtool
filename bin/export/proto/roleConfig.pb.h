@@ -280,17 +280,12 @@ class roleConfig : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // accessors -------------------------------------------------------
 
-  // optional string id = 1;
+  // optional int32 id = 1;
   bool has_id() const;
   void clear_id();
   static const int kIdFieldNumber = 1;
-  const ::std::string& id() const;
-  void set_id(const ::std::string& value);
-  void set_id(const char* value);
-  void set_id(const char* value, size_t size);
-  ::std::string* mutable_id();
-  ::std::string* release_id();
-  void set_allocated_id(::std::string* id);
+  ::google::protobuf::int32 id() const;
+  void set_id(::google::protobuf::int32 value);
 
   // repeated .Pro.ConfigTypeGroupfloat group_float = 2;
   int group_float_size() const;
@@ -383,7 +378,7 @@ class roleConfig : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::RepeatedPtrField< ::Pro::ConfigTypeGroupcamptype > camp_group_;
   ::google::protobuf::RepeatedField<int> job_;
   ::google::protobuf::RepeatedPtrField< ::Pro::roleConfig_ConfigTypeGroupjobtype > job2_;
-  ::google::protobuf::internal::ArenaStringPtr id_;
+  ::google::protobuf::int32 id_;
   int camp_;
   friend void  protobuf_InitDefaults_roleConfig_2eproto_impl();
   friend void  protobuf_AddDesc_roleConfig_2eproto_impl();
@@ -441,7 +436,7 @@ inline const roleConfig_ConfigTypeGroupjobtype* roleConfig_ConfigTypeGroupjobtyp
 
 // roleConfig
 
-// optional string id = 1;
+// optional int32 id = 1;
 inline bool roleConfig::has_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -452,47 +447,17 @@ inline void roleConfig::clear_has_id() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void roleConfig::clear_id() {
-  id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  id_ = 0;
   clear_has_id();
 }
-inline const ::std::string& roleConfig::id() const {
+inline ::google::protobuf::int32 roleConfig::id() const {
   // @@protoc_insertion_point(field_get:Pro.roleConfig.id)
-  return id_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return id_;
 }
-inline void roleConfig::set_id(const ::std::string& value) {
+inline void roleConfig::set_id(::google::protobuf::int32 value) {
   set_has_id();
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  id_ = value;
   // @@protoc_insertion_point(field_set:Pro.roleConfig.id)
-}
-inline void roleConfig::set_id(const char* value) {
-  set_has_id();
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Pro.roleConfig.id)
-}
-inline void roleConfig::set_id(const char* value, size_t size) {
-  set_has_id();
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Pro.roleConfig.id)
-}
-inline ::std::string* roleConfig::mutable_id() {
-  set_has_id();
-  // @@protoc_insertion_point(field_mutable:Pro.roleConfig.id)
-  return id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* roleConfig::release_id() {
-  // @@protoc_insertion_point(field_release:Pro.roleConfig.id)
-  clear_has_id();
-  return id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void roleConfig::set_allocated_id(::std::string* id) {
-  if (id != NULL) {
-    set_has_id();
-  } else {
-    clear_has_id();
-  }
-  id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), id);
-  // @@protoc_insertion_point(field_set_allocated:Pro.roleConfig.id)
 }
 
 // repeated .Pro.ConfigTypeGroupfloat group_float = 2;

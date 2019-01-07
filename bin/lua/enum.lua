@@ -40,24 +40,25 @@ function read_enum_value(name, str, comment)
   end
 end
 
+
 --检测枚举值
 function check_enum_value(name, value)
   if not g_enum_type[name] then
-   return false
+   return false, nil
   end
   
   --Dump.data(g_enum_type[name].values)
   for _, v in pairs(g_enum_type[name].values) do 
     if type(value) == "number" and value == v[2] then
-      return true
+      return true, v
     end
     
     if type(value) == "string" and value == v[1] then
-      return true
+      return true , v
     end
   end
   
-  return false
+  return false, nil
 end
 
 

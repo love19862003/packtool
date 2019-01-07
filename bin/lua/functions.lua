@@ -318,7 +318,11 @@ local function file_table(tab, cc, space, file)
   else
     for key, value  in pairs(tab)  do
       if tonumber(key) ~= nil  then 
-        file:write(getIndent().."[\""..key.."\"] = ")
+        if type(key) == "number" then
+          file:write(getIndent().."["..key.."] = ")
+        else
+          file:write(getIndent().."[\""..key.."\"] = ")
+        end
       else
         file:write(getIndent()..key.." = ")
       end

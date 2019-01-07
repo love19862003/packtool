@@ -1,3 +1,4 @@
+--生成proto文件，并且打包数据和保存数据以及数据比较，等等
 --proto文件目录
 local function proto_path() 
   return out_dir() .. "/proto/"
@@ -26,7 +27,7 @@ local function proto_type_syntax()
   if type == 1 then 
     return "syntax = \"proto3\";\n";
   end
-  print(type)
+  --print(type)
   assert(false,type)
   return ""
 end
@@ -66,6 +67,19 @@ function write_proto_common_coordinate(basic_info, space)
   res = res .. "\n" .. str .. op .." float y = 2;"
   res = res .. "\n" .. str .. op .." float z = 3;"
   res = res .. "\n" .. str .. op .." float o = 4;"
+  res = res .. "\n}\n"
+  return res  .. write_proto_message_basic(basic_info, space)
+end
+
+function write_proto_common_int5(basic_info, space)
+  local str = add_space(space)
+  local op = " "..proto_optional()
+  local res = str .. "message "..basic_info.key .. "{"
+  res = res .. "\n" .. str .. op .." int32 value1 = 1;" 
+  res = res .. "\n" .. str .. op .." int32 value2 = 2;"
+  res = res .. "\n" .. str .. op .." int32 value3 = 3;"
+  res = res .. "\n" .. str .. op .." int32 value4 = 4;"
+  res = res .. "\n" .. str .. op .." int32 value5 = 5;"
   res = res .. "\n}\n"
   return res  .. write_proto_message_basic(basic_info, space)
 end
@@ -348,8 +362,6 @@ function write_proto()
   saveProtoData(regList, data)
   save_layout()
 end
-
-
 
 --local lfs = require("lfs")
 --生成导出数据

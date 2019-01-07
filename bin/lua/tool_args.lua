@@ -1,8 +1,7 @@
+--全局配置数据
 g_args = {}
 
 --上一次的数据
-
-
 function execute_tool()
   return "protoc"
 end

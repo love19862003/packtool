@@ -1,6 +1,6 @@
 /************************************************
 * file AllConfigs.h
-* date Fri Jan  4 20:09:26 2019
+* date Mon Jan  7 19:27:45 2019
 *
 * author wufan
 * Contact: love19862003@163.com
@@ -38,8 +38,8 @@ namespace Pro {
   const monsterConfig& monster_by_job_level_sub(const role::jobtype& job, const int& level, const int& sub) const;
   
   // table role interfaces
-  const roleConfig& role(const std::string& index) const;
-  bool has_role(const std::string& index) const;
+  const roleConfig& role(const int& index) const;
+  bool has_role(const int& index) const;
   bool role(const std::function<bool(const roleConfig&)>& call) const;
   
  private:

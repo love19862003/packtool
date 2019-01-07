@@ -108,7 +108,6 @@ void protobuf_InitDefaults_roleConfig_2eproto_impl() {
 
   ::Pro::protobuf_InitDefaults_EnumDefineConfig_2eproto();
   ::Pro::protobuf_InitDefaults_ConfigTypeGroup_2eproto();
-  ::google::protobuf::internal::GetEmptyString();
   roleConfig_default_instance_.DefaultConstruct();
   roleConfig_ConfigTypeGroupjobtype_default_instance_.DefaultConstruct();
   roleConfig_default_instance_.get_mutable()->InitAsDefaultInstance();
@@ -127,7 +126,7 @@ void protobuf_AddDesc_roleConfig_2eproto_impl() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\020roleConfig.proto\022\003Pro\032\026EnumDefineConfi"
     "g.proto\032\025ConfigTypeGroup.proto\"\215\004\n\nroleC"
-    "onfig\022\n\n\002id\030\001 \001(\t\022.\n\013group_float\030\002 \003(\0132\031"
+    "onfig\022\n\n\002id\030\001 \001(\005\022.\n\013group_float\030\002 \003(\0132\031"
     ".Pro.ConfigTypeGroupfloat\0220\n\014group_strin"
     "g\030\003 \003(\0132\032.Pro.ConfigTypeGroupstring\022\033\n\004c"
     "amp\030\004 \001(\0162\r.Pro.camptype\022!\n\ncamp_array\030\005"
@@ -497,7 +496,7 @@ roleConfig::roleConfig(const roleConfig& from)
 
 void roleConfig::SharedCtor() {
   _cached_size_ = 0;
-  id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  id_ = 0;
   camp_ = 1;
 }
 
@@ -507,7 +506,6 @@ roleConfig::~roleConfig() {
 }
 
 void roleConfig::SharedDtor() {
-  id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void roleConfig::SetCachedSize(int size) const {
@@ -538,9 +536,7 @@ roleConfig* roleConfig::New(::google::protobuf::Arena* arena) const {
 void roleConfig::Clear() {
 // @@protoc_insertion_point(message_clear_start:Pro.roleConfig)
   if (_has_bits_[0 / 32] & 9u) {
-    if (has_id()) {
-      id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    }
+    id_ = 0;
     camp_ = 1;
   }
   group_float_.Clear();
@@ -565,15 +561,13 @@ bool roleConfig::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string id = 1;
+      // optional int32 id = 1;
       case 1: {
-        if (tag == 10) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_id()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->id().data(), this->id().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "Pro.roleConfig.id");
+        if (tag == 8) {
+          set_has_id();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &id_)));
         } else {
           goto handle_unusual;
         }
@@ -749,14 +743,9 @@ failure:
 void roleConfig::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Pro.roleConfig)
-  // optional string id = 1;
+  // optional int32 id = 1;
   if (has_id()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->id().data(), this->id().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "Pro.roleConfig.id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
   }
 
   // repeated .Pro.ConfigTypeGroupfloat group_float = 2;
@@ -812,15 +801,9 @@ void roleConfig::SerializeWithCachedSizes(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
   // @@protoc_insertion_point(serialize_to_array_start:Pro.roleConfig)
-  // optional string id = 1;
+  // optional int32 id = 1;
   if (has_id()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->id().data(), this->id().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "Pro.roleConfig.id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
   }
 
   // repeated .Pro.ConfigTypeGroupfloat group_float = 2;
@@ -882,10 +865,10 @@ size_t roleConfig::ByteSizeLong() const {
   size_t total_size = 0;
 
   if (_has_bits_[0 / 32] & 9u) {
-    // optional string id = 1;
+    // optional int32 id = 1;
     if (has_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->id());
     }
 
@@ -1006,8 +989,7 @@ void roleConfig::UnsafeMergeFrom(const roleConfig& from) {
   job2_.MergeFrom(from.job2_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_id()) {
-      set_has_id();
-      id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.id_);
+      set_id(from.id());
     }
     if (from.has_camp()) {
       set_camp(from.camp());
@@ -1043,7 +1025,7 @@ void roleConfig::Swap(roleConfig* other) {
   InternalSwap(other);
 }
 void roleConfig::InternalSwap(roleConfig* other) {
-  id_.Swap(&other->id_);
+  std::swap(id_, other->id_);
   group_float_.UnsafeArenaSwap(&other->group_float_);
   group_string_.UnsafeArenaSwap(&other->group_string_);
   std::swap(camp_, other->camp_);
@@ -1106,7 +1088,7 @@ inline const roleConfig_ConfigTypeGroupjobtype* roleConfig_ConfigTypeGroupjobtyp
 
 // roleConfig
 
-// optional string id = 1;
+// optional int32 id = 1;
 bool roleConfig::has_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1117,47 +1099,17 @@ void roleConfig::clear_has_id() {
   _has_bits_[0] &= ~0x00000001u;
 }
 void roleConfig::clear_id() {
-  id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  id_ = 0;
   clear_has_id();
 }
-const ::std::string& roleConfig::id() const {
+::google::protobuf::int32 roleConfig::id() const {
   // @@protoc_insertion_point(field_get:Pro.roleConfig.id)
-  return id_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return id_;
 }
-void roleConfig::set_id(const ::std::string& value) {
+void roleConfig::set_id(::google::protobuf::int32 value) {
   set_has_id();
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  id_ = value;
   // @@protoc_insertion_point(field_set:Pro.roleConfig.id)
-}
-void roleConfig::set_id(const char* value) {
-  set_has_id();
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Pro.roleConfig.id)
-}
-void roleConfig::set_id(const char* value, size_t size) {
-  set_has_id();
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Pro.roleConfig.id)
-}
-::std::string* roleConfig::mutable_id() {
-  set_has_id();
-  // @@protoc_insertion_point(field_mutable:Pro.roleConfig.id)
-  return id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-::std::string* roleConfig::release_id() {
-  // @@protoc_insertion_point(field_release:Pro.roleConfig.id)
-  clear_has_id();
-  return id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-void roleConfig::set_allocated_id(::std::string* id) {
-  if (id != NULL) {
-    set_has_id();
-  } else {
-    clear_has_id();
-  }
-  id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), id);
-  // @@protoc_insertion_point(field_set_allocated:Pro.roleConfig.id)
 }
 
 // repeated .Pro.ConfigTypeGroupfloat group_float = 2;

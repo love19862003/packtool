@@ -26,4 +26,7 @@ message monsterConfig{
   repeated bool c8 = 12;//
   optional bool c6 = 13;//
   repeated ConfigTypeGroupbool c7 = 14;//
+  optional ProInt5 c9 = 15;//
+  repeated ProInt5 c10 = 16;//
+  repeated ConfigTypeGroupProInt5 c11 = 17;//
 }

@@ -1,3 +1,4 @@
+--表的历史结构迭代，用于兼容老版本
 require("functions")
 g_layout_history = {}
 g_layout_current = {}

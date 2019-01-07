@@ -1,3 +1,4 @@
+--生成c++管理类
 local writeFile = nil
 local indent_space = 0
 --cpp目录

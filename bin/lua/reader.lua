@@ -1,3 +1,4 @@
+--读取excel的数据相关
 --去掉空格
 local function replace_basic(str)
   str = string.gsub(str, " ", "")
@@ -199,6 +200,9 @@ function reader_self_enum(str, head)
   return tal
 end
 
+
+
+
 --
 local function reader_coordinate_table(t)
   local tal = {}
@@ -246,6 +250,56 @@ function reader_coordinate(str, head)
   --assert(false)
  -- Dump.info(tal, value)
   return tal
-  
 end
+
+--
+local function reader_int5_table(t)
+  local tal = {}
+  tal.value1 = tonumber(t[1]) or 0
+  tal.value2 = tonumber(t[2]) or 0
+  tal.value3 = tonumber(t[3]) or 0
+  tal.value4 = tonumber(t[4]) or 0
+  tal.value5 = tonumber(t[5]) or 0
+  return tal  
+end
+function reader_int5(str, head)
+  str = string.gsub(str, "\"", "\\\"")
+  str = string.gsub(str, "\n", "\\\n")
+  str = string.gsub(str, "\t", "\\\t")
+  local muti = head.muti_type
+  local tal = {}
+  if muti == g_muti_type.basic then
+    local t = read_array(str)
+    tal = reader_int5_table(t)
+  end
+  
+  if muti == g_muti_type.array then
+    local t = read_group(str)
+    for _, v in pairs(t) do 
+      if v.array ~= nil then 
+        table.insert(tal,  reader_int5_table(v.array))
+      end
+    end
+  end
+  
+  if muti == g_muti_type.group then 
+    local group =  read_super_group(str)
+    for _ , g in pairs(group) do 
+      if g.array then 
+        local record = { array = {}}
+        for _, v in pairs(g.array) do 
+          table.insert(record.array, reader_int5_table(v))
+        end
+        table.insert(tal, record)
+      end
+    end
+    
+   
+  end
+  
+  --assert(false)
+ -- Dump.info(tal, value)
+  return tal
+end
+
 
