@@ -1,21 +1,21 @@
 
 ©
-ConfigTypeGroup.protoPro",
-ConfigTypeGroupfloat
-array (Rarray",
-ConfigTypeGroupint32
-array (Rarray"+
-ConfigTypeGroupbool
-array (Rarray"-
-ConfigTypeGroupstring
-array (	Rarray"G
+ConfigTypeGroup.protoPro"G
 ProCoordinate
 x (Rx
 y (Ry
 z (Rz
 o (Ro"H
 ConfigTypeGroupProCoordinate(
-array (2.Pro.ProCoordinateRarray"Å
+array (2.Pro.ProCoordinateRarray",
+ConfigTypeGroupfloat
+array (Rarray"+
+ConfigTypeGroupbool
+array (Rarray",
+ConfigTypeGroupint32
+array (Rarray"-
+ConfigTypeGroupstring
+array (	Rarray"Å
 ProInt5
 value1 (Rvalue1
 value2 (Rvalue2
