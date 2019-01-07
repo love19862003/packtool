@@ -32,9 +32,16 @@ namespace ToolSpace{
   }
 
   bool TableTool::init(){
+    static std::function<void(std::string)> erfun = [this](std::string er){
+      error(er);
+    };
+
+    static std::function<void(std::string)>  lgfun = [this](std::string info){ debug(info); };
     m_state = luaL_newstate();
     LitSpace::openLuaLibs(m_state);
     LitSpace::openLuaLib(m_state, "protobuf.c", luaopen_protobuf_c);
+    LitSpace::add_fun2(m_state, "error_info", erfun);
+    LitSpace::add_fun2(m_state, "debug_info", lgfun);
     LitSpace::class_reg<ToolArgs>(m_state, "ToolArgs");
     LitSpace::class_mem<ToolArgs>(m_state, "layout_file", &ToolArgs::layout_file);
     LitSpace::class_mem<ToolArgs>(m_state, "name_space", &ToolArgs::name_space);
@@ -48,6 +55,7 @@ namespace ToolSpace{
     LitSpace::class_mem<ToolArgs>(m_state, "common_enum_name", &ToolArgs::common_enum_name);
     LitSpace::class_mem<ToolArgs>(m_state, "version", &ToolArgs::version);
     LitSpace::class_mem<ToolArgs>(m_state, "proto_type", &ToolArgs::proto_type);
+    
     LitSpace::dofile(m_state, "./lua/tool.lua");
     return true;
   }
@@ -84,8 +92,8 @@ namespace ToolSpace{
     });
 
     if(!check()){
-      m_error = true;
-      return false;
+     // m_error = true;
+      //return false;
     }
 
     if (!m_error){

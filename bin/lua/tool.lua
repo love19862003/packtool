@@ -21,6 +21,7 @@ function new_table(name)
   local t = Table.new()
   t:init(layout)
   g_tables[t:name()] = t
+  dg("发现表格:"..name)
 end
 
 
@@ -52,6 +53,7 @@ function table_head(table, column, headname, typename, comment)
    
   if isIndexHead and not checkKeyType(mt, basic) then 
     -- error with index
+    er(table .. " 表索引列没找到或者表的索引列类型不匹配，请检查列:"..headname.."类型")
     return false;
   end
   
@@ -67,7 +69,7 @@ function table_head(table, column, headname, typename, comment)
         t:setDependCommon()
       end
   end
-  
+  dg("表:"..table.. " 增加字段:".. head.name .. " index:"..head.index.. " 基础类型:"..basic_name.." 组合类型:"..mt)
   return t:addHead(head)
 end
 
@@ -123,5 +125,13 @@ function dump_tables()
      --Dump.info(v.depends, k.." depends")
      --Dump.info(v.links, k.." links")
   end
+end
+
+function er(info)
+  error_info(info)
+end
+
+function dg(info)
+  debug_info(info)
 end
 

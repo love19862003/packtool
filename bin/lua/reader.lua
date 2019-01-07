@@ -174,7 +174,7 @@ function reader_self_enum(str, head)
   --Dump.info(tal, str)
   if type(tal) ~= "table" then 
     if not check_enum_value(head.type_basic_name,tal) then
-      print(tal)
+      er("读取自定义枚举类型出错:"..head.type_basic_name.. " val:"..tal)
       assert(false)
       return nil
     end
@@ -183,14 +183,14 @@ function reader_self_enum(str, head)
       if type(v) == "table" then
         for _, v2 in pairs(v.array) do 
           if not check_enum_value(head.type_basic_name,v2) then
-            print(v2)
+            er("读取自定义枚举类型出错:"..head.type_basic_name.. " val:"..v2)
             assert(false, v2)
             return nil
           end
         end
       else
         if not check_enum_value(head.type_basic_name,v) then
-          print(v)
+          er("读取自定义枚举类型出错:"..head.type_basic_name.. " val:"..v)
           assert(false, v)
           return nil
         end

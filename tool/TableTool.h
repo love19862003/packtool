@@ -119,6 +119,9 @@ namespace ToolSpace{
     void debug(T t, ARGS ... args){
       auto str = makeString(t, args...);
       m_log << "[d]:" << str << "\n";
+#ifdef _DEBUG
+      std::cout << str << std::endl;
+#endif // _DEBUG
     }
 
     template<typename T, typename ...ARGS>
@@ -126,8 +129,10 @@ namespace ToolSpace{
       auto str = makeString(t, args...);
       m_log << "[e]:" << str << "\n";
       m_error = true;
+#ifdef _DEBUG
+      std::cout << str << std::endl;
+#endif // _DEBUG
     }
-
   protected:
     TableTool(const TableTool&) = delete;
     TableTool& operator=(const TableTool&) = delete;

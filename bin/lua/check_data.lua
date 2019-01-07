@@ -99,7 +99,7 @@ local function check_value_args(index, str)
   return con  
 end
 
-
+--检测单个条件定义
 local function check_value_con(value, con)
   if not con then return true end
   
@@ -167,6 +167,7 @@ local function save_check_config()
   table.save("g_checks", g_checks, check_path())
 end
 
+--检测数据的合法性
 local function table_record_field_signal_basic_check(tab, head, v, signal_check)
     local type = get_basic_type_by_id(head.basic_type)
     if type.checker then 
@@ -176,18 +177,15 @@ local function table_record_field_signal_basic_check(tab, head, v, signal_check)
     end
 end
 
+--检测单个数据
 local function table_record_field_signal_check(tab, head, value, check)
   if nil == check then return true end
-  
-       
-        
   for _, signal_check in pairs(check) do 
     if table_record_field_signal_basic_check(tab, head, value, signal_check) then 
       return true
     end
   end
-  print("check  table:" .. tab:name() .. " check:" .. text_object(check) .. " field:".. head.name .. " val:"..text_object(value))
-  
+  er("数据检测错误 表:" .. tab:name() .. " 检测条件:" .. text_object(check) .. " 字段:".. head.name .. " 值:"..text_object(value))
   return false
 end
 
@@ -226,7 +224,7 @@ local function table_record_check(tab, record, check)
       local c =  table_record_field_check(tab, i,v, check[i]) 
       local head = tab:getHead(i)
       if not c then
-        print("check error with table:" .. tab:name() .. " record:" .. record.index .. " field:".. head.name .. " val:"..text_object(v))
+        er("数据检查发现错误表格:" .. tab:name() .. " 记录ID:" .. record.index .. " 字段:".. head.name .. " 值:"..text_object(v))
         res = false
       end
     end
@@ -244,10 +242,12 @@ local function table_check(tab, check)
   return res
 end
 
+-- 不需要检测
 function check_none(value, signal_check)
   return true
 end
 
+--检测数字
 function check_number(value, signal_check)
   for _, c in pairs(signal_check) do 
     if check_value_con(value, c) then 
@@ -259,7 +259,7 @@ function check_number(value, signal_check)
   return false
 end
 
-
+--检测自定义坐标
 function check_coordinate(value, signal_check)
   local res = true
   if not check_value_con(value.x, signal_check[1]) then
@@ -280,6 +280,7 @@ function check_coordinate(value, signal_check)
   return res
 end
 
+--检测自定义int5
 function check_int5(value, signal_check)
   local res = true
   if not check_value_con(value.value1, signal_check[1]) then
@@ -323,7 +324,7 @@ function check_data()
   save_check_config()
   for _, en in pairs(g_enum_type) do 
     if en.table ~= "" and nil == g_tables[en.table] then 
-      print("check error with enum:" .. en.full_name)
+      er("检测到枚举定义错误:" .. en.full_name, "没有找到表格:"..en.table)
       return false
     end
   end

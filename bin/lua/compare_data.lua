@@ -115,9 +115,9 @@ local function compare_table(t, ot, name)
   local tRecord = {}
   
   if ot == nil then 
-    write("........ add new table:" .. name)
+    write("........ 添加新表:" .. name)
     for k, v in pairs(t) do 
-      write(name .." add [" .. k.."] = " .. value_print(v))
+      write(name .." 新表记录 [" .. k.."] = " .. value_print(v))
     end
     write("......................." .. name)
   end
@@ -128,11 +128,11 @@ local function compare_table(t, ot, name)
     if ot[k] ~= nil then 
       local str = compare_record(v, ot[k])
       if string.len(str) > 0 then 
-        write(name .. " record[" .. k.. "] modify ".. str .. "")
+        write(name .. " 记录[" .. k.. "] 修改 ".. str .. "")
         printEnd = true
       end
     else
-      write(name .. " add record[" .. k .. "] = " .. value_print(v))
+      write(name .. " 增加记录 [" .. k .. "] = " .. value_print(v))
       printEnd = true
     end
     
@@ -142,7 +142,7 @@ local function compare_table(t, ot, name)
   
   for k, v in pairs(ot) do 
     if not tRecord[k] then 
-      write(name .. " remove record[" .. k .. "]=".. value_print(v))
+      write(name .. " 删除记录 [" .. k .. "]=".. value_print(v))
       printEnd = true
     end
   end
@@ -190,8 +190,8 @@ function compare_package()
   
   writeFile = assert(io.open(layout_path().. "/last.log", "w+"))
   write("----------------------------------------------")
-  write("configs update time:" .. os.date())
-  write("from version:" .. (g_oldData.version or " none ") .. " to version:".. data.version)
+  write("配置表更新时间:" .. os.date())
+  write("版本号从 :" .. (g_oldData.version or " none ") .. " 到:".. data.version)
   local tags = {}
   tags.version = true
   for k, v in pairs(data) do 
@@ -204,7 +204,7 @@ function compare_package()
   for k , v in pairs(g_oldData) do 
     if not tags[k]  then 
       write("...........................")
-      write("remove table : " .. k)
+      write("删除表格 : " .. k)
       tags[k] = true
     end
   end
