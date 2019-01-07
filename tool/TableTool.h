@@ -98,6 +98,11 @@ namespace ToolSpace{
       TABLE_KEY_INDEX = 1,
     };
 
+    enum {
+      CHECK_COLUMN_HEAD = 0,
+      CHECK_COLUMN_CONTENT = 1,
+    };
+
  
     bool init();
     bool run();

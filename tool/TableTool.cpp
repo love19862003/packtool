@@ -286,11 +286,46 @@ namespace ToolSpace{
   }
 
   bool TableTool::loadCheck(const std::string& file){
+    std::string path = m_args.excel_dir + file;
+    ExcelSpace::BookPtr book = ExcelSpace::ExcelBook::openBook(path);
+    if (!book){
+      error("load table file:", file, " failed");
+      return false;
+    }
+
+    if (!m_checkExcels.hasData(file)){
+      return false;
+    }
+
+    const auto& excelFile = m_checkExcels.getData(file);
+    for (int i = 0; i < book->sheetCount(); ++i){
+      auto sheet = book->getSheet(i);
+      if (!sheet){ break; }
+
+      auto sheetName = tolower(sheet->name());
+      if (excelFile.sheet_set.find(sheetName) == excelFile.sheet_set.end()){ continue; }
+
+      if (sheetName.empty()){ continue; }
+
+      for (int row = 0; row < sheet->rowCount(); ++row){
+        auto h = sheet->read(row, CHECK_COLUMN_HEAD);
+        auto c = sheet->read(row, CHECK_COLUMN_CONTENT);
+        if (h.empty() || c.empty()){
+          break;
+        }
+
+        LitSpace::call<void>(m_state, "add_check_field", h, c);
+      }
+    
+    
+    }
+
+
     return true;
   }
 
   bool TableTool::check(){
-    return true;
+    return  LitSpace::call<bool>(m_state, "check_data");
   }
 
   void TableTool::save(){
