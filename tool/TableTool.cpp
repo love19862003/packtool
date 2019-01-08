@@ -337,7 +337,7 @@ namespace ToolSpace{
   }
 
   void TableTool::save(){
-    LitSpace::call<void>(m_state, "write_proto");
+    LitSpace::call<void>(m_state, "save_configs");
   }
 
 }
