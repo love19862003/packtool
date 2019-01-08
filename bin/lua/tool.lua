@@ -5,12 +5,14 @@ require("dump_object")
 require("layout")
 require("check_data")
 require("cpp_write")
+require("sql_write")
 require("proto_write")
 require("compare_data")
 require("type")
 require("links")
 require("tables")
 require("tool_args")
+
 
 
 local read_table_record = {} -- 当前读取的记录
@@ -125,6 +127,14 @@ function dump_tables()
      --Dump.info(v.depends, k.." depends")
      --Dump.info(v.links, k.." links")
   end
+end
+
+function save_configs()
+  write_proto()
+  save_layout()
+   --比较新老版本的数据差异，并写入log
+  compare_package()
+  sql_writer()
 end
 
 function er(info)

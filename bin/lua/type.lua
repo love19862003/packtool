@@ -13,6 +13,7 @@ g_basic_type = {
       key = "",
       cpp_type = nil,
       writer_proto_common = write_none,
+      writer_sql = {field = sql_none, content = sql_content_none}
       },
   ["int"] = { 
       type = 1, 
@@ -22,6 +23,7 @@ g_basic_type = {
       key = "int32",
       cpp_type = "int",
       writer_proto_common = write_proto_message_basic,
+      writer_sql = {field = sql_int, content = sql_content}
       },
   ["float"] = {
       type = 2, 
@@ -31,6 +33,7 @@ g_basic_type = {
       key = "float",
       cpp_type = "float",
       writer_proto_common = write_proto_message_basic,
+      writer_sql = {field = sql_float, content = sql_content}
       },
   ["string"] = { 
       type = 3, 
@@ -40,6 +43,7 @@ g_basic_type = {
       key = "string",
       cpp_type = "std::string",
       writer_proto_common = write_proto_message_basic,
+      writer_sql = {field = sql_string, content = sql_content}
       },
   ["bool"] = { 
       type = 4, 
@@ -49,6 +53,7 @@ g_basic_type = {
       key = "bool",
       cpp_type = "bool",
       writer_proto_common = write_proto_message_basic,
+      writer_sql = {field = sql_bool, content = sql_content}
       },
   ["enum"] = { 
       type = 5, 
@@ -58,6 +63,7 @@ g_basic_type = {
       key = "enum",
       cpp_type = nil,
       writer_proto_common = write_none,
+      writer_sql = {field = sql_none, content = sql_content_none}
       },
   ["self_enum"] = {
       type = 6, 
@@ -67,6 +73,7 @@ g_basic_type = {
       key = "self_enum",
       cpp_type = nil,
       writer_proto_common = write_none,
+      writer_sql = {field = sql_self_enum, content = sql_content}
       },
   ["coordinate"] = {
       type = 7,
@@ -76,6 +83,7 @@ g_basic_type = {
       key = "ProCoordinate",
       cpp_type = "ProCoordinate",
       writer_proto_common = write_proto_common_coordinate,
+      writer_sql = {field = sql_json, content = sql_content_json}
   },
   
   ["int5"] = {
@@ -86,6 +94,7 @@ g_basic_type = {
       key = "ProInt5",
       cpp_type = "ProInt5",
       writer_proto_common = write_proto_common_int5,
+      writer_sql = {field = sql_json, content = sql_content_json}
   },
 
 }

@@ -360,7 +360,7 @@ function write_proto()
   --输出打包后的数据和文件
   genratorProto()
   saveProtoData(regList, data)
-  save_layout()
+ 
 end
 
 --local lfs = require("lfs")
@@ -447,9 +447,6 @@ function saveProtoData(regList, data)
   local file = assert(io.open(proto_data_path () .. out_file_name() .. ".bin", "wb"))
   file:write(buffer)
   file:close()
-  
-  --比较新老版本的数据差异，并写入log
-  compare_package()
 end
 
 

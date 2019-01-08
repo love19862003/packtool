@@ -38,11 +38,6 @@ function Table:getRecord(index)
   return self.records[index]
 end
 
---增加多键索引
-function Table:addLink(link)
-  self.links[link.name] = link
-end
-
 --获取表头
 function Table:getHead(index)
   if type(index) == "number" then 
