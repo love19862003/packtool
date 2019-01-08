@@ -3,17 +3,22 @@ require("functions")
 require("reader")
 require("writer")
 require("enum")
+--需要新增自定义类型的话，
+--需要补充reader  writer checker  writer_proto_common writer_sql等等几个函数
 --基础类型定义
 g_basic_type = {
   ["none"] = { 
       type = 0,
-      reader = reader_none, 
-      writer = write_none,
-      checker = check_none,
-      key = "",
-      cpp_type = nil,
-      writer_proto_common = write_none,
-      writer_sql = {field = sql_none, content = sql_content_none}
+      reader = reader_none,               -- 读取函数
+      writer = write_none,                -- proto字段
+      checker = check_none,               -- 数据检查时候方式
+      key = "",                           -- protobuf 关键字
+      cpp_type = nil,                     -- cpp 关键字
+      writer_proto_common = write_none,   -- 自定义类型输出函数  
+      writer_sql = {
+        field = sql_none, 
+        content = sql_content_none
+        }                                 -- sql文件生成时候对应的结构函数和内容函数
       },
   ["int"] = { 
       type = 1, 
