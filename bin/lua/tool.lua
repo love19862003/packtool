@@ -6,6 +6,7 @@ require("layout")
 require("check_data")
 require("cpp_write")
 require("sql_write")
+require("lua_write")
 require("proto_write")
 require("compare_data")
 require("type")
@@ -135,6 +136,7 @@ function save_configs()
    --比较新老版本的数据差异，并写入log
   compare_package()
   sql_writer()
+  write_lua_out()
 end
 
 function er(info)
