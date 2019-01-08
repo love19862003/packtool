@@ -122,20 +122,24 @@ end
 -- dump
 function dump_tables()
   --Dump.info(g_enum_type)
-  for k, v in pairs(g_tables) do 
+  --for k, v in pairs(g_tables) do 
      --Dump.info(v.heads, k.." heads")
      --Dump.info(v.records, k.." records")
      --Dump.info(v.depends, k.." depends")
      --Dump.info(v.links, k.." links")
-  end
+  --end
 end
 
 function save_configs()
+  --保存proto文件，打包数据以及生成c++代码
   write_proto()
+  --保存历史结构文件
   save_layout()
-   --比较新老版本的数据差异，并写入log
+  --比较新老版本的数据差异，并写入log
   compare_package()
+  --保存sql
   sql_writer()
+  --输出pbc测试接口
   write_lua_out()
 end
 

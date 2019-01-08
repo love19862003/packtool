@@ -26,6 +26,9 @@ function read_enum_name(str)
   end
 end
 
+local function comp(v1, v2) 
+  return v1[2] < v2[2] 
+end
 -- 读取枚举值
 function read_enum_value(name, str, comment)
   local str1, str2 = string.split2(str, "=")
@@ -36,6 +39,10 @@ function read_enum_value(name, str, comment)
     local value =  tonumber(str2)
     g_enum_type[name].values = g_enum_type[name].values or {}
     table.insert(g_enum_type[name].values, {str1, value, comment})
+    dg("add enum " .. name .. " value:" .. value)
+    
+    table.sort(g_enum_type[name].values,  comp)
+    
     return str1, value
   end
 end

@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 
   std::string file = "./setting.xlsx";
   std::string version = "1.0.0.1";
-  ToolSpace::ProtoType type = ToolSpace::PROTO_VER2;
+  ToolSpace::ProtoType type = ToolSpace::PROTO_VER3;
   std::string log = "./out.log";
   if (argc > 1) {
     file = argv[1];

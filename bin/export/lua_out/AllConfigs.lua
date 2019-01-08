@@ -17,12 +17,7 @@ function protobuf_lua_tables(protobuf, pbs_path, data_file)
  file:close()
  local data = assert(protobuf.decode(message, buffer), "decode failed")
  local res = {}
- res.version = data.version
- res.role = {}
- for _, v in pairs(data.role) do
-  res.role[v.id] = ReadOnlyTable(v)
- end
- res.role = ReadOnlyTable(res.role)
+ local res.version = data.version
  res.monster = {}
  res.monster_by_job_level_sub = {}
  for _, v in pairs(data.monster) do
@@ -32,5 +27,10 @@ function protobuf_lua_tables(protobuf, pbs_path, data_file)
   res.monster_by_job_level_sub[v.job][v.level][v.sub] = ReadOnlyTable(res.monster[v.id])
  end
  res.monster = ReadOnlyTable(res.monster)
+ res.role = {}
+ for _, v in pairs(data.role) do
+  res.role[v.id] = ReadOnlyTable(v)
+ end
+ res.role = ReadOnlyTable(res.role)
  return res
 end

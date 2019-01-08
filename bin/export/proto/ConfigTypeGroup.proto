@@ -1,36 +1,36 @@
-syntax = "proto2";
+syntax = "proto3";
 package Pro;
 message ConfigTypeGroupstring{
  repeated string array = 1; 
 }
 
-message ConfigTypeGroupint32{
- repeated int32 array = 1; 
-}
-
-message ProCoordinate{
- optional  float x = 1;
- optional  float y = 2;
- optional  float z = 3;
- optional  float o = 4;
-}
-message ConfigTypeGroupProCoordinate{
- repeated ProCoordinate array = 1; 
+message ConfigTypeGroupfloat{
+ repeated float array = 1; 
 }
 
 message ProInt5{
- optional  int32 value1 = 1;
- optional  int32 value2 = 2;
- optional  int32 value3 = 3;
- optional  int32 value4 = 4;
- optional  int32 value5 = 5;
+  int32 value1 = 1;
+  int32 value2 = 2;
+  int32 value3 = 3;
+  int32 value4 = 4;
+  int32 value5 = 5;
 }
 message ConfigTypeGroupProInt5{
  repeated ProInt5 array = 1; 
 }
 
-message ConfigTypeGroupfloat{
- repeated float array = 1; 
+message ProCoordinate{
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float o = 4;
+}
+message ConfigTypeGroupProCoordinate{
+ repeated ProCoordinate array = 1; 
+}
+
+message ConfigTypeGroupint32{
+ repeated int32 array = 1; 
 }
 
 message ConfigTypeGroupbool{

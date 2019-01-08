@@ -1,6 +1,7 @@
-syntax = "proto2";
+syntax = "proto3";
 package Pro;
 enum camptype{
+ unknow_zero = 0;//unknow value
  camp_light = 1;//光明
  camp_dark = 2;//黑暗
 
