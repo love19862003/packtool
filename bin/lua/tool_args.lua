@@ -11,6 +11,21 @@ function set_tool_args(args)
   
   load_layout_history()
   compare_read_old_data()
+  
+  local lfs = require("lfs")
+  if lfs then 
+    lfs.mkdir(g_args.out_dir)
+    lfs.mkdir(g_args.out_dir.."/cpps/")
+    lfs.mkdir(g_args.out_dir.."/data/")
+    lfs.mkdir(g_args.out_dir.."/info/")
+    lfs.mkdir(g_args.out_dir.."/lua/")
+    lfs.mkdir(g_args.out_dir.."/lua_out/")
+    lfs.mkdir(g_args.out_dir.."/pbs/")
+    lfs.mkdir(g_args.out_dir.."/proto/")
+    lfs.mkdir(g_args.out_dir.."/sql/")
+  else
+    dg("not found lfs to mkdir, so you must mkdir by you self or init lfs")
+  end
 end
 
 --输出类名
