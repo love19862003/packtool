@@ -89,7 +89,7 @@ local function write_proto_common()
   local msg = {}
   for k, v in pairs(g_basic_type) do 
     if k ~= "none" and k ~= "enum" and k ~= "self_enum" then
-      print(k)
+      --print(k)
      table.insert(msg, v.writer_proto_common(v, 0) )
     end
   end
