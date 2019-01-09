@@ -15,10 +15,13 @@ TARGET_LINK_LIBRARIES(${Tool} ${LINK_LIBS})
 
 SET_TARGET_PROPERTIES(${Tool} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/")
 
-ADD_CUSTOM_COMMAND(
-	TARGET ${Tool}
-	POST_BUILD
-	COMMAND ${Tool}	  "./setting.xlsx" "test1.0.0.1" 1
-	WORKING_DIRECTORY 	${CMAKE_SOURCE_DIR}/bin/
-	COMMENT  "run tool for export excel files"
-)
+IF(BUILD_TESTING)
+	ADD_CUSTOM_COMMAND(
+		TARGET ${Tool}
+		POST_BUILD
+		COMMAND ${Tool}	  "./setting.xlsx" "test1.0.0.1" 1
+		#COMMAND "${CMD}"
+		WORKING_DIRECTORY 	${CMAKE_SOURCE_DIR}/bin/
+		COMMENT  "run tool for export excel files"
+	)
+ENDIF(BUILD_TESTING)

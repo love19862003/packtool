@@ -18,7 +18,7 @@ FUNCTION(build_test EXE CODE LIBS)
 	)
 ENDFUNCTION()
 
-if(BUILD_TESTING)
+IF(BUILD_TESTING)
 	SET(LUA_TEST test_lua.cpp)
 	MESSAGE(STATUS "LINK_LIBS ${LINK_LIBS}")
 	build_test("test_lua" "${LUA_TEST}" "${LINK_LIBS}")
@@ -31,10 +31,12 @@ if(BUILD_TESTING)
 	INCLUDE_DIRECTORIES(${EXPORT}/cpps/)
 
 
+
 	SET(PROTO_CPP_TEST test_pb)
 	SET(PB_TEST_LIBS ${LINK_LIBS} libprotobuf)
 	SET(PB_TEST test_pb.cpp  ${PROTOS} ${CPPS})
 	build_test("${PROTO_CPP_TEST}" "${PB_TEST}" "${PB_TEST_LIBS}")
-    SOURCE_GROUP(proto ${EXPORT}/proto/*.proto)
-endif()
+    
+	
+ENDIF()
 
