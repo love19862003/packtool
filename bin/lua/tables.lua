@@ -4,6 +4,24 @@ require("functions")
 g_tables = {}
 Table = class("Table")
 local table_index_head_id = 1
+
+
+--[[
+head结构
+  local head = {
+                  basic_type = basic,
+                  muti_type = mt,
+                  column = column,
+                  comment = comment,
+                  table = table,
+                  type_name = typename,
+                  type_basic_name = basic_name,
+                  name = headname,
+                  index = index
+                }
+--]]
+
+
 --初始化
 function Table:init(layout)
   self.layout = layout

@@ -3,6 +3,20 @@ require("functions")
 g_layout_history = {}
 g_layout_current = {}
 
+
+--[[
+layout结构
+layout.table = name
+layout.key_index = 1
+layout.next_index = 1
+layout.index_name = ""
+layout.layouts = {}
+layout.table_index = next_table_index()
+   
+layouts [ headname] = {head_index = self.layout.next_index, name = headname}   
+--]]
+
+
 --结构文件目录
 local function layout_path()
   return  out_dir() .. "/info/table_layout.lua" 

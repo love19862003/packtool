@@ -29,12 +29,12 @@ end
 local function proto_csharp_path()
   return out_dir() .. "\\csharp\\"
 end
-
+--csharp 访问接口
 local function csharp_head_fun_name(name)
   return string.upper(string.sub(name, 1, 1))..string.sub(name, 2)
 end
 
-
+--类型转换
 local function csharp_types(head)
   local basic_type = get_basic_type_by_id(head.basic_type)
   if isSelfEnumType(basic_type.type) then 
@@ -52,15 +52,16 @@ local function csharp_types(head)
   return res
 end
 
+--多索引类型定义
 local function csharp_link_name(tname, link)
   return tname .. "_link_" .. link.name .. "_type"
 end
-
+--多索引字典定义
 local function csharp_link_name_dir(tname, link)
   return "m_"..csharp_link_name(tname, link) .. "_dir"
 end
 
-
+--初始化成员
 local function write_csharp_init_member(tab)
   local tabName = tab:name()
   local typeName = tabName..tail_config_name()
@@ -74,7 +75,7 @@ local function write_csharp_init_member(tab)
      end
   end
 end
-
+--表需要的成员定义
 local function write_csharp_tables_member(tab)
   local tabName = tab:name()
   local typeName = tabName..tail_config_name()
@@ -148,7 +149,7 @@ local function write_csharp_tables_member(tab)
     
 end
 
---成员函数的实现
+--访问表成员函数的实现
 local function write_csharp_tables_interface(tab)
   local tabName = tab:name()
   local typeName = tabName..tail_config_name()
@@ -214,7 +215,7 @@ local function write_csharp_tables_interface(tab)
   write("")
 end
 
-
+-- csharp 管理类生成
 function write_csharp()
   local path = proto_csharp_path() .. out_file_name() .. ".cs"
   local gameConfName =  all_config_name() .. tail_config_name()

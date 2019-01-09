@@ -1,6 +1,16 @@
 --表的多键索引相关
 gtable_links = {}
 
+
+--[[
+link结构
+struct{
+  name = head1_head2_...
+  heads = {head ...}
+}
+--]]
+
+
 -- 增加索引
 function add_table_link(name, linkstr)
   gtable_links[name] = gtable_links[name] or {}

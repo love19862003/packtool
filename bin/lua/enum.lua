@@ -2,7 +2,15 @@
 g_enum_type = {
 
 }
-
+--[[
+枚举结构
+struct{
+  full_name
+  table
+  name
+  values   -- {value_name  value_int comment}
+}
+--]]
 --获取枚举
 function get_enum(name)
   --Dump.data(g_enum_type[name])
