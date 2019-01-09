@@ -13,7 +13,6 @@ g_basic_type = {
       writer = write_none,                -- proto字段
       checker = check_none,               -- 数据检查时候方式
       key = "",                           -- protobuf 关键字
-      cpp_type = nil,                     -- cpp 关键字
       writer_proto_common = write_none,   -- 自定义类型输出函数  
       writer_sql = {
         field = sql_none, 
@@ -26,7 +25,6 @@ g_basic_type = {
       writer = write_proto_field,
       checker = check_number,
       key = "int32",
-      cpp_type = "int",
       writer_proto_common = write_proto_message_basic,
       writer_sql = {field = sql_int, content = sql_content}
       },
@@ -36,7 +34,6 @@ g_basic_type = {
       writer = write_proto_field,
       checker = check_number,
       key = "float",
-      cpp_type = "float",
       writer_proto_common = write_proto_message_basic,
       writer_sql = {field = sql_float, content = sql_content}
       },
@@ -46,7 +43,6 @@ g_basic_type = {
       writer = write_proto_field,
       checker = check_none,
       key = "string",
-      cpp_type = "std::string",
       writer_proto_common = write_proto_message_basic,
       writer_sql = {field = sql_string, content = sql_content}
       },
@@ -56,7 +52,6 @@ g_basic_type = {
       writer = write_proto_field,
       checker = check_number,
       key = "bool",
-      cpp_type = "bool",
       writer_proto_common = write_proto_message_basic,
       writer_sql = {field = sql_bool, content = sql_content}
       },
@@ -66,7 +61,6 @@ g_basic_type = {
       writer = write_none,
       checker = check_none,
       key = "enum",
-      cpp_type = nil,
       writer_proto_common = write_none,
       writer_sql = {field = sql_none, content = sql_content_none}
       },
@@ -76,7 +70,6 @@ g_basic_type = {
       writer = write_proto_field_enum,
       checker = check_number,
       key = "self_enum",
-      cpp_type = nil,
       writer_proto_common = write_none,
       writer_sql = {field = sql_self_enum, content = sql_content}
       },
@@ -86,7 +79,6 @@ g_basic_type = {
       writer = write_proto_field,
       checker = check_coordinate,
       key = "ProCoordinate",
-      cpp_type = "ProCoordinate",
       writer_proto_common = write_proto_common_coordinate,
       writer_sql = {field = sql_json, content = sql_content_json}
   },
@@ -97,7 +89,6 @@ g_basic_type = {
       writer = write_proto_field,
       checker = check_int5,
       key = "ProInt5",
-      cpp_type = "ProInt5",
       writer_proto_common = write_proto_common_int5,
       writer_sql = {field = sql_json, content = sql_content_json}
   },

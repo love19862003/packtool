@@ -53,7 +53,7 @@ function write_lua_out()
   write("file:close()")
   write("local data = assert(protobuf.decode(message, buffer), \"decode failed\")")
   write("local res = {}")
-  write("local res.version = data.version")
+  write("res.version = data.version")
   for tname, tab in pairs(g_tables) do 
     local resname = "res."..tname
     write(resname .. " = {}")
