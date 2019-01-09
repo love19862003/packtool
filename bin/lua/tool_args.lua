@@ -12,7 +12,7 @@ function set_tool_args(args)
   load_layout_history()
   compare_read_old_data()
   
-  local lfs = require("lfs")
+  --local lfs = require("lfs")
   if lfs then 
     lfs.mkdir(g_args.out_dir)
     lfs.mkdir(g_args.out_dir.."/cpps/")

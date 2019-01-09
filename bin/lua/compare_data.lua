@@ -6,6 +6,14 @@ local function layout_path()
   return  out_dir() .. "/info/" 
 end
 
+local function mkstring( v )
+  if type(v) == "boolean" then 
+    if v then return "true" else return "false" end
+  end  
+  
+  return tostring(v)
+end
+
 local function table_string(tab)
   local str = "{"
    
@@ -20,7 +28,7 @@ local function table_string(tab)
       if type(v) == "table" then 
         str = str .. table_string(v)
       else
-        str = str .. v
+        str = str .. mkstring(v)
       end
     end
     
@@ -48,7 +56,7 @@ local function compare_record(r, r1)
     if type(kk) == "string" then 
       return  " "..kk..":"
     else
-      return  " index:"..kk..":"
+      return  " index:"..mkstring(kk)..":"
     end
   end
   
@@ -120,6 +128,7 @@ local function compare_table(t, ot, name)
       write(name .." 新表记录 [" .. k.."] = " .. value_print(v))
     end
     write("......................." .. name)
+    return
   end
   
   
