@@ -1,8 +1,10 @@
 
 ±
-ConfigTypeGroup.protoPro"-
-ConfigTypeGroupstring
-array (	Rarray",
+ConfigTypeGroup.protoPro",
+ConfigTypeGroupint32
+array (Rarray"+
+ConfigTypeGroupbool
+array (Rarray",
 ConfigTypeGroupfloat
 array (Rarray"Å
 ProInt5
@@ -19,8 +21,6 @@
 z (Rz
 o (Ro"H
 ConfigTypeGroupProCoordinate(
-array (2.Pro.ProCoordinateRarray",
-ConfigTypeGroupint32
-array (Rarray"+
-ConfigTypeGroupbool
-array (Rarraybproto3
+array (2.Pro.ProCoordinateRarray"-
+ConfigTypeGroupstring
+array (	Rarraybproto3

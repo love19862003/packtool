@@ -1,6 +1,6 @@
 /************************************************
 * file AllConfigs.h
-* date Tue Jan  8 19:01:37 2019
+* date Wed Jan  9 12:22:24 2019
 *
 * author wufan
 * Contact: love19862003@163.com
@@ -24,7 +24,7 @@ namespace Pro {
  class AllConfigs {
  public:
   AllConfigs();
-  ~AllConfigs()
+  ~AllConfigs();
   bool init(const std::string& files);
   bool init(const char* bytes, size_t len);
   bool reload();
@@ -35,7 +35,7 @@ namespace Pro {
   bool has_monster(const std::string& index) const;
   bool monster(const std::function<bool(const monsterConfig&)>& call) const;
   // table monster links
-  const monsterConfig& monster_by_job_level_sub(const role::jobtype& job, const int& level, const int& sub) const;
+  const monsterConfig& monster_by_job_level_sub(const roleConfig::jobtype& job, const int& level, const int& sub) const;
   
   // table role interfaces
   const roleConfig& role(const int& index) const;

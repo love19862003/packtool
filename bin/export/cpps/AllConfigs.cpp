@@ -1,6 +1,6 @@
 /************************************************
 * file AllConfigs.cpp
-* date Tue Jan  8 19:01:37 2019
+* date Wed Jan  9 12:22:24 2019
 *
 * author wufan
 * Contact: love19862003@163.com
@@ -24,8 +24,8 @@ namespace Pro{
    m_fileName = file;
    clear();
    std::ifstream ifile(file.data(), std::ios::binary | std::ios::in);
-   auto ptr = make_shared<GameConfig>();
-   bool res = ptr->ParseFromIstream(ifile);
+   auto ptr = std::make_shared<GameConfig>();
+   bool res = ptr->ParseFromIstream(&ifile);
    ifile.close();
    if(!res){return res;}
    fill(ptr);
@@ -34,7 +34,7 @@ namespace Pro{
   bool init(const char* bytes, size_t len){
    m_fileName.clear();
    clear();
-   auto ptr = make_shared<GameConfig>();
+   auto ptr = std::make_shared<GameConfig>();
    bool res = ptr->ParseFromArray(bytes, len);
    if(!res){return res;}
    fill(ptr);
@@ -66,7 +66,7 @@ namespace Pro{
   bool has_monster(const std::string& index) const;
   bool monster(const std::function<bool(const monsterConfig&)>& call) const;
   // table monster links
-  const monsterConfig& monster_by_job_level_sub(const role::jobtype& job, const int& level, const int& sub) const;
+  const monsterConfig& monster_by_job_level_sub(const roleConfig::jobtype& job, const int& level, const int& sub) const;
   
   // table role interfaces
   const roleConfig& role(const int& index) const;
@@ -78,7 +78,7 @@ namespace Pro{
   std::string m_fileName;
   std::map<std::string, monsterConfig> m_monster;
   // table monster links
-  typedef std::tuple<role::jobtype, int, int> job_level_sub_type;
+  typedef std::tuple<roleConfig::jobtype, int, int> job_level_sub_type;
   std::map<job_level_sub_type, std::string> m_monster_link_job_level_sub;
   std::map<int, roleConfig> m_role;
  };//AllConfigs::Impl
@@ -100,7 +100,7 @@ namespace Pro{
   return false;
  }
  // table monster links
- const monsterConfig& AllConfigs::Impl::monster_by_job_level_sub(const role::jobtype& job, const int& level, const int& sub) const{
+ const monsterConfig& AllConfigs::Impl::monster_by_job_level_sub(const roleConfig::jobtype& job, const int& level, const int& sub) const{
   const job_level_sub_type job_level_sub_value = std::make_tuple(job, level, sub);
   const auto& it = m_monster_link_job_level_sub.find(job_level_sub_value);
   if(it != m_monster_link_job_level_sub.end()){return  monster(it->second);}
@@ -135,12 +135,12 @@ namespace Pro{
  //reload
  bool AllConfigs::reload(){return m_impl->reload();}
  //file
- const AllConfigs::std::string& fileName() const{return m_impl->fileName();}
+ const std::string& AllConfigs::fileName() const{return m_impl->fileName();}
  //version
- const AllConfigs::std::string& version() const{return m_impl->version();}
+ const std::string& AllConfigs::version() const{return m_impl->version();}
  // table monster interfaces
  const monsterConfig& AllConfigs::monster(const std::string& index) const{
-  return m_impl->AllConfigs::(index);
+  return m_impl->monster(index);
  }
  bool AllConfigs::has_monster(const std::string& index) const{
   return m_impl->has_monster(index);
@@ -149,13 +149,13 @@ namespace Pro{
   return m_impl->monster(call);
  }
  // table monster links
- const monsterConfig& AllConfigs::monster_by_job_level_sub(const role::jobtype& job, const int& level, const int& sub) const{
+ const monsterConfig& AllConfigs::monster_by_job_level_sub(const roleConfig::jobtype& job, const int& level, const int& sub) const{
   return m_impl->monster_by_job_level_sub(job, level, sub);
  }
  
  // table role interfaces
  const roleConfig& AllConfigs::role(const int& index) const{
-  return m_impl->AllConfigs::(index);
+  return m_impl->role(index);
  }
  bool AllConfigs::has_role(const int& index) const{
   return m_impl->has_role(index);

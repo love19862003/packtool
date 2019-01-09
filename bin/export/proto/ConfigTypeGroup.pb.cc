@@ -24,11 +24,16 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_ConfigTypeGroup_2eproto ::google::proto
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_ConfigTypeGroup_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ProInt5;
 }  // namespace protobuf_ConfigTypeGroup_2eproto
 namespace Pro {
-class ConfigTypeGroupstringDefaultTypeInternal {
+class ConfigTypeGroupint32DefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupstring>
+  ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupint32>
       _instance;
-} _ConfigTypeGroupstring_default_instance_;
+} _ConfigTypeGroupint32_default_instance_;
+class ConfigTypeGroupboolDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupbool>
+      _instance;
+} _ConfigTypeGroupbool_default_instance_;
 class ConfigTypeGroupfloatDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupfloat>
@@ -54,31 +59,40 @@ class ConfigTypeGroupProCoordinateDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupProCoordinate>
       _instance;
 } _ConfigTypeGroupProCoordinate_default_instance_;
-class ConfigTypeGroupint32DefaultTypeInternal {
+class ConfigTypeGroupstringDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupint32>
+  ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupstring>
       _instance;
-} _ConfigTypeGroupint32_default_instance_;
-class ConfigTypeGroupboolDefaultTypeInternal {
- public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ConfigTypeGroupbool>
-      _instance;
-} _ConfigTypeGroupbool_default_instance_;
+} _ConfigTypeGroupstring_default_instance_;
 }  // namespace Pro
 namespace protobuf_ConfigTypeGroup_2eproto {
-static void InitDefaultsConfigTypeGroupstring() {
+static void InitDefaultsConfigTypeGroupint32() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::Pro::_ConfigTypeGroupstring_default_instance_;
-    new (ptr) ::Pro::ConfigTypeGroupstring();
+    void* ptr = &::Pro::_ConfigTypeGroupint32_default_instance_;
+    new (ptr) ::Pro::ConfigTypeGroupint32();
     ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::Pro::ConfigTypeGroupstring::InitAsDefaultInstance();
+  ::Pro::ConfigTypeGroupint32::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_ConfigTypeGroupstring =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsConfigTypeGroupstring}, {}};
+::google::protobuf::internal::SCCInfo<0> scc_info_ConfigTypeGroupint32 =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsConfigTypeGroupint32}, {}};
+
+static void InitDefaultsConfigTypeGroupbool() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Pro::_ConfigTypeGroupbool_default_instance_;
+    new (ptr) ::Pro::ConfigTypeGroupbool();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Pro::ConfigTypeGroupbool::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_ConfigTypeGroupbool =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsConfigTypeGroupbool}, {}};
 
 static void InitDefaultsConfigTypeGroupfloat() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -152,54 +166,46 @@ static void InitDefaultsConfigTypeGroupProCoordinate() {
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsConfigTypeGroupProCoordinate}, {
       &protobuf_ConfigTypeGroup_2eproto::scc_info_ProCoordinate.base,}};
 
-static void InitDefaultsConfigTypeGroupint32() {
+static void InitDefaultsConfigTypeGroupstring() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::Pro::_ConfigTypeGroupint32_default_instance_;
-    new (ptr) ::Pro::ConfigTypeGroupint32();
+    void* ptr = &::Pro::_ConfigTypeGroupstring_default_instance_;
+    new (ptr) ::Pro::ConfigTypeGroupstring();
     ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::Pro::ConfigTypeGroupint32::InitAsDefaultInstance();
+  ::Pro::ConfigTypeGroupstring::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_ConfigTypeGroupint32 =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsConfigTypeGroupint32}, {}};
-
-static void InitDefaultsConfigTypeGroupbool() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::Pro::_ConfigTypeGroupbool_default_instance_;
-    new (ptr) ::Pro::ConfigTypeGroupbool();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::Pro::ConfigTypeGroupbool::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_ConfigTypeGroupbool =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsConfigTypeGroupbool}, {}};
+::google::protobuf::internal::SCCInfo<0> scc_info_ConfigTypeGroupstring =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsConfigTypeGroupstring}, {}};
 
 void InitDefaults() {
-  ::google::protobuf::internal::InitSCC(&scc_info_ConfigTypeGroupstring.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_ConfigTypeGroupint32.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_ConfigTypeGroupbool.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ConfigTypeGroupfloat.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ProInt5.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ConfigTypeGroupProInt5.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ProCoordinate.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ConfigTypeGroupProCoordinate.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ConfigTypeGroupint32.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ConfigTypeGroupbool.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_ConfigTypeGroupstring.base);
 }
 
 ::google::protobuf::Metadata file_level_metadata[8];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupstring, _internal_metadata_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupint32, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupstring, array_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupint32, array_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupbool, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupbool, array_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupfloat, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -238,38 +244,32 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupProCoordinate, array_),
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupint32, _internal_metadata_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupstring, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupint32, array_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupbool, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupbool, array_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Pro::ConfigTypeGroupstring, array_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::Pro::ConfigTypeGroupstring)},
-  { 6, -1, sizeof(::Pro::ConfigTypeGroupfloat)},
-  { 12, -1, sizeof(::Pro::ProInt5)},
-  { 22, -1, sizeof(::Pro::ConfigTypeGroupProInt5)},
-  { 28, -1, sizeof(::Pro::ProCoordinate)},
-  { 37, -1, sizeof(::Pro::ConfigTypeGroupProCoordinate)},
-  { 43, -1, sizeof(::Pro::ConfigTypeGroupint32)},
-  { 49, -1, sizeof(::Pro::ConfigTypeGroupbool)},
+  { 0, -1, sizeof(::Pro::ConfigTypeGroupint32)},
+  { 6, -1, sizeof(::Pro::ConfigTypeGroupbool)},
+  { 12, -1, sizeof(::Pro::ConfigTypeGroupfloat)},
+  { 18, -1, sizeof(::Pro::ProInt5)},
+  { 28, -1, sizeof(::Pro::ConfigTypeGroupProInt5)},
+  { 34, -1, sizeof(::Pro::ProCoordinate)},
+  { 43, -1, sizeof(::Pro::ConfigTypeGroupProCoordinate)},
+  { 49, -1, sizeof(::Pro::ConfigTypeGroupstring)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ConfigTypeGroupstring_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ConfigTypeGroupint32_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ConfigTypeGroupbool_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ConfigTypeGroupfloat_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ProInt5_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ConfigTypeGroupProInt5_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ProCoordinate_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ConfigTypeGroupProCoordinate_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ConfigTypeGroupint32_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ConfigTypeGroupbool_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::Pro::_ConfigTypeGroupstring_default_instance_),
 };
 
 void protobuf_AssignDescriptors() {
@@ -293,18 +293,18 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\025ConfigTypeGroup.proto\022\003Pro\"&\n\025ConfigTy"
-      "peGroupstring\022\r\n\005array\030\001 \003(\t\"%\n\024ConfigTy"
-      "peGroupfloat\022\r\n\005array\030\001 \003(\002\"Y\n\007ProInt5\022\016"
-      "\n\006value1\030\001 \001(\005\022\016\n\006value2\030\002 \001(\005\022\016\n\006value3"
-      "\030\003 \001(\005\022\016\n\006value4\030\004 \001(\005\022\016\n\006value5\030\005 \001(\005\"5"
-      "\n\026ConfigTypeGroupProInt5\022\033\n\005array\030\001 \003(\0132"
-      "\014.Pro.ProInt5\";\n\rProCoordinate\022\t\n\001x\030\001 \001("
-      "\002\022\t\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001(\002\022\t\n\001o\030\004 \001(\002\"A\n\034Co"
-      "nfigTypeGroupProCoordinate\022!\n\005array\030\001 \003("
-      "\0132\022.Pro.ProCoordinate\"%\n\024ConfigTypeGroup"
-      "int32\022\r\n\005array\030\001 \003(\005\"$\n\023ConfigTypeGroupb"
-      "ool\022\r\n\005array\030\001 \003(\010b\006proto3"
+      "\n\025ConfigTypeGroup.proto\022\003Pro\"%\n\024ConfigTy"
+      "peGroupint32\022\r\n\005array\030\001 \003(\005\"$\n\023ConfigTyp"
+      "eGroupbool\022\r\n\005array\030\001 \003(\010\"%\n\024ConfigTypeG"
+      "roupfloat\022\r\n\005array\030\001 \003(\002\"Y\n\007ProInt5\022\016\n\006v"
+      "alue1\030\001 \001(\005\022\016\n\006value2\030\002 \001(\005\022\016\n\006value3\030\003 "
+      "\001(\005\022\016\n\006value4\030\004 \001(\005\022\016\n\006value5\030\005 \001(\005\"5\n\026C"
+      "onfigTypeGroupProInt5\022\033\n\005array\030\001 \003(\0132\014.P"
+      "ro.ProInt5\";\n\rProCoordinate\022\t\n\001x\030\001 \001(\002\022\t"
+      "\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001(\002\022\t\n\001o\030\004 \001(\002\"A\n\034Confi"
+      "gTypeGroupProCoordinate\022!\n\005array\030\001 \003(\0132\022"
+      ".Pro.ProCoordinate\"&\n\025ConfigTypeGroupstr"
+      "ing\022\r\n\005array\030\001 \003(\tb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
       descriptor, 466);
@@ -327,54 +327,54 @@ namespace Pro {
 
 // ===================================================================
 
-void ConfigTypeGroupstring::InitAsDefaultInstance() {
+void ConfigTypeGroupint32::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ConfigTypeGroupstring::kArrayFieldNumber;
+const int ConfigTypeGroupint32::kArrayFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-ConfigTypeGroupstring::ConfigTypeGroupstring()
+ConfigTypeGroupint32::ConfigTypeGroupint32()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
-      &protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupstring.base);
+      &protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupint32.base);
   SharedCtor();
-  // @@protoc_insertion_point(constructor:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(constructor:Pro.ConfigTypeGroupint32)
 }
-ConfigTypeGroupstring::ConfigTypeGroupstring(const ConfigTypeGroupstring& from)
+ConfigTypeGroupint32::ConfigTypeGroupint32(const ConfigTypeGroupint32& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       array_(from.array_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(copy_constructor:Pro.ConfigTypeGroupint32)
 }
 
-void ConfigTypeGroupstring::SharedCtor() {
+void ConfigTypeGroupint32::SharedCtor() {
 }
 
-ConfigTypeGroupstring::~ConfigTypeGroupstring() {
-  // @@protoc_insertion_point(destructor:Pro.ConfigTypeGroupstring)
+ConfigTypeGroupint32::~ConfigTypeGroupint32() {
+  // @@protoc_insertion_point(destructor:Pro.ConfigTypeGroupint32)
   SharedDtor();
 }
 
-void ConfigTypeGroupstring::SharedDtor() {
+void ConfigTypeGroupint32::SharedDtor() {
 }
 
-void ConfigTypeGroupstring::SetCachedSize(int size) const {
+void ConfigTypeGroupint32::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ConfigTypeGroupstring::descriptor() {
+const ::google::protobuf::Descriptor* ConfigTypeGroupint32::descriptor() {
   ::protobuf_ConfigTypeGroup_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_ConfigTypeGroup_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
-const ConfigTypeGroupstring& ConfigTypeGroupstring::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupstring.base);
+const ConfigTypeGroupint32& ConfigTypeGroupint32::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupint32.base);
   return *internal_default_instance();
 }
 
 
-void ConfigTypeGroupstring::Clear() {
-// @@protoc_insertion_point(message_clear_start:Pro.ConfigTypeGroupstring)
+void ConfigTypeGroupint32::Clear() {
+// @@protoc_insertion_point(message_clear_start:Pro.ConfigTypeGroupint32)
   ::google::protobuf::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -383,27 +383,29 @@ void ConfigTypeGroupstring::Clear() {
   _internal_metadata_.Clear();
 }
 
-bool ConfigTypeGroupstring::MergePartialFromCodedStream(
+bool ConfigTypeGroupint32::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(parse_start:Pro.ConfigTypeGroupint32)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated string array = 1;
+      // repeated int32 array = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_array()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->array(this->array_size() - 1).data(),
-            static_cast<int>(this->array(this->array_size() - 1).length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "Pro.ConfigTypeGroupstring.array"));
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, this->mutable_array())));
+        } else if (
+            static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 1, 10u, input, this->mutable_array())));
         } else {
           goto handle_unusual;
         }
@@ -422,64 +424,68 @@ bool ConfigTypeGroupstring::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(parse_success:Pro.ConfigTypeGroupint32)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(parse_failure:Pro.ConfigTypeGroupint32)
   return false;
 #undef DO_
 }
 
-void ConfigTypeGroupstring::SerializeWithCachedSizes(
+void ConfigTypeGroupint32::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(serialize_start:Pro.ConfigTypeGroupint32)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated string array = 1;
+  // repeated int32 array = 1;
+  if (this->array_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(1, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
+        _array_cached_byte_size_));
+  }
   for (int i = 0, n = this->array_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->array(i).data(), static_cast<int>(this->array(i).length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "Pro.ConfigTypeGroupstring.array");
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      1, this->array(i), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32NoTag(
+      this->array(i), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
   }
-  // @@protoc_insertion_point(serialize_end:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(serialize_end:Pro.ConfigTypeGroupint32)
 }
 
-::google::protobuf::uint8* ConfigTypeGroupstring::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* ConfigTypeGroupint32::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(serialize_to_array_start:Pro.ConfigTypeGroupint32)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated string array = 1;
-  for (int i = 0, n = this->array_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->array(i).data(), static_cast<int>(this->array(i).length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "Pro.ConfigTypeGroupstring.array");
+  // repeated int32 array = 1;
+  if (this->array_size() > 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
+      1,
+      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
+        static_cast< ::google::protobuf::int32>(
+            _array_cached_byte_size_), target);
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteStringToArray(1, this->array(i), target);
+      WriteInt32NoTagToArray(this->array_, target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(serialize_to_array_end:Pro.ConfigTypeGroupint32)
   return target;
 }
 
-size_t ConfigTypeGroupstring::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Pro.ConfigTypeGroupstring)
+size_t ConfigTypeGroupint32::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Pro.ConfigTypeGroupint32)
   size_t total_size = 0;
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -487,12 +493,20 @@ size_t ConfigTypeGroupstring::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated string array = 1;
-  total_size += 1 *
-      ::google::protobuf::internal::FromIntSize(this->array_size());
-  for (int i = 0, n = this->array_size(); i < n; i++) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-      this->array(i));
+  // repeated int32 array = 1;
+  {
+    size_t data_size = ::google::protobuf::internal::WireFormatLite::
+      Int32Size(this->array_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+            static_cast< ::google::protobuf::int32>(data_size));
+    }
+    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
+    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+    _array_cached_byte_size_ = cached_size;
+    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    total_size += data_size;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -500,23 +514,23 @@ size_t ConfigTypeGroupstring::ByteSizeLong() const {
   return total_size;
 }
 
-void ConfigTypeGroupstring::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:Pro.ConfigTypeGroupstring)
+void ConfigTypeGroupint32::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Pro.ConfigTypeGroupint32)
   GOOGLE_DCHECK_NE(&from, this);
-  const ConfigTypeGroupstring* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ConfigTypeGroupstring>(
+  const ConfigTypeGroupint32* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const ConfigTypeGroupint32>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Pro.ConfigTypeGroupint32)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:Pro.ConfigTypeGroupstring)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Pro.ConfigTypeGroupint32)
     MergeFrom(*source);
   }
 }
 
-void ConfigTypeGroupstring::MergeFrom(const ConfigTypeGroupstring& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:Pro.ConfigTypeGroupstring)
+void ConfigTypeGroupint32::MergeFrom(const ConfigTypeGroupint32& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Pro.ConfigTypeGroupint32)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::google::protobuf::uint32 cached_has_bits = 0;
@@ -525,35 +539,281 @@ void ConfigTypeGroupstring::MergeFrom(const ConfigTypeGroupstring& from) {
   array_.MergeFrom(from.array_);
 }
 
-void ConfigTypeGroupstring::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:Pro.ConfigTypeGroupstring)
+void ConfigTypeGroupint32::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Pro.ConfigTypeGroupint32)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void ConfigTypeGroupstring::CopyFrom(const ConfigTypeGroupstring& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Pro.ConfigTypeGroupstring)
+void ConfigTypeGroupint32::CopyFrom(const ConfigTypeGroupint32& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Pro.ConfigTypeGroupint32)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool ConfigTypeGroupstring::IsInitialized() const {
+bool ConfigTypeGroupint32::IsInitialized() const {
   return true;
 }
 
-void ConfigTypeGroupstring::Swap(ConfigTypeGroupstring* other) {
+void ConfigTypeGroupint32::Swap(ConfigTypeGroupint32* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void ConfigTypeGroupstring::InternalSwap(ConfigTypeGroupstring* other) {
+void ConfigTypeGroupint32::InternalSwap(ConfigTypeGroupint32* other) {
   using std::swap;
-  array_.InternalSwap(CastToBase(&other->array_));
+  array_.InternalSwap(&other->array_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata ConfigTypeGroupstring::GetMetadata() const {
+::google::protobuf::Metadata ConfigTypeGroupint32::GetMetadata() const {
+  protobuf_ConfigTypeGroup_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_ConfigTypeGroup_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void ConfigTypeGroupbool::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int ConfigTypeGroupbool::kArrayFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+ConfigTypeGroupbool::ConfigTypeGroupbool()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupbool.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Pro.ConfigTypeGroupbool)
+}
+ConfigTypeGroupbool::ConfigTypeGroupbool(const ConfigTypeGroupbool& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      array_(from.array_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Pro.ConfigTypeGroupbool)
+}
+
+void ConfigTypeGroupbool::SharedCtor() {
+}
+
+ConfigTypeGroupbool::~ConfigTypeGroupbool() {
+  // @@protoc_insertion_point(destructor:Pro.ConfigTypeGroupbool)
+  SharedDtor();
+}
+
+void ConfigTypeGroupbool::SharedDtor() {
+}
+
+void ConfigTypeGroupbool::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* ConfigTypeGroupbool::descriptor() {
+  ::protobuf_ConfigTypeGroup_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_ConfigTypeGroup_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const ConfigTypeGroupbool& ConfigTypeGroupbool::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupbool.base);
+  return *internal_default_instance();
+}
+
+
+void ConfigTypeGroupbool::Clear() {
+// @@protoc_insertion_point(message_clear_start:Pro.ConfigTypeGroupbool)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  array_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool ConfigTypeGroupbool::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Pro.ConfigTypeGroupbool)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated bool array = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, this->mutable_array())));
+        } else if (
+            static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 1, 10u, input, this->mutable_array())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Pro.ConfigTypeGroupbool)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Pro.ConfigTypeGroupbool)
+  return false;
+#undef DO_
+}
+
+void ConfigTypeGroupbool::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Pro.ConfigTypeGroupbool)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated bool array = 1;
+  if (this->array_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(1, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
+        _array_cached_byte_size_));
+    ::google::protobuf::internal::WireFormatLite::WriteBoolArray(
+      this->array().data(), this->array_size(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Pro.ConfigTypeGroupbool)
+}
+
+::google::protobuf::uint8* ConfigTypeGroupbool::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:Pro.ConfigTypeGroupbool)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated bool array = 1;
+  if (this->array_size() > 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
+      1,
+      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
+        static_cast< ::google::protobuf::int32>(
+            _array_cached_byte_size_), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteBoolNoTagToArray(this->array_, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Pro.ConfigTypeGroupbool)
+  return target;
+}
+
+size_t ConfigTypeGroupbool::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Pro.ConfigTypeGroupbool)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated bool array = 1;
+  {
+    unsigned int count = static_cast<unsigned int>(this->array_size());
+    size_t data_size = 1UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+            static_cast< ::google::protobuf::int32>(data_size));
+    }
+    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
+    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+    _array_cached_byte_size_ = cached_size;
+    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    total_size += data_size;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ConfigTypeGroupbool::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Pro.ConfigTypeGroupbool)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ConfigTypeGroupbool* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const ConfigTypeGroupbool>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Pro.ConfigTypeGroupbool)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Pro.ConfigTypeGroupbool)
+    MergeFrom(*source);
+  }
+}
+
+void ConfigTypeGroupbool::MergeFrom(const ConfigTypeGroupbool& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Pro.ConfigTypeGroupbool)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  array_.MergeFrom(from.array_);
+}
+
+void ConfigTypeGroupbool::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Pro.ConfigTypeGroupbool)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ConfigTypeGroupbool::CopyFrom(const ConfigTypeGroupbool& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Pro.ConfigTypeGroupbool)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ConfigTypeGroupbool::IsInitialized() const {
+  return true;
+}
+
+void ConfigTypeGroupbool::Swap(ConfigTypeGroupbool* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void ConfigTypeGroupbool::InternalSwap(ConfigTypeGroupbool* other) {
+  using std::swap;
+  array_.InternalSwap(&other->array_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata ConfigTypeGroupbool::GetMetadata() const {
   protobuf_ConfigTypeGroup_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_ConfigTypeGroup_2eproto::file_level_metadata[kIndexInFileMessages];
 }
@@ -1967,54 +2227,54 @@ void ConfigTypeGroupProCoordinate::InternalSwap(ConfigTypeGroupProCoordinate* ot
 
 // ===================================================================
 
-void ConfigTypeGroupint32::InitAsDefaultInstance() {
+void ConfigTypeGroupstring::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ConfigTypeGroupint32::kArrayFieldNumber;
+const int ConfigTypeGroupstring::kArrayFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-ConfigTypeGroupint32::ConfigTypeGroupint32()
+ConfigTypeGroupstring::ConfigTypeGroupstring()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
-      &protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupint32.base);
+      &protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupstring.base);
   SharedCtor();
-  // @@protoc_insertion_point(constructor:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(constructor:Pro.ConfigTypeGroupstring)
 }
-ConfigTypeGroupint32::ConfigTypeGroupint32(const ConfigTypeGroupint32& from)
+ConfigTypeGroupstring::ConfigTypeGroupstring(const ConfigTypeGroupstring& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       array_(from.array_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(copy_constructor:Pro.ConfigTypeGroupstring)
 }
 
-void ConfigTypeGroupint32::SharedCtor() {
+void ConfigTypeGroupstring::SharedCtor() {
 }
 
-ConfigTypeGroupint32::~ConfigTypeGroupint32() {
-  // @@protoc_insertion_point(destructor:Pro.ConfigTypeGroupint32)
+ConfigTypeGroupstring::~ConfigTypeGroupstring() {
+  // @@protoc_insertion_point(destructor:Pro.ConfigTypeGroupstring)
   SharedDtor();
 }
 
-void ConfigTypeGroupint32::SharedDtor() {
+void ConfigTypeGroupstring::SharedDtor() {
 }
 
-void ConfigTypeGroupint32::SetCachedSize(int size) const {
+void ConfigTypeGroupstring::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ConfigTypeGroupint32::descriptor() {
+const ::google::protobuf::Descriptor* ConfigTypeGroupstring::descriptor() {
   ::protobuf_ConfigTypeGroup_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_ConfigTypeGroup_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
-const ConfigTypeGroupint32& ConfigTypeGroupint32::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupint32.base);
+const ConfigTypeGroupstring& ConfigTypeGroupstring::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupstring.base);
   return *internal_default_instance();
 }
 
 
-void ConfigTypeGroupint32::Clear() {
-// @@protoc_insertion_point(message_clear_start:Pro.ConfigTypeGroupint32)
+void ConfigTypeGroupstring::Clear() {
+// @@protoc_insertion_point(message_clear_start:Pro.ConfigTypeGroupstring)
   ::google::protobuf::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2023,29 +2283,27 @@ void ConfigTypeGroupint32::Clear() {
   _internal_metadata_.Clear();
 }
 
-bool ConfigTypeGroupint32::MergePartialFromCodedStream(
+bool ConfigTypeGroupstring::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(parse_start:Pro.ConfigTypeGroupstring)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated int32 array = 1;
+      // repeated string array = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, this->mutable_array())));
-        } else if (
-            static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 1, 10u, input, this->mutable_array())));
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->add_array()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->array(this->array_size() - 1).data(),
+            static_cast<int>(this->array(this->array_size() - 1).length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "Pro.ConfigTypeGroupstring.array"));
         } else {
           goto handle_unusual;
         }
@@ -2064,68 +2322,64 @@ bool ConfigTypeGroupint32::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(parse_success:Pro.ConfigTypeGroupstring)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(parse_failure:Pro.ConfigTypeGroupstring)
   return false;
 #undef DO_
 }
 
-void ConfigTypeGroupint32::SerializeWithCachedSizes(
+void ConfigTypeGroupstring::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(serialize_start:Pro.ConfigTypeGroupstring)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated int32 array = 1;
-  if (this->array_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(1, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
-    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
-        _array_cached_byte_size_));
-  }
+  // repeated string array = 1;
   for (int i = 0, n = this->array_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32NoTag(
-      this->array(i), output);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->array(i).data(), static_cast<int>(this->array(i).length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "Pro.ConfigTypeGroupstring.array");
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->array(i), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
   }
-  // @@protoc_insertion_point(serialize_end:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(serialize_end:Pro.ConfigTypeGroupstring)
 }
 
-::google::protobuf::uint8* ConfigTypeGroupint32::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* ConfigTypeGroupstring::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(serialize_to_array_start:Pro.ConfigTypeGroupstring)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated int32 array = 1;
-  if (this->array_size() > 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
-      1,
-      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
-      target);
-    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
-        static_cast< ::google::protobuf::int32>(
-            _array_cached_byte_size_), target);
+  // repeated string array = 1;
+  for (int i = 0, n = this->array_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->array(i).data(), static_cast<int>(this->array(i).length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "Pro.ConfigTypeGroupstring.array");
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt32NoTagToArray(this->array_, target);
+      WriteStringToArray(1, this->array(i), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(serialize_to_array_end:Pro.ConfigTypeGroupstring)
   return target;
 }
 
-size_t ConfigTypeGroupint32::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Pro.ConfigTypeGroupint32)
+size_t ConfigTypeGroupstring::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Pro.ConfigTypeGroupstring)
   size_t total_size = 0;
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2133,20 +2387,12 @@ size_t ConfigTypeGroupint32::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated int32 array = 1;
-  {
-    size_t data_size = ::google::protobuf::internal::WireFormatLite::
-      Int32Size(this->array_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-            static_cast< ::google::protobuf::int32>(data_size));
-    }
-    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
-    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-    _array_cached_byte_size_ = cached_size;
-    GOOGLE_SAFE_CONCURRENT_WRITES_END();
-    total_size += data_size;
+  // repeated string array = 1;
+  total_size += 1 *
+      ::google::protobuf::internal::FromIntSize(this->array_size());
+  for (int i = 0, n = this->array_size(); i < n; i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->array(i));
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -2154,23 +2400,23 @@ size_t ConfigTypeGroupint32::ByteSizeLong() const {
   return total_size;
 }
 
-void ConfigTypeGroupint32::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:Pro.ConfigTypeGroupint32)
+void ConfigTypeGroupstring::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Pro.ConfigTypeGroupstring)
   GOOGLE_DCHECK_NE(&from, this);
-  const ConfigTypeGroupint32* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ConfigTypeGroupint32>(
+  const ConfigTypeGroupstring* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const ConfigTypeGroupstring>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Pro.ConfigTypeGroupstring)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:Pro.ConfigTypeGroupint32)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Pro.ConfigTypeGroupstring)
     MergeFrom(*source);
   }
 }
 
-void ConfigTypeGroupint32::MergeFrom(const ConfigTypeGroupint32& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:Pro.ConfigTypeGroupint32)
+void ConfigTypeGroupstring::MergeFrom(const ConfigTypeGroupstring& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Pro.ConfigTypeGroupstring)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::google::protobuf::uint32 cached_has_bits = 0;
@@ -2179,281 +2425,35 @@ void ConfigTypeGroupint32::MergeFrom(const ConfigTypeGroupint32& from) {
   array_.MergeFrom(from.array_);
 }
 
-void ConfigTypeGroupint32::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:Pro.ConfigTypeGroupint32)
+void ConfigTypeGroupstring::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Pro.ConfigTypeGroupstring)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void ConfigTypeGroupint32::CopyFrom(const ConfigTypeGroupint32& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Pro.ConfigTypeGroupint32)
+void ConfigTypeGroupstring::CopyFrom(const ConfigTypeGroupstring& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Pro.ConfigTypeGroupstring)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool ConfigTypeGroupint32::IsInitialized() const {
+bool ConfigTypeGroupstring::IsInitialized() const {
   return true;
 }
 
-void ConfigTypeGroupint32::Swap(ConfigTypeGroupint32* other) {
+void ConfigTypeGroupstring::Swap(ConfigTypeGroupstring* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void ConfigTypeGroupint32::InternalSwap(ConfigTypeGroupint32* other) {
+void ConfigTypeGroupstring::InternalSwap(ConfigTypeGroupstring* other) {
   using std::swap;
-  array_.InternalSwap(&other->array_);
+  array_.InternalSwap(CastToBase(&other->array_));
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata ConfigTypeGroupint32::GetMetadata() const {
-  protobuf_ConfigTypeGroup_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_ConfigTypeGroup_2eproto::file_level_metadata[kIndexInFileMessages];
-}
-
-
-// ===================================================================
-
-void ConfigTypeGroupbool::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ConfigTypeGroupbool::kArrayFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-ConfigTypeGroupbool::ConfigTypeGroupbool()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupbool.base);
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:Pro.ConfigTypeGroupbool)
-}
-ConfigTypeGroupbool::ConfigTypeGroupbool(const ConfigTypeGroupbool& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
-      array_(from.array_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:Pro.ConfigTypeGroupbool)
-}
-
-void ConfigTypeGroupbool::SharedCtor() {
-}
-
-ConfigTypeGroupbool::~ConfigTypeGroupbool() {
-  // @@protoc_insertion_point(destructor:Pro.ConfigTypeGroupbool)
-  SharedDtor();
-}
-
-void ConfigTypeGroupbool::SharedDtor() {
-}
-
-void ConfigTypeGroupbool::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const ::google::protobuf::Descriptor* ConfigTypeGroupbool::descriptor() {
-  ::protobuf_ConfigTypeGroup_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_ConfigTypeGroup_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
-const ConfigTypeGroupbool& ConfigTypeGroupbool::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_ConfigTypeGroup_2eproto::scc_info_ConfigTypeGroupbool.base);
-  return *internal_default_instance();
-}
-
-
-void ConfigTypeGroupbool::Clear() {
-// @@protoc_insertion_point(message_clear_start:Pro.ConfigTypeGroupbool)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  array_.Clear();
-  _internal_metadata_.Clear();
-}
-
-bool ConfigTypeGroupbool::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:Pro.ConfigTypeGroupbool)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated bool array = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, this->mutable_array())));
-        } else if (
-            static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 1, 10u, input, this->mutable_array())));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:Pro.ConfigTypeGroupbool)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:Pro.ConfigTypeGroupbool)
-  return false;
-#undef DO_
-}
-
-void ConfigTypeGroupbool::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:Pro.ConfigTypeGroupbool)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated bool array = 1;
-  if (this->array_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(1, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
-    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
-        _array_cached_byte_size_));
-    ::google::protobuf::internal::WireFormatLite::WriteBoolArray(
-      this->array().data(), this->array_size(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:Pro.ConfigTypeGroupbool)
-}
-
-::google::protobuf::uint8* ConfigTypeGroupbool::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:Pro.ConfigTypeGroupbool)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated bool array = 1;
-  if (this->array_size() > 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
-      1,
-      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
-      target);
-    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
-        static_cast< ::google::protobuf::int32>(
-            _array_cached_byte_size_), target);
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteBoolNoTagToArray(this->array_, target);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Pro.ConfigTypeGroupbool)
-  return target;
-}
-
-size_t ConfigTypeGroupbool::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Pro.ConfigTypeGroupbool)
-  size_t total_size = 0;
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
-  // repeated bool array = 1;
-  {
-    unsigned int count = static_cast<unsigned int>(this->array_size());
-    size_t data_size = 1UL * count;
-    if (data_size > 0) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-            static_cast< ::google::protobuf::int32>(data_size));
-    }
-    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
-    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-    _array_cached_byte_size_ = cached_size;
-    GOOGLE_SAFE_CONCURRENT_WRITES_END();
-    total_size += data_size;
-  }
-
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void ConfigTypeGroupbool::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:Pro.ConfigTypeGroupbool)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ConfigTypeGroupbool* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ConfigTypeGroupbool>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Pro.ConfigTypeGroupbool)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:Pro.ConfigTypeGroupbool)
-    MergeFrom(*source);
-  }
-}
-
-void ConfigTypeGroupbool::MergeFrom(const ConfigTypeGroupbool& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:Pro.ConfigTypeGroupbool)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  array_.MergeFrom(from.array_);
-}
-
-void ConfigTypeGroupbool::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:Pro.ConfigTypeGroupbool)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void ConfigTypeGroupbool::CopyFrom(const ConfigTypeGroupbool& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Pro.ConfigTypeGroupbool)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool ConfigTypeGroupbool::IsInitialized() const {
-  return true;
-}
-
-void ConfigTypeGroupbool::Swap(ConfigTypeGroupbool* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void ConfigTypeGroupbool::InternalSwap(ConfigTypeGroupbool* other) {
-  using std::swap;
-  array_.InternalSwap(&other->array_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-}
-
-::google::protobuf::Metadata ConfigTypeGroupbool::GetMetadata() const {
+::google::protobuf::Metadata ConfigTypeGroupstring::GetMetadata() const {
   protobuf_ConfigTypeGroup_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_ConfigTypeGroup_2eproto::file_level_metadata[kIndexInFileMessages];
 }
@@ -2463,8 +2463,11 @@ void ConfigTypeGroupbool::InternalSwap(ConfigTypeGroupbool* other) {
 }  // namespace Pro
 namespace google {
 namespace protobuf {
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Pro::ConfigTypeGroupstring* Arena::CreateMaybeMessage< ::Pro::ConfigTypeGroupstring >(Arena* arena) {
-  return Arena::CreateInternal< ::Pro::ConfigTypeGroupstring >(arena);
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Pro::ConfigTypeGroupint32* Arena::CreateMaybeMessage< ::Pro::ConfigTypeGroupint32 >(Arena* arena) {
+  return Arena::CreateInternal< ::Pro::ConfigTypeGroupint32 >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Pro::ConfigTypeGroupbool* Arena::CreateMaybeMessage< ::Pro::ConfigTypeGroupbool >(Arena* arena) {
+  return Arena::CreateInternal< ::Pro::ConfigTypeGroupbool >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Pro::ConfigTypeGroupfloat* Arena::CreateMaybeMessage< ::Pro::ConfigTypeGroupfloat >(Arena* arena) {
   return Arena::CreateInternal< ::Pro::ConfigTypeGroupfloat >(arena);
@@ -2481,11 +2484,8 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Pro::ProCoordinate* Arena::Creat
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Pro::ConfigTypeGroupProCoordinate* Arena::CreateMaybeMessage< ::Pro::ConfigTypeGroupProCoordinate >(Arena* arena) {
   return Arena::CreateInternal< ::Pro::ConfigTypeGroupProCoordinate >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Pro::ConfigTypeGroupint32* Arena::CreateMaybeMessage< ::Pro::ConfigTypeGroupint32 >(Arena* arena) {
-  return Arena::CreateInternal< ::Pro::ConfigTypeGroupint32 >(arena);
-}
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Pro::ConfigTypeGroupbool* Arena::CreateMaybeMessage< ::Pro::ConfigTypeGroupbool >(Arena* arena) {
-  return Arena::CreateInternal< ::Pro::ConfigTypeGroupbool >(arena);
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Pro::ConfigTypeGroupstring* Arena::CreateMaybeMessage< ::Pro::ConfigTypeGroupstring >(Arena* arena) {
+  return Arena::CreateInternal< ::Pro::ConfigTypeGroupstring >(arena);
 }
 }  // namespace protobuf
 }  // namespace google

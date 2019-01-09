@@ -1,5 +1,5 @@
 --------------------------------------------
----- table role version:1.0.0.1 ----
+---- table role version:test1.0.0.1 ----
 --------------------------------------------
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `role`;
