@@ -23,6 +23,7 @@ function set_tool_args(args)
     lfs.mkdir(g_args.out_dir.."/pbs/")
     lfs.mkdir(g_args.out_dir.."/proto/")
     lfs.mkdir(g_args.out_dir.."/sql/")
+    lfs.mkdir(g_args.out_dir.."/csharp/")
   else
     dg("not found lfs to mkdir, so you must mkdir by you self or init lfs")
   end

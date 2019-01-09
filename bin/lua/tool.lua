@@ -7,6 +7,7 @@ require("check_data")
 require("cpp_write")
 require("sql_write")
 require("lua_write")
+require("csharp_write")
 require("proto_write")
 require("compare_data")
 require("type")
@@ -133,6 +134,8 @@ end
 function save_configs()
   --保存proto文件，打包数据以及生成c++代码
   write_proto()
+  
+  write_csharp()
   --保存历史结构文件
   save_layout()
   --比较新老版本的数据差异，并写入log
@@ -141,6 +144,7 @@ function save_configs()
   sql_writer()
   --输出pbc测试接口
   write_lua_out()
+  
 end
 
 function er(info)

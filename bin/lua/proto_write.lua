@@ -371,8 +371,10 @@ local function execute_proto(file)
   
   local cmd1 = execute_tool() .." " .. "--proto_path="..protoPath.." --cpp_out="..protoPath.." "..protoPath..file..".proto"
   local cmd2 = execute_tool() .." " .. "--proto_path="..protoPath.." --descriptor_set_out="..pbsPath..file..".pb" .." "..protoPath..file..".proto"
+  local cmd3 = execute_tool() .." " .. "--proto_path="..protoPath.." --csharp_out="..out_dir() .. "/csharp/".." "..protoPath..file..".proto"
   os.execute(cmd1)
   os.execute(cmd2)
+  os.execute(cmd3)
 end
 
 --生成导出的PB文件和代码
