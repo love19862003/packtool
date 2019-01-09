@@ -7,6 +7,7 @@ SET(BUILD_TESTING ON)
 SET(LIT_LUA_ROOT ${CMAKE_SOURCE_DIR}/litlua/)
 SET(XLNT_ROOT ${CMAKE_SOURCE_DIR}/xlnt/)
 
+SET(CMAKE_FIND_LIBRARY_PREFIXES "lib")
 
 IF(NOT MSVC_VERSION)
   SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fexceptions -Wno-unused-local-typedefs -ffunction-sections -fdata-sections")
