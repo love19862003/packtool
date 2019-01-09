@@ -16,6 +16,7 @@
 #include "Utility.h"
 #include "litlua.h"
 #include "pbc-lua.h"
+#include "lfs.h"
 namespace ToolSpace{
 
   TableTool::TableTool(const std::string& file, const std::string& version, ProtoType type, const std::string& log):m_log(log, std::ios::out | std::ios::binary){
@@ -40,6 +41,7 @@ namespace ToolSpace{
     m_state = luaL_newstate();
     LitSpace::openLuaLibs(m_state);
     LitSpace::openLuaLib(m_state, "protobuf.c", luaopen_protobuf_c);
+    luaopen_lfs(m_state);
     LitSpace::add_fun2(m_state, "error_info", erfun);
     LitSpace::add_fun2(m_state, "debug_info", lgfun);
     LitSpace::class_reg<ToolArgs>(m_state, "ToolArgs");

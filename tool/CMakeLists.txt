@@ -6,7 +6,8 @@ ADD_LIBRARY(${pbc} ${PBCFILE})
 
 SET(Tool "tool")
 INCLUDE_DIRECTORIES(./)
-FILE(GLOB TOOLFILES *.cpp *.h *.hpp)
+
+FILE(GLOB TOOLFILES *.cpp *.h *.hpp *.c)
 
 ADD_EXECUTABLE(${Tool} ${TOOLFILES} main.cpp)
 
@@ -21,4 +22,3 @@ ADD_CUSTOM_COMMAND(
 	WORKING_DIRECTORY 	${CMAKE_SOURCE_DIR}/bin/
 	COMMENT  "run tool for export excel files"
 )
-
