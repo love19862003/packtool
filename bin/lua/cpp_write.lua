@@ -11,7 +11,11 @@ local function cpp_types(head)
   local basic_type = get_basic_type_by_id(head.basic_type)
   if isSelfEnumType(basic_type.type) then 
     local en = get_enum(head.type_basic_name)
-    return en.table .. "::" .. en.name 
+    if en.table ~= nil then
+      return en.table .. tail_config_name() .. "::" .. en.name 
+    else
+      return en.name
+    end
   end
   return basic_type.cpp_type
 end
@@ -163,7 +167,7 @@ local function write_cpp_tables_interface_impl(tab)
   write("// table "..tabName .. " interfaces")
   write(string.format("const %s& %s%s(const %s& index) const{", typeName, mgrClsName, tabName, indexType))
   indent()
-  write(string.format("return m_impl->%s(index);",  mgrClsName, tabName)) 
+  write(string.format("return m_impl->%s(index);", tabName)) 
   outdent()
   write("}")
   
@@ -253,7 +257,7 @@ function write_cpp_header()
   indent()
   
   write(mgrclsName .. "();")
-  write("~"..mgrclsName .. "()")
+  write("~"..mgrclsName .. "();")
   write("bool init(const std::string& files);")
   write("bool init(const char* bytes, size_t len);")
   write("bool reload();")
@@ -313,8 +317,8 @@ function write_cpp_content()
   write("m_fileName = file;")
   write("clear();")
   write("std::ifstream ifile(file.data(), std::ios::binary | std::ios::in);")
-  write(string.format("auto ptr = make_shared<%s%s>();", all_config_name(), tail_config_name()))
-  write("bool res = ptr->ParseFromIstream(ifile);")
+  write(string.format("auto ptr = std::make_shared<%s%s>();", all_config_name(), tail_config_name()))
+  write("bool res = ptr->ParseFromIstream(&ifile);")
   write("ifile.close();")
   write("if(!res){return res;}")
   write("fill(ptr);")
@@ -327,7 +331,7 @@ function write_cpp_content()
   indent()
   write("m_fileName.clear();")
   write("clear();")
-  write(string.format("auto ptr = make_shared<%s%s>();", all_config_name(), tail_config_name()))
+  write(string.format("auto ptr = std::make_shared<%s%s>();", all_config_name(), tail_config_name()))
   write("bool res = ptr->ParseFromArray(bytes, len);")
   write("if(!res){return res;}")
   write("fill(ptr);")
@@ -432,9 +436,9 @@ function write_cpp_content()
   write("//reload") 
   write(string.format("bool %s::reload(){return m_impl->reload();}", mgrclsName))
   write("//file")  
-  write(string.format("const %s::std::string& fileName() const{return m_impl->fileName();}", mgrclsName))
+  write(string.format("const std::string& %s::fileName() const{return m_impl->fileName();}", mgrclsName))
   write("//version")
-  write(string.format("const %s::std::string& version() const{return m_impl->version();}", mgrclsName))
+  write(string.format("const std::string& %s::version() const{return m_impl->version();}", mgrclsName))
   
   
   for k, tab in pairs(g_tables) do 
