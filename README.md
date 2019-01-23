@@ -17,7 +17,7 @@ read excel to protobuf and pack data
     role.JobType   枚举名
     enum           类型
     职业           注释
-    COMMON_0=0  
+    COMMON_0=0     
     NOVICE_1=1
     SWORDMAN_2=2
     BUSINESSMAN_3=3
@@ -101,6 +101,17 @@ read excel to protobuf and pack data
 第四个sheet页为数据检测的配置
   1.每一行的第一个是定义检测的所在的excel文件 第二列是所在文件的sheet的名字
   检测语法
+  表.列名  = [[ 条件， 条件，...] ,[ 条件， 条件，...] , ...]
+  条件可以为
+    表.列名
+    数值
+    ?
+    枚举
+    枚举.枚举值
+   
+   
+   具体检测方法可以查看check
+   自定义类型的检测方法，需要自己编写。 
   
   
   
