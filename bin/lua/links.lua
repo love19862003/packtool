@@ -37,10 +37,12 @@ function check_table_link(name)
       local head = t:getHead(h)
       if not head then 
         -- not found head h
+        er("表"..name.."link中字段"..h.."不存在")
         return false
       else
         if not checkKeyType(head.muti_type, head.basic_type) then 
           -- head type not allow to be a link 
+          er("表"..name.."联合索引中字段"..h.."类型不能做link")
           return false
         end
       end      

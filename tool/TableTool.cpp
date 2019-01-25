@@ -17,7 +17,16 @@
 #include "litlua.h"
 #include "pbc-lua.h"
 #include "lfs.h"
+
 namespace ToolSpace{
+
+  std::string TableTool::U2G(const std::string& str){
+#ifdef WIN32
+    return utf8_to_gbk(str);
+#else
+    return str;
+#endif
+  }
 
   TableTool::TableTool(const std::string& file, const std::string& version, ProtoType type, const std::string& log):m_log(log, std::ios::out | std::ios::binary){
     m_args.proto_type = type;

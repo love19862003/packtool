@@ -16,8 +16,16 @@
 #include <iostream>
 #include "TableTool.h"
 #include <string>
-
+#include <assert.h>
+#ifdef WIN32
+#include <windows.h>
+#endif
 int main(int argc, char* argv[]) {
+#ifdef WIN32
+  system("chcp 936");
+  system("cls");
+  SetConsoleTitle("pack excel to protobuf");
+#endif // WIN32
 
   std::string file = "./setting.xlsx";
   std::string version = "1.0.0.1";
@@ -41,10 +49,12 @@ int main(int argc, char* argv[]) {
 
   ToolSpace::TableTool m(file, version, type, log);
   if (!m.init()){
+    assert(false);
     return 1;
   }
 
   if (!m.run()){
+    assert(false);
     return 1;
   }
 
@@ -52,5 +62,5 @@ int main(int argc, char* argv[]) {
 #ifdef _DEBUG
    // getchar();
 #endif // _DEBUG
-    return 0;
+  return 0;
 }

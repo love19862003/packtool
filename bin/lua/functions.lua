@@ -184,6 +184,13 @@ function table.keys(t)
     return keys
 end
 
+function table.find_key(t, value)
+  for k, v in pairs(t) do 
+    if v == value then return k end
+  end
+  return nil
+end
+
 function table.values(t)
     local values = {}
     for k, v in pairs(t) do
@@ -217,7 +224,7 @@ function table.clone(object)
 end
 
 
-function text_value(value)
+local function text_value(value)
   if type(value) ==  "boolean" then
     if value then 
       return "true"
@@ -239,11 +246,9 @@ function text_object(obj)
   else
     return text_value(obj)
   end
-  
-  
 end
 
-function text_table(tab)
+local function text_table(tab)
   if type(tab) ~=  "table" then 
     return ""
   end

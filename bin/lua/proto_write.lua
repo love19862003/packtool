@@ -207,16 +207,15 @@ local function check_reg_depends(name, reg)
   if tab  then 
     local depends = tab:getDepends()
     for _, v in pairs(depends) do
-      
       if v ~= common_enum_name() then
-        print(name.." depends ".. v)
+        dg(name.."依赖".. v)
         check_reg_depends(v, reg)
       end
     end
     
     for _, v in pairs(reg) do
       if v == name then
-        assert(false, "reg table list error with name "..name)
+        assert(false, "表依赖顺序错误 "..name)
         return nil
       end
     end
@@ -247,7 +246,7 @@ local function write_proto_lua()
   local data = {}
   data.version = version()
   for k, t in pairs(g_tables) do
-    print(k)
+    dg("输出表格"..k.." lua文件")
     data[k] = write_proto_table_lua(t)
   end
   return data
@@ -372,19 +371,24 @@ local function execute_proto(file)
   local cmd1 = execute_tool() .." " .. "--proto_path="..protoPath.." --cpp_out="..protoPath.." "..protoPath..file..".proto"
   local cmd2 = execute_tool() .." " .. "--proto_path="..protoPath.." --descriptor_set_out="..pbsPath..file..".pb" .." "..protoPath..file..".proto"
   local cmd3 = execute_tool() .." " .. "--proto_path="..protoPath.." --csharp_out="..out_dir() .. "/csharp/".." "..protoPath..file..".proto"
+  --dg("call "..cmd1)
   os.execute(cmd1)
+  --dg("call "..cmd2)
   os.execute(cmd2)
+  --dg("call "..cmd3)
   os.execute(cmd3)
 end
 
 --生成导出的PB文件和代码
 function genratorProto()
+  dg("正在输出proto文件")
   execute_proto(common_group_name())
   execute_proto(common_enum_name()..tail_config_name())
   for k, t in pairs(g_tables) do
     execute_proto(k..tail_config_name())
   end
   execute_proto(all_config_name()..tail_config_name())
+  dg("输出proto文件完成")
 end
 
 --读取打包后的数据

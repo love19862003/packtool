@@ -17,7 +17,47 @@
 #include <algorithm>
 #include <vector>
 #include <regex>
+#include <codecvt>
 namespace ToolSpace{
+
+  inline std::string utf8_to_gbk(const std::string& str){
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> utf8_cvt; // utf8 to unicode
+    std::wstring_convert<std::codecvt<wchar_t, char, std::mbstate_t>> gbk_cvt(new std::codecvt<wchar_t, char, std::mbstate_t>("chs")); // unicode to gbk
+    std::wstring t = utf8_cvt.from_bytes(str);
+    return gbk_cvt.to_bytes(t);
+  }
+
+
+  inline std::string gbk_to_utf8(const std::string &str){
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> utf8_cvt; // utf8 to unicode
+    std::wstring_convert<std::codecvt<wchar_t, char, mbstate_t>> gbk_cvt(new std::codecvt<wchar_t, char, mbstate_t>("chs")); //unicode to gbk
+    std::wstring t = gbk_cvt.from_bytes(str);
+    return utf8_cvt.to_bytes(t);
+  }
+
+  inline std::wstring utf8_to_wstring(const std::string &str){
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> utf8_cvt;
+    return utf8_cvt.from_bytes(str);
+  }
+
+  // unicode to utf8
+  inline std::string wstring_to_utf8(const std::wstring &str){
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> utf8_cvt;
+    return utf8_cvt.to_bytes(str);
+  }
+
+  // gbk to unicode
+  inline std::wstring  gbk_to_wstring(const std::string &str){
+    std::wstring_convert<std::codecvt<wchar_t, char, mbstate_t>> gbk_cvt(new std::codecvt<wchar_t, char, mbstate_t>("chs"));
+    return gbk_cvt.from_bytes(str);
+  }
+
+  // unicode to gbk
+  inline std::string  wstring_to_gbk(const std::wstring &str){
+    std::wstring_convert<std::codecvt<wchar_t, char, mbstate_t>> gbk_cvt(new std::codecvt<wchar_t, char, mbstate_t>("chs"));
+    return gbk_cvt.to_bytes(str);
+  }
+
 
   inline std::string& tolower( std::string& str){
     std::for_each(str.begin(), str.end(), [](char& c){ c = std::tolower(c, std::locale()); });

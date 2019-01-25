@@ -255,7 +255,7 @@ function check_number(value, signal_check)
     end
   end
   
-  print("check_number value ".. text_object(value) .. " con:".. text_object(signal_check))
+  dg("check_number value ".. text_object(value) .. " con:".. text_object(signal_check))
   return false
 end
 

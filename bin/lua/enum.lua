@@ -47,7 +47,7 @@ function read_enum_value(name, str, comment)
     local value =  tonumber(str2)
     g_enum_type[name].values = g_enum_type[name].values or {}
     table.insert(g_enum_type[name].values, {str1, value, comment})
-    dg("add enum " .. name .. " value:" .. value)
+    dg("增加 enum " .. name .. " 值:" .. value)
     
     table.sort(g_enum_type[name].values,  comp)
     

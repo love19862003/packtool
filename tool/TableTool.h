@@ -115,12 +115,16 @@ namespace ToolSpace{
     bool check();
     void save();
 
+
+  
+    static std::string U2G(const std::string& str);
+
     template<typename T, typename ...ARGS>
     void debug(T t, ARGS ... args){
       auto str = makeString(t, args...);
       m_log << "[d]:" << str << "\n";
 #ifdef _DEBUG
-      std::cout << str << std::endl;
+      std::cout << "[d]:" << U2G(str) << std::endl;
 #endif // _DEBUG
     }
 
@@ -130,7 +134,7 @@ namespace ToolSpace{
       m_log << "[e]:" << str << "\n";
       m_error = true;
 #ifdef _DEBUG
-      std::cout << str << std::endl;
+      std::cout << "[e]:" << U2G(str) << std::endl;
 #endif // _DEBUG
     }
   protected:
