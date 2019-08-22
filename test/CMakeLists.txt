@@ -1,11 +1,8 @@
 FUNCTION(build_test EXE CODE LIBS)
-	#GET_FILENAME_COMPONENT(BASE "${FILE}" NAME_WE)
-	#GET_FILENAME_COMPONENT(EXT "${FILE}" EXT)
-
 	SET(BASE ${EXE})
 
 	ADD_EXECUTABLE(${BASE} ${CODE} main.cpp)
-
+  
 	MESSAGE(STATUS "link libs ${LIBS}")
 
 	TARGET_LINK_LIBRARIES(${BASE} "${LIBS}")
@@ -20,7 +17,7 @@ ENDFUNCTION()
 
 IF(BUILD_TESTING)
 	SET(LUA_TEST test_lua.cpp)
-	MESSAGE(STATUS "LINK_LIBS ${LINK_LIBS}")
+	MESSAGE(STATUS "LINK_LIBS ${LINK_LIBS} tool ${Tool}")
 	build_test("test_lua" "${LUA_TEST}" "${LINK_LIBS}")
 		
 	SET(EXPORT ${CMAKE_SOURCE_DIR}/bin/export/)
@@ -30,13 +27,10 @@ IF(BUILD_TESTING)
 	INCLUDE_DIRECTORIES(${EXPORT}/proto/)
 	INCLUDE_DIRECTORIES(${EXPORT}/cpps/)
 
-
-
 	SET(PROTO_CPP_TEST test_pb)
 	SET(PB_TEST_LIBS ${LINK_LIBS} libprotobuf)
 	SET(PB_TEST test_pb.cpp  ${PROTOS} ${CPPS})
 	build_test("${PROTO_CPP_TEST}" "${PB_TEST}" "${PB_TEST_LIBS}")
-    
-	
 ENDIF()
-
+# 
+# 

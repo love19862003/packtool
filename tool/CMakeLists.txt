@@ -15,12 +15,20 @@ TARGET_LINK_LIBRARIES(${Tool} ${LINK_LIBS})
 
 SET_TARGET_PROPERTIES(${Tool} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/")
 
+# update test tools 
+IF(WIN32)
+  SET(MODIFYTEST echo "#" >>${CMAKE_SOURCE_DIR}/test/CMakeLists.txt )
+ELSE(WIN32)
+  SET(MODIFYTEST touch ${CMAKE_SOURCE_DIR}/test/CMakeLists.txt -a)
+ENDIF(WIN32)
+
+
 IF(BUILD_TESTING)
 	ADD_CUSTOM_COMMAND(
 		TARGET ${Tool}
 		POST_BUILD
 		COMMAND ${Tool}	  "./setting.xlsx" "test1.0.0.1" 1
-		#COMMAND "${CMD}"
+		COMMAND ${MODIFYTEST}
 		WORKING_DIRECTORY 	${CMAKE_SOURCE_DIR}/bin/
 		COMMENT  "run tool for export excel files"
 	)
