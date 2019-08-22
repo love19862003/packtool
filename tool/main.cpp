@@ -47,20 +47,24 @@ int main(int argc, char* argv[]) {
     log = argv[4];
   }
 
+  bool pause = false;
+  if (argc > 5){
+    pause = true;
+  }
+
   ToolSpace::TableTool m(file, version, type, log);
   if (!m.init()){
     assert(false);
     return 1;
   }
 
-  if (!m.run()){
-    assert(false);
-    return 1;
-  }
+  bool ret = m.run();
 
   m.shutDown();
-#ifdef _DEBUG
-   // getchar();
-#endif // _DEBUG
-  return 0;
+
+  if (pause){
+    getchar();
+  }
+  
+  return ret ? 0 : 1 ;
 }

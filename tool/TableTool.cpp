@@ -107,9 +107,9 @@ namespace ToolSpace{
       //return false;
     }
 
-    if (!m_error){
+   // if (!m_error){
       save();
-    }
+   // }
     return !m_error;
   }
 
@@ -267,29 +267,34 @@ namespace ToolSpace{
 
       if (sheetName.empty()){ continue; }
 
+
+      const int colCount = sheet->colCount();
+      const int rowCount = sheet->rowCount();
       // read head type
       LitSpace::call<void>(m_state, "new_table", sheetName);
-      for (int column = 0; column < sheet->colCount(); ++column){
+      debug("read table head:", sheetName);
+      int readMaxCol = colCount;
+      for (int column = 0; column < colCount; ++column){
         std::string headName = strlimit(sheet->read(HEAD_ROW_NAME, column));
         std::string typeName = strlimit(sheet->read(HEAD_ROW_TYPE, column));
         std::string comment = strlimit(sheet->read(HEAD_ROW_COMMENT, column));
 
-        if (headName.empty() || typeName.empty()){ break; }
+        if (headName.empty() || typeName.empty()){ readMaxCol = column + 1; break; }
         bool res = LitSpace::call<bool>(m_state, "table_head", sheetName, column, headName, typeName, comment);
         if (!res){ 
           return false;
         }
       }
 
-
       if(!LitSpace::call<bool>(m_state, "check_table_link", sheetName)){
         return false;
       }
 
       // read table record
-      for (int row = HEAD_ROW_COMMENT + 1; row < sheet->rowCount(); ++row){
+      debug("read table record:", sheetName);
+      for (int row = HEAD_ROW_COMMENT + 1; row < rowCount; ++row){
         LitSpace::call<void>(m_state, "reset_read_table_record");
-        for (int column = 0; column < sheet->colCount(); ++column){
+        for (int column = 0; column < readMaxCol; ++column){
           std::string str = strlimit(sheet->read(row, column));
           bool res = LitSpace::call<bool>(m_state, "add_read_fields", sheetName, column, str);
           if (!res){ break;}

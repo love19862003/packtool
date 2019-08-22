@@ -80,10 +80,15 @@ namespace ExcelSpace{
     public:
         XlntBook(const std::string& path){
           
-          m_book.load(path);
+          try{
+            m_book.load(path);
 
-          for (int i = 0; i < m_book.sheet_count(); ++i){
-            m_sheets.addData(i, std::make_shared<XlntSheet>(m_book.sheet_by_index(i)));
+            for (int i = 0; i < m_book.sheet_count(); ++i){
+
+              m_sheets.addData(i, std::make_shared<XlntSheet>(m_book.sheet_by_index(i)));
+            }
+          }catch (const std::exception&e){
+            std::cout << e.what() << std::endl;
           }
           
         }
