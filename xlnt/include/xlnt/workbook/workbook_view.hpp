@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -94,25 +94,12 @@ public:
     /// <summary>
     /// The distance of the workbook window from the left side of the screen in twips.
     /// </summary>
-    optional<int> x_window;
+    optional<std::size_t> x_window;
 
     /// <summary>
     /// The distance of the workbook window from the top of the screen in twips.
     /// </summary>
-    optional<int> y_window;
+    optional<std::size_t> y_window;
 };
-
-inline bool operator==(const workbook_view &lhs, const workbook_view &rhs)
-{
-    return lhs.active_tab == rhs.active_tab
-        && lhs.auto_filter_date_grouping == rhs.auto_filter_date_grouping
-        && lhs.first_sheet == rhs.first_sheet
-        && lhs.minimized == rhs.minimized
-        && lhs.show_horizontal_scroll == rhs.show_horizontal_scroll
-        && lhs.show_sheet_tabs == rhs.show_sheet_tabs
-        && lhs.show_vertical_scroll == rhs.show_vertical_scroll
-        && lhs.tab_ratio == rhs.tab_ratio
-        && lhs.visible == rhs.visible;
-}
 
 } // namespace xlnt

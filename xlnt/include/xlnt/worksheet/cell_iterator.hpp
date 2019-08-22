@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 // Copyright (c) 2010-2015 openpyxl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,20 +41,17 @@ class cell_reference;
 class range_reference;
 
 /// <summary>
+/// Alias the parent class of this iterator to increase clarity.
+/// </summary>
+using c_iter_type = std::iterator<std::bidirectional_iterator_tag,
+    cell, std::ptrdiff_t, cell *, cell>;
+
+/// <summary>
 /// A cell iterator iterates over a 1D range by row or by column.
 /// </summary>
-class XLNT_API cell_iterator
+class XLNT_API cell_iterator : public c_iter_type
 {
 public:
-    /// <summary>
-    /// iterator tags required for use with standard algorithms and adapters
-    /// </summary>
-    using iterator_category = std::bidirectional_iterator_tag;
-    using value_type = cell;
-    using difference_type = std::ptrdiff_t;
-    using pointer = cell *;
-    using reference = cell; // intentionally value
-
     /// <summary>
     /// Constructs a cell_iterator from a worksheet, range, and iteration settings.
     /// </summary>
@@ -64,38 +61,17 @@ public:
     /// <summary>
     /// Constructs a cell_iterator as a copy of an existing cell_iterator.
     /// </summary>
-    cell_iterator(const cell_iterator &) = default;
+    cell_iterator(const cell_iterator &other);
 
     /// <summary>
     /// Assigns this iterator to match the data in rhs.
     /// </summary>
-    cell_iterator &operator=(const cell_iterator &) = default;
-
-    /// <summary>
-    /// Constructs a cell_iterator by moving from a cell_iterator temporary
-    /// </summary>
-    cell_iterator(cell_iterator &&) = default;
-
-    /// <summary>
-    /// Assigns this iterator to from a cell_iterator temporary
-    /// </summary>
-    cell_iterator &operator=(cell_iterator &&) = default;
-
-    /// <summary>
-    /// destructor for const_cell_iterator
-    /// </summary>
-    ~cell_iterator() = default;
+    cell_iterator &operator=(const cell_iterator &rhs) = default;
 
     /// <summary>
     /// Dereferences this iterator to return the cell it points to.
     /// </summary>
-    reference operator*();
-
-    /// <summary>
-    /// Dereferences this iterator to return the cell it points to.
-    /// </summary>
-    const reference operator*() const;
-
+    cell operator*();
 
     /// <summary>
     /// Returns true if this iterator is equivalent to other.
@@ -159,7 +135,7 @@ private:
     /// If true, cells that don't exist in the worksheet will be skipped during iteration.
     /// </summary>
     bool skip_null_;
-
+    
     /// <summary>
     /// If true, when on the last column, the cursor will continue to the next row
     /// (and vice versa when iterating in column-major order) until reaching the
@@ -169,20 +145,17 @@ private:
 };
 
 /// <summary>
+/// Alias the parent class of this iterator to increase clarity.
+/// </summary>
+using cc_iter_type = std::iterator<std::bidirectional_iterator_tag,
+    const cell, std::ptrdiff_t, const cell *, const cell>;
+
+/// <summary>
 /// A cell iterator iterates over a 1D range by row or by column.
 /// </summary>
-class XLNT_API const_cell_iterator
+class XLNT_API const_cell_iterator : public cc_iter_type
 {
 public:
-    /// <summary>
-    /// iterator tags required for use with standard algorithms and adapters
-    /// </summary>
-    using iterator_category = std::bidirectional_iterator_tag;
-    using value_type = const cell;
-    using difference_type = std::ptrdiff_t;
-    using pointer = const cell *;
-    using reference = const cell; // intentionally value
-
     /// <summary>
     /// Constructs a cell_iterator from a worksheet, range, and iteration settings.
     /// </summary>
@@ -190,9 +163,9 @@ public:
         const range_reference &limits, major_order order, bool skip_null, bool wrap);
 
     /// <summary>
-    /// Constructs a const_cell_iterator as a copy of an existing cell_iterator.
+    /// Constructs a cell_iterator as a copy of an existing cell_iterator.
     /// </summary>
-    const_cell_iterator(const const_cell_iterator &) = default;
+    const_cell_iterator(const const_cell_iterator &other);
 
     /// <summary>
     /// Assigns this iterator to match the data in rhs.
@@ -200,24 +173,9 @@ public:
     const_cell_iterator &operator=(const const_cell_iterator &) = default;
 
     /// <summary>
-    /// Constructs a const_cell_iterator by moving from a const_cell_iterator temporary
-    /// </summary>
-    const_cell_iterator(const_cell_iterator &&) = default;
-
-    /// <summary>
-    /// Assigns this iterator to from a const_cell_iterator temporary
-    /// </summary>
-    const_cell_iterator &operator=(const_cell_iterator &&) = default;
-
-    /// <summary>
-    /// destructor for const_cell_iterator
-    /// </summary>
-    ~const_cell_iterator() = default;
-
-    /// <summary>
     /// Dereferences this iterator to return the cell it points to.
     /// </summary>
-    const reference operator*() const;
+    const cell operator*() const;
 
     /// <summary>
     /// Returns true if this iterator is equivalent to other.

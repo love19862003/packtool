@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2018 Thomas Fussell
+// Copyright (c) 2016-2017 Thomas Fussell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -34,11 +34,10 @@ namespace xlnt {
 /// <summary>
 /// Typedef a rich_text_run as a pair of string and optional font.
 /// </summary>
-struct XLNT_API rich_text_run
+struct rich_text_run
 {
     std::string first;
     optional<font> second;
-    bool preserve_space;
 
     bool operator==(const rich_text_run &other) const;
 

@@ -28,6 +28,7 @@ IF(BUILD_TESTING)
 	SET(EXPORT ${CMAKE_SOURCE_DIR}/bin/export/)
 	FILE(GLOB PROTOS ${EXPORT}/proto/*.h ${EXPORT}/proto/*.cc ${EXPORT}/proto/*.proto)
 	FILE(GLOB CPPS ${EXPORT}/cpps/*.h ${EXPORT}/cpps/*.cpp)
+	SOURCE_GROUP("proto" FILES ${PROTOS})
 
 	INCLUDE_DIRECTORIES(${EXPORT}/proto/)
 	INCLUDE_DIRECTORIES(${EXPORT}/cpps/)
@@ -38,6 +39,9 @@ IF(BUILD_TESTING)
 	build_test("${PROTO_CPP_TEST}" "${PB_TEST}" "${PB_TEST_LIBS}" "${Tool}")
 ENDIF()
 
+
+ 
+ 
  
  
  

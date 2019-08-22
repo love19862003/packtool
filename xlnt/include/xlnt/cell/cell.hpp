@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 // Copyright (c) 2010-2015 openpyxl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -47,8 +47,6 @@ class font;
 class format;
 class number_format;
 class protection;
-class range;
-class relationship;
 class style;
 class workbook;
 class worksheet;
@@ -161,6 +159,11 @@ public:
     /// <summary>
     /// Sets the value of this cell to the given value.
     /// </summary>
+    void value(long double float_value);
+
+    /// <summary>
+    /// Sets the value of this cell to the given value.
+    /// </summary>
     void value(const date &date_value);
 
     /// <summary>
@@ -241,11 +244,6 @@ public:
     column_t column() const;
 
     /// <summary>
-    /// Returns the numeric index (A == 1) of the column of this cell.
-    /// </summary>
-    column_t::index_t column_index() const;
-
-    /// <summary>
     /// Returns the row of this cell.
     /// </summary>
     row_t row() const;
@@ -258,25 +256,25 @@ public:
     // hyperlink
 
     /// <summary>
-    /// Returns the relationship of this cell's hyperlink.
+    /// Returns the URL of this cell's hyperlink.
     /// </summary>
-    class hyperlink hyperlink() const;
+    std::string hyperlink() const;
+
+    /// <summary>
+    /// Adds a hyperlink to this cell pointing to the URL of the given value.
+    /// </summary>
+    void hyperlink(const std::string &url);
 
     /// <summary>
     /// Adds a hyperlink to this cell pointing to the URI of the given value and sets
     /// the text value of the cell to the given parameter.
     /// </summary>
-    void hyperlink(const std::string &url, const std::string &display = "");
+    void hyperlink(const std::string &url, const std::string &display);
 
     /// <summary>
     /// Adds an internal hyperlink to this cell pointing to the given cell.
     /// </summary>
-    void hyperlink(xlnt::cell target, const std::string& display = "");
-
-    /// <summary>
-    /// Adds an internal hyperlink to this cell pointing to the given range.
-    /// </summary>
-    void hyperlink(xlnt::range target, const std::string& display = "");
+    void hyperlink(xlnt::cell target);
 
     /// <summary>
     /// Returns true if this cell has a hyperlink set.
@@ -608,9 +606,9 @@ public:
     bool operator==(const cell &comparand) const;
 
     /// <summary>
-    /// Returns false if this cell the same cell as comparand (compared by reference).
+    /// Returns true if this cell is uninitialized.
     /// </summary>
-    bool operator!=(const cell &comparand) const;
+    bool operator==(std::nullptr_t) const;
 
 private:
     friend class style;
@@ -647,11 +645,6 @@ private:
 XLNT_API bool operator==(std::nullptr_t, const cell &cell);
 
 /// <summary>
-/// Returns true if this cell is uninitialized.
-/// </summary>
-XLNT_API bool operator==(const cell &cell, std::nullptr_t);
-
-/// <summary>
 /// Convenience function for writing cell to an ostream.
 /// Uses cell::to_string() internally.
 /// </summary>
@@ -677,6 +670,9 @@ float cell::value<float>() const;
 
 template<>
 double cell::value<double>() const;
+
+template<>
+long double cell::value<long double>() const;
 
 template<>
 date cell::value<date>() const;

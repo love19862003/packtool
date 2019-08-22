@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 // Copyright (c) 2010-2015 openpyxl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -242,7 +242,7 @@ public:
     /// Returns number formatted according to this number format's format code
     /// with the given base date.
     /// </summary>
-    std::string format(double number, calendar base_date) const;
+    std::string format(long double number, calendar base_date) const;
 
     /// <summary>
     /// Returns true if this format code returns a number formatted as a date.

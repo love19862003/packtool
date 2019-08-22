@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ struct XLNT_API time
     /// The integer part of number will be ignored.
     /// 0.5 would return time(12, 0, 0, 0) or noon, halfway through the day.
     /// </summary>
-    static time from_number(double number);
+    static time from_number(long double number);
 
     /// <summary>
     /// Constructs a time object from an optional hour, minute, second, and microsecond.
@@ -62,7 +62,7 @@ struct XLNT_API time
     /// Returns a numeric representation of the time in the range 0-1 where the value
     /// is equal to the fraction of the day elapsed.
     /// </summary>
-    double to_number() const;
+    long double to_number() const;
 
     /// <summary>
     /// Returns true if this time is equivalent to comparand.

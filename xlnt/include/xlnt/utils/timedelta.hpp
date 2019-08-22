@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ struct XLNT_API timedelta
     /// <summary>
     /// Returns a timedelta from a number representing the factional number of days elapsed.
     /// </summary>
-    static timedelta from_number(double number);
+    static timedelta from_number(long double number);
 
     /// <summary>
     /// Constructs a timedelta equal to zero.
@@ -53,7 +53,7 @@ struct XLNT_API timedelta
     /// <summary>
     /// Returns a numeric representation of this timedelta as a fractional number of days.
     /// </summary>
-    double to_number() const;
+    long double to_number() const;
 
     /// <summary>
     /// The days

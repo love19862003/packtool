@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -37,27 +37,6 @@ class XLNT_API selection
 {
 public:
     /// <summary>
-    /// default ctor
-    /// </summary>
-    explicit selection() = default;
-
-    /// <summary>
-    /// ctor when no range selected
-    /// sqref == active_cell
-    /// </summary>
-    explicit selection(pane_corner quadrant, cell_reference active_cell)
-        : active_cell_(active_cell), sqref_(range_reference(active_cell, active_cell)), pane_(quadrant)
-    {}
-
-    /// <summary>
-    /// ctor with selected range
-    /// sqref must contain active_cell
-    /// </summary>
-    explicit selection(pane_corner quadrant, cell_reference active_cell, range_reference selected)
-        : active_cell_(active_cell), sqref_(selected), pane_(quadrant)
-    {}
-
-    /// <summary>
     /// Returns true if this selection has a defined active cell.
     /// </summary>
     bool has_active_cell() const
@@ -82,35 +61,11 @@ public:
     }
 
     /// <summary>
-    /// Returns true if this selection has a defined sqref.
-    /// </summary>
-    bool has_sqref() const
-    {
-        return sqref_.is_set();
-    }
-
-    /// <summary>
     /// Returns the range encompassed by this selection.
     /// </summary>
     range_reference sqref() const
     {
-        return sqref_.get();
-    }
-
-    /// <summary>
-    /// Sets the range encompassed by this selection.
-    /// </summary>
-    void sqref(const range_reference &ref)
-    {
-        sqref_ = ref;
-    }
-
-    /// <summary>
-    /// Sets the range encompassed by this selection.
-    /// </summary>
-    void sqref(const std::string &ref)
-    {
-        sqref(range_reference(ref));
+        return sqref_;
     }
 
     /// <summary>
@@ -142,18 +97,17 @@ public:
 
 private:
     /// <summary>
-    /// The last selected cell in the selection
+    /// The active cell
     /// </summary>
     optional<cell_reference> active_cell_;
 
     /// <summary>
-    /// The last selected block in the selection
-    /// contains active_cell_, normally == to active_cell_
+    /// The range
     /// </summary>
-    optional<range_reference> sqref_;
+    range_reference sqref_;
 
     /// <summary>
-    /// The corner of the worksheet that this selection extends to
+    /// The quadrant
     /// </summary>
     pane_corner pane_;
 };

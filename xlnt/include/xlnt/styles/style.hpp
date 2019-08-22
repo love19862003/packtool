@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 // Copyright (c) 2010-2015 openpyxl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -123,7 +123,7 @@ public:
     /// to true, determines whether the alignment should be enabled for cells using
     /// this style.
     /// </summary>
-    style alignment(const xlnt::alignment &new_alignment, optional<bool> applied = {});
+    style alignment(const xlnt::alignment &new_alignment, bool applied = true);
 
     /// <summary>
     /// Returns the border of this style.
@@ -140,7 +140,7 @@ public:
     /// to true, determines whether the border should be enabled for cells using
     /// this style.
     /// </summary>
-    style border(const xlnt::border &new_border, optional<bool> applied = {});
+    style border(const xlnt::border &new_border, bool applied = true);
 
     /// <summary>
     /// Returns the fill of this style.
@@ -157,7 +157,7 @@ public:
     /// to true, determines whether the border should be enabled for cells using
     /// this style.
     /// </summary>
-    style fill(const xlnt::fill &new_fill, optional<bool> applied = {});
+    style fill(const xlnt::fill &new_fill, bool applied = true);
 
     /// <summary>
     /// Returns the font of this style.
@@ -174,7 +174,7 @@ public:
     /// to true, determines whether the font should be enabled for cells using
     /// this style.
     /// </summary>
-    style font(const xlnt::font &new_font, optional<bool> applied = {});
+    style font(const xlnt::font &new_font, bool applied = true);
 
     /// <summary>
     /// Returns the number_format of this style.
@@ -191,7 +191,7 @@ public:
     /// to true, determines whether the number format should be enabled for cells using
     /// this style.
     /// </summary>
-    style number_format(const xlnt::number_format &new_number_format, optional<bool> applied = {});
+    style number_format(const xlnt::number_format &new_number_format, bool applied = true);
 
     /// <summary>
     /// Returns the protection of this style.
@@ -208,7 +208,7 @@ public:
     /// to true, determines whether the protection should be enabled for cells using
     /// this style.
     /// </summary>
-    style protection(const xlnt::protection &new_protection, optional<bool> applied = {});
+    style protection(const xlnt::protection &new_protection, bool applied = true);
 
     /// <summary>
     /// Returns true if the pivot table interface is enabled for this style.

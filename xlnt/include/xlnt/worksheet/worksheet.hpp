@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 // Copyright (c) 2010-2015 openpyxl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -54,9 +54,7 @@ class range_iterator;
 class range_reference;
 class relationship;
 class row_properties;
-class sheet_format_properties;
 class workbook;
-class phonetic_pr;
 
 struct date;
 
@@ -260,16 +258,6 @@ public:
     //TODO: finish implementing cell_iterator wrapping before uncommenting
     //const class cell_vector cells(bool skip_null = true) const;
 
-    /// <summary>
-    /// Clears memory used by the given cell.
-    /// </summary>
-    void clear_cell(const cell_reference &ref);
-
-    /// <summary>
-    /// Clears memory used by all cells in the given row.
-    /// </summary>
-    void clear_row(row_t row);
-
     // properties
 
     /// <summary>
@@ -373,19 +361,9 @@ public:
     row_t lowest_row() const;
 
     /// <summary>
-    /// Returns the row of the first non-empty cell or lowest row with properties in the worksheet.
-    /// </summary>
-    row_t lowest_row_or_props() const;
-
-    /// <summary>
     /// Returns the row of the last non-empty cell in the worksheet.
     /// </summary>
     row_t highest_row() const;
-
-    /// <summary>
-    /// Returns the row of the last non-empty cell or highest row with properties in the worksheet.
-    /// </summary>
-    row_t highest_row_or_props() const;
 
     /// <summary>
     /// Returns the row directly below the last non-empty cell in the worksheet.
@@ -398,19 +376,9 @@ public:
     column_t lowest_column() const;
 
     /// <summary>
-    /// Returns the column of the first non-empty cell or lowest column with properties in the worksheet.
-    /// </summary>
-    column_t lowest_column_or_props() const;
-
-    /// <summary>
     /// Returns the column of the last non-empty cell in the worksheet.
     /// </summary>
     column_t highest_column() const;
-
-    /// <summary>
-    /// Returns the column of the last non-empty cell or highest column with properties in the worksheet.
-    /// </summary>
-    column_t highest_column_or_props() const;
 
     /// <summary>
     /// Returns a range_reference pointing to the full range of non-empty cells in the worksheet.
@@ -558,21 +526,6 @@ public:
     void reserve(std::size_t n);
 
     /// <summary>
-    /// Returns true if this sheet has phonetic properties
-    /// </summary>
-    bool has_phonetic_properties() const;
-
-    /// <summary>
-    /// Returns the phonetic properties of this sheet.
-    /// </summary>
-    const phonetic_pr &phonetic_properties() const;
-
-    /// <summary>
-    /// Sets the phonetic properties of this sheet to phonetic_props
-    /// </summary>
-    void phonetic_properties(const phonetic_pr& phonetic_props);
-
-    /// <summary>
     /// Returns true if this sheet has a header/footer.
     /// </summary>
     bool has_header_footer() const;
@@ -670,27 +623,12 @@ public:
     /// <summary>
     /// Returns the view at the given index.
     /// </summary>
-    sheet_view &view(std::size_t index = 0) const;
+    sheet_view view(std::size_t index = 0) const;
 
     /// <summary>
     /// Adds new_view to the set of available views for this sheet.
     /// </summary>
     void add_view(const sheet_view &new_view);
-
-    /// <summary>
-    /// Set the active cell on the default worksheet view to the given reference.
-    /// </summary>
-    void active_cell(const cell_reference &ref);
-
-    /// <summary>
-    /// Returns true if the worksheet has a view and the view has an active cell.
-    /// </summary>
-    bool has_active_cell() const;
-
-    /// <summary>
-    /// Returns the active cell on the default worksheet view.
-    /// </summary>
-    cell_reference active_cell() const;
 
     // page breaks
 
@@ -720,30 +658,10 @@ public:
     /// </summary>
     void page_break_at_column(column_t column);
 
-    /// <summary>
-    /// Creates a conditional format for the given range with the given condition.
-    /// </summary>
-    xlnt::conditional_format conditional_format(const range_reference &ref, const condition &when);
-
-    /// <summary>
-    /// Returns the path of this worksheet in the containing package.
-    /// </summary>
-    xlnt::path path() const;
-
-    /// <summary>
-    /// Returns the relationship from the parent workbook to this worksheet.
-    /// </summary>
-    relationship referring_relationship() const;
-
-    /// <summary>
-    /// Returns the current formatting properties.
-    /// </summary>
-    sheet_format_properties format_properties() const;
-
-    /// <summary>
-    /// Sets the format properties to the given properties.
-    /// </summary>
-    void format_properties(const sheet_format_properties &properties);
+	/// <summary>
+	/// Creates a conditional format for the given range with the given condition.
+	/// </summary>
+	xlnt::conditional_format conditional_format(const range_reference &ref, const condition &when);
 
 private:
     friend class cell;
@@ -772,7 +690,7 @@ private:
     /// Removes calcChain part from manifest if no formulae remain in workbook.
     /// </summary>
     void garbage_collect_formulae();
-
+    
     /// <summary>
     /// Sets the parent of this worksheet to wb.
     /// </summary>

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 Thomas Fussell
+// Copyright (c) 2014-2017 Thomas Fussell
 // Copyright (c) 2010-2015 openpyxl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -68,22 +68,12 @@ public:
     bool bold() const;
 
     /// <summary>
-    /// Sets the vertical alignment of the font to subscript and returns a reference to the font.
+    /// Sets the bold state of the font to bold and returns a reference to the font.
     /// </summary>
-    font &subscript(bool value);
+    font &superscript(bool superscript);
 
     /// <summary>
-    /// Returns true if this font has a vertical alignment of subscript.
-    /// </summary>
-    bool subscript() const;
-
-    /// <summary>
-    /// Sets the vertical alignment of the font to superscript and returns a reference to the font.
-    /// </summary>
-    font &superscript(bool value);
-
-    /// <summary>
-    /// Returns true if this font has a vertical alignment of superscript.
+    /// Returns true if this font has a superscript applied.
     /// </summary>
     bool superscript() const;
 
@@ -170,7 +160,7 @@ public:
     /// <summary>
     /// Returns the name of the font face.
     /// </summary>
-    const std::string& name() const;
+    std::string name() const;
 
     /// <summary>
     /// Returns true if this font has a color applied.
@@ -232,7 +222,7 @@ public:
     /// <summary>
     /// Returns the scheme of this font.
     /// </summary>
-    const std::string& scheme() const;
+    std::string scheme() const;
 
     /// <summary>
     /// Returns true if left is exactly equal to right.
@@ -242,10 +232,7 @@ public:
     /// <summary>
     /// Returns true if left is not exactly equal to right.
     /// </summary>
-    bool operator!=(const font &other) const
-    {
-        return !operator==(other);
-    }
+    bool operator!=(const font &other) const;
 
 private:
     friend class style;
