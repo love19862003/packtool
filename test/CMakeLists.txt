@@ -1,13 +1,15 @@
-FUNCTION(build_test EXE CODE LIBS)
+FUNCTION(build_test EXE CODE  LIBS TOOL)
 	SET(BASE ${EXE})
 
 	ADD_EXECUTABLE(${BASE} ${CODE} main.cpp)
   
-	MESSAGE(STATUS "link libs ${LIBS}")
+	MESSAGE(STATUS "link libs ${LIBS}  tool ${TOOL}")
 
 	TARGET_LINK_LIBRARIES(${BASE} "${LIBS}")
 	
 	SET_TARGET_PROPERTIES(${BASE} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/)
+
+	ADD_DEPENDENCIES(${BASE} ${TOOL})
 
 	ADD_TEST(NAME ${BASE}
 		COMMAND ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/${BASE}
@@ -17,8 +19,9 @@ ENDFUNCTION()
 
 IF(BUILD_TESTING)
 	SET(LUA_TEST test_lua.cpp)
+	SET(Tool tool)
 	MESSAGE(STATUS "LINK_LIBS ${LINK_LIBS} tool ${Tool}")
-	build_test("test_lua" "${LUA_TEST}" "${LINK_LIBS}")
+	build_test("test_lua" "${LUA_TEST}" "${LINK_LIBS}" "${Tool}")
 		
 	SET(EXPORT ${CMAKE_SOURCE_DIR}/bin/export/)
 	FILE(GLOB PROTOS ${EXPORT}/proto/*.h ${EXPORT}/proto/*.cc ${EXPORT}/proto/*.proto)
@@ -30,7 +33,6 @@ IF(BUILD_TESTING)
 	SET(PROTO_CPP_TEST test_pb)
 	SET(PB_TEST_LIBS ${LINK_LIBS} libprotobuf)
 	SET(PB_TEST test_pb.cpp  ${PROTOS} ${CPPS})
-	build_test("${PROTO_CPP_TEST}" "${PB_TEST}" "${PB_TEST_LIBS}")
+	build_test("${PROTO_CPP_TEST}" "${PB_TEST}" "${PB_TEST_LIBS}" "${Tool}")
 ENDIF()
-# 
-# 
+
