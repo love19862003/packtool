@@ -20,12 +20,11 @@ namespace test
                 Console.Write(s.ToString()); return false; }
             );
             
-            Pro.roleConfig conf1 = config.role(1);
-            Pro.monsterConfig conf2 = config.monster_by_job_level_sub(Pro.roleConfig.Types.jobtype.Common0,1, 1);
+            Pro.roleConfig conf1 = config.role(1);                                                                    
 
             Console.Write(conf1.ToString());
             Console.WriteLine("--------------------------");
-            Console.Write(conf2.ToString());
+           
             Console.WriteLine("--------------------------");
             Pro.roleConfig conf = config.role(7102);
             Console.WriteLine("--------------------------");
