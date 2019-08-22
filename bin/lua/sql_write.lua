@@ -36,6 +36,10 @@ function sql_content(head, record)
       if record then return "'1'" else return "'0'" end
     end
     
+    if nil == record then 
+      print( head.name  .. " " .. head.basic_type)
+    end
+    
     return "'" .. record .. "'"
   end
   
@@ -123,6 +127,11 @@ local function sql_table_field_record(tab, record)
   local res = {heads = {}, record = {}}
   for _, h in pairs(tab.heads) do 
     local basic = get_basic_type_by_id(h.basic_type)
+    
+    if nil  == record.fields[h.index] then 
+      print(tab:name())
+    end
+    
     local f = basic.writer_sql.content(h, record.fields[h.index])
     if f then 
       table.insert(res.heads, h.name)

@@ -11,7 +11,7 @@ local function cpptypes(head)
   local basic_type = get_basic_type_by_id(head.basic_type)
   if isSelfEnumType(basic_type.type) then 
     local en = get_enum(head.type_basic_name)
-    if en.table ~= nil then
+    if en.table ~= nil and en.table ~= "" then
       return en.table .. tail_config_name() .. "::" .. en.name 
     else
       return en.name

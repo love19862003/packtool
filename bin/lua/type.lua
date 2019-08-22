@@ -117,6 +117,10 @@ function isSelfEnumType(type)
   return type == g_basic_type["self_enum"].type
 end
 
+function isSelfCommonType(type)
+  return type > g_basic_type["self_enum"].type
+end
+
 -- 是否是单个基础类型
 function isSingleType(type)
   return type == g_muti_type.basic

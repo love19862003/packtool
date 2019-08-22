@@ -240,14 +240,6 @@ local function text_value(value)
   end
 end
 
-function text_object(obj)
-  if type(obj) ==  "table" then 
-    return text_table(obj)
-  else
-    return text_value(obj)
-  end
-end
-
 local function text_table(tab)
   if type(tab) ~=  "table" then 
     return ""
@@ -282,6 +274,14 @@ local function text_table(tab)
   out = out.."}"
   return out
   
+end
+
+function text_object(obj)
+  if type(obj) ==  "table" then 
+    return text_table(obj)
+  else
+    return text_value(obj)
+  end
 end
 
 local function file_table(tab, cc, space, file)

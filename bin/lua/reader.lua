@@ -174,9 +174,13 @@ function reader_self_enum(str, head)
   --Dump.info(tal, str)
   if type(tal) ~= "table" then 
     if not check_enum_value(head.type_basic_name,tal) then
-      er("读取自定义枚举类型出错:"..head.type_basic_name.. " val:"..tal)
-      assert(false)
-      return nil
+     if tal ~= "" then
+        er("读取自定义枚举类型出错:"..head.type_basic_name.. " val:"..tal)
+        assert(false)
+        return nil
+      else
+        return enum_default_value(head.type_basic_name)
+      end
     end
   else
      for _, v in pairs(tal) do

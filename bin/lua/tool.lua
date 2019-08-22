@@ -70,7 +70,7 @@ function table_head(table_name, column, headname, typename, comment)
       t:addDepends(common_enum_name())
      end
   else
-      if isGroupType(head.muti_type) then
+      if isGroupType(head.muti_type) or isSelfCommonType(head.basic_type) then
         t:setDependCommon()
       end
   end
@@ -80,7 +80,7 @@ end
 
 -- 重置数据记录
 function reset_read_table_record()
-  read_table_record = {index = "", fields = {}} 
+  read_table_record = {index = "", fields = {}, vaild = false} 
 end
 
 -- 增加数据读取字段
@@ -93,11 +93,16 @@ function add_read_fields(name, column, value)
   
   local g = get_basic_type_by_id(head.basic_type)
   local field = g.reader(value, head) 
+ 
   local indexHead = t:getIndexHead()
   if head.index == indexHead.index then 
     read_table_record.index = field
-    if value == "" then return false end
-    --Dump.info(field, value)
+    if value == "" then
+      read_table_record.vaild = false
+      return false 
+    else
+      read_table_record.vaild = true
+    end
   end
   
   --Dump.info(field, value)
@@ -107,14 +112,14 @@ end
 
 -- 检测数据是否读完
 function read_record_end()
-  return read_table_record.index == "" or read_table_record.index == nil
+  return read_table_record.index == "" or read_table_record.index == nil or read_table_record.vaild == false
 end
 
 --增加数据到表格
 function add_record(name)
   local t = g_tables[name]
   if not t then return false end
-  if read_table_record.index ~= "" then
+  if read_table_record.vaild == true  then
     t:addRecord(read_table_record)
     reset_read_table_record()
   end

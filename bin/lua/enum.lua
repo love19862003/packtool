@@ -17,6 +17,23 @@ function get_enum(name)
   return g_enum_type[name]
 end
 
+function enum_default_value(name)
+  if not g_enum_type[name] then
+   return  nil
+  end
+  
+  local res = nil
+  for _, v in pairs(g_enum_type[name].values) do 
+    res = res or v[1]
+    if v[2] == 0 then 
+      res = v[1]
+    end
+  end
+  --print("enum".. name .."default_value:" .. res)
+  return res
+end
+
+
 -- 读取枚举名字
 function read_enum_name(str)
   --print("read_enum_name "..str)
@@ -71,6 +88,7 @@ function check_enum_value(name, value)
     if type(value) == "string" and value == v[1] then
       return true , v
     end
+   
   end
   
   return false, nil
