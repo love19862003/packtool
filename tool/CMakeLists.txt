@@ -17,7 +17,7 @@ SET_TARGET_PROPERTIES(${Tool} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_
 
 # update test tools 
 IF(WIN32)
-  SET(MODIFYTEST echo "#" >>${CMAKE_SOURCE_DIR}/test/CMakeLists.txt )
+  SET(MODIFYTEST echo. >>${CMAKE_SOURCE_DIR}/test/CMakeLists.txt )
 ELSE(WIN32)
   SET(MODIFYTEST touch ${CMAKE_SOURCE_DIR}/test/CMakeLists.txt -a)
 ENDIF(WIN32)
