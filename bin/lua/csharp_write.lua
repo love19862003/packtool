@@ -31,7 +31,13 @@ local function proto_csharp_path()
 end
 --csharp 访问接口
 local function csharp_head_fun_name(name)
-  return string.upper(string.sub(name, 1, 1))..string.sub(name, 2)
+  --return string.upper(string.sub(name, 1, 1))..string.sub(name, 2)
+  local res = string.split(name, "_")
+  local r = ""
+  for _, str in pairs(res) do 
+    r = r .. string.upper(string.sub(str, 1, 1))..string.sub(str, 2)
+  end
+  return r
 end
 
 --类型转换
@@ -39,7 +45,7 @@ local function csharp_types(head)
   local basic_type = get_basic_type_by_id(head.basic_type)
   if isSelfEnumType(basic_type.type) then 
     local en = get_enum(head.type_basic_name)
-    if en.table ~= nil then
+    if en.table ~= nil and en.table ~= "" then
       return name_space().."."..en.table .. tail_config_name() .. ".Types." .. en.name 
     else
       return name_space().."."..en.name
