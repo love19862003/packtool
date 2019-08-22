@@ -133,9 +133,7 @@ namespace ToolSpace{
       auto str = makeString(t, args...);
       m_log << "[e]:" << str << "\n";
       m_error = true;
-#ifdef _DEBUG
       std::cout << "[e]:" << U2G(str) << std::endl;
-#endif // _DEBUG
     }
   protected:
     TableTool(const TableTool&) = delete;
