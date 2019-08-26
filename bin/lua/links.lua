@@ -15,9 +15,13 @@ struct{
 function add_table_link(name, linkstr)
   gtable_links[name] = gtable_links[name] or {}
   linkstr = string.gsub(linkstr, " ", "")
-  local heads = string.split(linkstr, ",")
-  local link = {name = table.concat(heads, "_"), heads = heads}
-  table.insert(gtable_links[name], link)
+  
+  local linksubs = string.split(linkstr, ";")
+  for _, linksubstr in pairs(linksubs)  do 
+    local heads = string.split(linksubstr, ",")
+    local link = {name = table.concat(heads, "_"), heads = heads}
+    table.insert(gtable_links[name], link)
+  end
 end
 
 --获取表的多键索引
