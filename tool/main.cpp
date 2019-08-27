@@ -20,6 +20,7 @@
 #ifdef WIN32
 #include <windows.h>
 #endif
+#include "Utility.h"
 int main(int argc, char* argv[]) {
 #ifdef WIN32
   system("chcp 936");
